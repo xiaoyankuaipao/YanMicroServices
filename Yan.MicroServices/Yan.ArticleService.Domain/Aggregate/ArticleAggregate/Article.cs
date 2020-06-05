@@ -45,7 +45,6 @@ namespace Yan.ArticleService.Domain.Aggregate.ArticleAggregate
         /// <summary>
         /// 
         /// </summary>
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreateTime { get; set; }
     }
 }

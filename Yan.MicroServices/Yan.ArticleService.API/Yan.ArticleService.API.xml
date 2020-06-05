@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Yan.ArticleService.API</name>
+    </assembly>
+    <members>
+        <member name="T:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand.CategoryName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommandHandler._articleCategoryRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommandHandler.#ctor(Yan.ArticleService.Infrastructure.Repositories.IArticleCategoryRepository)">
+            <summary>
+            
+            </summary>
+            <param name="articleCategoryRepository"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommandHandler.Handle(Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Yan.ArticleService.API.Application.DomainEventHandlers.ArticleCategoryCreateDomainEventHandler" -->
+        <member name="F:Yan.ArticleService.API.Application.DomainEventHandlers.ArticleCategoryCreateDomainEventHandler._capPublisher">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.DomainEventHandlers.ArticleCategoryCreateDomainEventHandler.#ctor(DotNetCore.CAP.ICapPublisher)">
+            <summary>
+            
+            </summary>
+            <param name="capPublisher"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.DomainEventHandlers.ArticleCategoryCreateDomainEventHandler.Handle(Yan.ArticleService.Domain.Events.ArticleCategoryCreateDomainEvent,System.Threading.CancellationToken)">
+            <summary>
+            处理方法
+            </summary>
+            <param name="notification"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.IntegrationEvents.ArticleCategoryCreatedIntegrationEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.IntegrationEvents.ArticleCategoryCreatedIntegrationEvent.AricleCategoryId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.IntegrationEvents.ArticleCategoryCreatedIntegrationEvent.#ctor(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="aricleCategoryId"></param>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.IntegrationEvents.ISubscriberService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.IntegrationEvents.ISubscriberService.ArticleCategoryCreated(Yan.ArticleService.API.Application.IntegrationEvents.ArticleCategoryCreatedIntegrationEvent)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.IntegrationEvents.SubscriberService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.IntegrationEvents.SubscriberService.ArticleCategoryCreated(Yan.ArticleService.API.Application.IntegrationEvents.ArticleCategoryCreatedIntegrationEvent)">
+            <summary>
+            
+            </summary>
+            <param name="event"></param>
+        </member>
+        <member name="T:Yan.ArticleService.API.Controllers.ArticleCategoryController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Controllers.ArticleCategoryController._mediator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArticleCategoryController.#ctor(MediatR.IMediator)">
+            <summary>
+            
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArticleCategoryController.CreateArticleCategory(Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand)">
+            <summary>
+            create Article Category
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddDomainDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder})">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddMySqlContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="connectionString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddMediatRServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddEventBus(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            DotNetCore.CAP
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:Yan.ArticleService.API.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

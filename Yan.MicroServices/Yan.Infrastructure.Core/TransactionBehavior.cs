@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Yan.Infrastructure.Core.Attributes;
 using Yan.Infrastructure.Core.Extensions;
 
 namespace Yan.Infrastructure.Core
@@ -53,6 +54,16 @@ namespace Yan.Infrastructure.Core
 
             try
             {
+                var attrs = request.GetType().GetCustomAttributes(false);
+                foreach (var attr in attrs)
+                {
+                    if (attr is NoTransactionAttribute)
+                    {
+                        response = await next();
+                        return response;
+                    }
+                }
+
                 if (_dbContext.HasActiveTransaction)
                 {
                     return await next();

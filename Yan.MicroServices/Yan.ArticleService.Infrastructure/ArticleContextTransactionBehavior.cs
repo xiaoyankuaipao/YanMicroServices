@@ -19,7 +19,7 @@ namespace Yan.ArticleService.Infrastructure
         /// <param name="dbContext"></param>
         /// <param name="capBus"></param>
         /// <param name="logger"></param>
-        public ArticleContextTransactionBehavior(ArticleContext dbContext, ICapPublisher capBus, ILogger logger) : base(dbContext, capBus, logger)
+        public ArticleContextTransactionBehavior(ArticleContext dbContext, ICapPublisher capBus, ILogger<ArticleContextTransactionBehavior<TRequest, TResponse>> logger) : base(dbContext, capBus, logger)
         {
         }
     }
