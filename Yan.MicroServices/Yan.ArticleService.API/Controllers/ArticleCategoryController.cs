@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Yan.ArticleService.API.Application.Commands;
+using Yan.Core.Filters;
 
 namespace Yan.ArticleService.API.Controllers
 {

@@ -11,8 +11,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Yan.ArticleService.API.Extensions;
+using Yan.Core.Filters;
+using Yan.Core.Extensions;
 
 namespace Yan.ArticleService.API
 {
@@ -41,7 +44,30 @@ namespace Yan.ArticleService.API
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<ValidateModelAttribute>(); 
+                options.Filters.Add<ApiResultFilterAttribute>();
+                options.Filters.Add<CustomExceptionAttribute>();
+            });
+
+            //禁用默认行为,使用自定义验证过滤器
+            //services.Configure<ApiBehaviorOptions>(options =>
+            //{
+            //    options.SuppressModelStateInvalidFilter = true;//禁用
+            //});
+
+            //推荐的模型验证方法
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = (context) =>
+                {
+                    var error = context.ModelState.GetValidationSummary();
+                    return new ValidationFailedResult(error);
+                };
+            });
+
+
 
             services.AddSwaggerGen(c =>
             {

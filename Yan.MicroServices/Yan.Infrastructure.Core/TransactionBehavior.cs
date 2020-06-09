@@ -53,16 +53,14 @@ namespace Yan.Infrastructure.Core
             var typeName = request.GetGenericTypeName();
 
             try
-            {
-                var attrs = request.GetType().GetCustomAttributes(false);
-                foreach (var attr in attrs)
+            { 
+                var attrs = request.GetType().GetCustomAttributes(typeof(NoTransactionAttribute), false);
+                if (attrs.Length != 0)
                 {
-                    if (attr is NoTransactionAttribute)
-                    {
-                        response = await next();
-                        return response;
-                    }
+                    response = await next();
+                    return response;
                 }
+
 
                 if (_dbContext.HasActiveTransaction)
                 {
