@@ -13,38 +13,41 @@ namespace Yan.ArticleService.Domain.Aggregate.ArticleAggregate
         /// <summary>
         /// 
         /// </summary>
-        public int CategoryId { get; set; }
+        public int CategoryId { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Title { get; set; }
+        public string Title { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Remark { get; set; }
+        public string Remark { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Content { get; set; }
+        public string Content { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Value { get; set; }
+        public string Value { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int ReadCount { get; set; }
-
-        public int likeCount { get; set; }
+        public int ReadCount { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime CreateTime { get; set; }
+        public int likeCount { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime CreateTime { get; private set; }
     }
 }

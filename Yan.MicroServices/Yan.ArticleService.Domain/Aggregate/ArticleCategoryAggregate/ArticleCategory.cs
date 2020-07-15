@@ -14,7 +14,7 @@ namespace Yan.ArticleService.Domain.Aggregate.ArticleCategoryAggregate
         /// <summary>
         /// 
         /// </summary>
-        public string Category { get; set; }
+        public string Category { get; private set; }
 
         /// <summary>
         /// 

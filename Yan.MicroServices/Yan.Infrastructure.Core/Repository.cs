@@ -134,7 +134,7 @@ namespace Yan.Infrastructure.Core
             return true;
         }
 
-        // <summary>
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
