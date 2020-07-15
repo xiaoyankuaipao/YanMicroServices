@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Yan.MvcClient</title>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <style>
+        .navbar-default li:hover,
+        .navbar-default li:focus {
+            color: #5e5e5e;
+            background-color: beige;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" style="background:darkkhaki;" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Code 笔记</a>
+            </div>
+            <div class=" containercollapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="Test"><span class="glyphicon glyphicon-home"></span> 主页 </a></li>
+                    <li><a href="#shop"><span class="glyphicon glyphicon-shopping-cart"></span> 留言</a></li>
+                    <li><a href="#support"><span class="glyphicon glyphicon-headphones"></span> 生活</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-controller="Home" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> 登录 </a></li>
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">欢迎，@User.Claims.FirstOrDefault(c=>c.Type=="name").Value <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">我的信息</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a asp-controller="Home" asp-action="Logout">登出</a></li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+    </nav>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

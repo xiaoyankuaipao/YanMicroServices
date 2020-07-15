@@ -1,0 +1,12 @@
+﻿{
+  "profiles": {
+    "Yan.MvcClient": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:9090",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
