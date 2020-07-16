@@ -20,6 +20,7 @@ namespace Yan.MvcClient
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls("http://*:9090");
                     webBuilder.UseStartup<Startup>();
                 });
     }

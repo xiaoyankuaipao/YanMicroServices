@@ -1,0 +1,19 @@
+﻿.about-header {
+    text-align: center;
+    font-size:28px;
+    padding: 10px;
+    color: #DEDEDE;
+    background: #8197fa;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.about-content {
+    color: #1a1a1a;
+    background: #F0FFFF;
+    padding: 10px;
+    line-height: 28px;
+    font-size: 14px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

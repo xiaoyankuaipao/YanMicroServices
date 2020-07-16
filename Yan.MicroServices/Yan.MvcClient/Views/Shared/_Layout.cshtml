@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Yan.MvcClient</title>
+    <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <style>
         .navbar-default li:hover,
@@ -46,7 +47,7 @@
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                               aria-expanded="false">欢迎，@User.Claims.FirstOrDefault(c=>c.Type=="name").Value <span class="caret"></span></a>
+                               aria-expanded="false">欢迎，@User.Claims.FirstOrDefault(c => c.Type == "name").Value <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">我的信息</a></li>
                                 <li role="separator" class="divider"></li>
@@ -55,16 +56,31 @@
                         </li>
                     }
                 </ul>
-            </div><!-- /.nav-collapse -->
-        </div><!-- /.container -->
+            </div>
+        </div>
     </nav>
 
-    <div class="container" style="margin-top:150px;">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="container">
+
+
+        <div class="row" style="margin-top:100px">
+            <div class="col-sm-8" style="background-color:pink">
+
+                @RenderBody()
+
+            </div>
+            <div class="col-sm-4">
+                <partial name="_RightMenu.cshtml" />
+            </div>
+        </div>
+
     </div>
 
+    @*<div class="container" style="margin-top:100px;">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>*@
 
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>

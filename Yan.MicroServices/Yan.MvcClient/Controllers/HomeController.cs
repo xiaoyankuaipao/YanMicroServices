@@ -12,26 +12,23 @@ using Microsoft.Extensions.Logging;
 
 namespace Yan.MvcClient.Controllers
 {
-
     public class HomeController : Controller
     {
         public HomeController()
         {
         }
 
-       
+
         public IActionResult Index()
         {
             var name = User.Identity.Name;
 
+            ViewBag.TestInfo = "ABC";
+
             return View();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        [Authorize]
+
         public IActionResult Test()
         {
             return View();
@@ -43,13 +40,11 @@ namespace Yan.MvcClient.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-        public async Task< IActionResult>  Logout()
+        public async Task Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
 
-           return  RedirectToAction(nameof(Index));
         }
 
     }
