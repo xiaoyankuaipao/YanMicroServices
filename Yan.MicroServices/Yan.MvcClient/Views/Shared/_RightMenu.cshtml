@@ -1,18 +1,39 @@
-﻿
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-    @*<p>分部视图中的p元素 @ViewBag.TestInfo</p>*@
-    <div class="about">
-        <div class="about-header">
-            <h2>关于本站</h2>
-        </div>
-        <div class="about-content">
-            &nbsp;&nbsp;&nbsp;&nbsp;我是小严快跑，专注.NetCore最佳实践。 本站是一个用于知识积累与分享的个人开源博客。主要技术栈为html、css、vue全家桶、axios、.NetCore。
-            <hr>
-            <a asp-controller="Home" asp-action="Test"><span class="glyphicon glyphicon-home"></span> 主页 </a>
-            现在在北京工作。<br>
-            邮箱：yanchuanpeng2008@163.com
-        </div>
+@*<p>分部视图中的p元素 @ViewBag.TestInfo</p>*@
+<div class="about">
+    <div class="about-header">
+        <h3>关于本站</h3>
     </div>
+    <div class="about-content">
+        &nbsp;&nbsp;&nbsp;&nbsp;我是小严快跑，专注.NetCore最佳实践。 本站是一个用于知识积累与分享的个人开源博客。主要技术栈为html、css、vue全家桶、axios、.NetCore。
+        <hr style="margin-top:5px;margin-bottom:5px;">
+        <a asp-controller="Home" asp-action="Test"><span class="glyphicon glyphicon-home"></span> 主页 </a>
+        现在在北京工作。<br>
+        邮箱：yanchuanpeng2008@163.com
+    </div>
+</div>
+<div class="category-list">
+    <div class="category-list-header">
+        <h3>文章分类</h3>
+    </div>
+    <div class="category-list-content">
+        &nbsp;&nbsp;&nbsp;&nbsp;我是小严快跑，专注.NetCore最佳实践。 本站是一个用于知识积累与分享的个人开源博客。主要技术栈为html、css、vue全家桶、axios、.NetCore。
+        <hr style="margin-top:5px;margin-bottom:5px;">
+        <a asp-controller="Home" asp-action="Test"><span class="glyphicon glyphicon-home"></span> 主页 </a>
+        现在在北京工作。<br>
+        邮箱：yanchuanpeng2008@163.com
+    </div>
+</div>
+<div class="weixin">
+    <div class="weixin-header">
+        <h3>微信</h3>
+    </div>
+    <div class="weixin-content">
+        <img src="~/image/weixin.png"/>
+    </div>
+</div>
+
+

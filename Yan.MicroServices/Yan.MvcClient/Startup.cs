@@ -26,7 +26,8 @@ namespace Yan.MvcClient
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation(); //cshtml 代码更改之后 不用重启服务 即可生效
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(opions =>

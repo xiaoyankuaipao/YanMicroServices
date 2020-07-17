@@ -1,12 +1,13 @@
 ﻿.about-header {
     text-align: center;
-    font-size:28px;
+    font-size:10px;
     padding: 10px;
     color: #DEDEDE;
     background: #8197fa;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
+
 
 .about-content {
     color: #1a1a1a;
@@ -16,4 +17,34 @@
     font-size: 14px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+}
+
+.category-list-header,
+.weixin-header {
+    text-align: center;
+    padding: 10px;
+    color: #DEDEDE;
+    background: #8197fa;
+}
+
+.category-list-content,
+.weixin-content {
+    color: #1a1a1a;
+    background: #F0FFFF;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weixin-content img {
+    width: 150px;
+    height: auto;
+}
+
+.about-header h3,
+.weixin-header h3,
+.category-list-header h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
