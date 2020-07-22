@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Yan.MvcClient.Clients;
 
 namespace Yan.MvcClient
 {
@@ -28,6 +29,12 @@ namespace Yan.MvcClient
         {
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation(); //cshtml 代码更改之后 不用重启服务 即可生效
+
+            services.AddHttpClient<ArticleServiceClient>(client =>
+            {
+                client.BaseAddress = new Uri("http://118.24.205.200:5000");
+            });
+
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(opions =>

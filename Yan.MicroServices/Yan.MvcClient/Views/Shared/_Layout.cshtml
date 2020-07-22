@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Yan.MvcClient</title>
+    <title>Code 笔记</title>
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <style>
@@ -29,42 +29,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Code 笔记</a>
+                <a class="navbar-brand" href="/">Code 笔记</a>
             </div>
             <div class=" containercollapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home"></span> 主页 </a></li>
-                    <li><a href="#shop"><span class="glyphicon glyphicon-envelope"></span> 留言</a></li>
-                    <li><a href="#support"><span class="glyphicon glyphicon-headphones"></span> 生活</a></li>
+                    <li><a asp-controller="Message" asp-action="Index"><span class="glyphicon glyphicon-envelope"></span> 留言</a></li>
+                    <li><a href="#live"><span class="glyphicon glyphicon-headphones"></span> 生活</a></li>
                 </ul>
-
                 <partial name="_Login.cshtml" />
-                
             </div>
         </div>
     </nav>
 
-    <div class="container">
-
-
+    <div class="container" id="top">
         <div class="row" style="margin-top:60px">
-            <div class="col-sm-8" style="background-color:pink">
-
-                @RenderBody()
-
-            </div>
             <div class="col-sm-4">
                 <partial name="_RightMenu.cshtml" />
             </div>
+            <div class="col-sm-8" style="background-color:pink;height:2000px;">
+                @RenderBody()
+            </div>
         </div>
-
     </div>
 
-    @*<div class="container" style="margin-top:100px;">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>*@
+    <footer style="text-align:center;height:100px;background: #2e3033;opacity: 0.5;color: #ccc;">
+        <p style="padding-top:40px;">ASP.NET Core（3.1） on Linux </p>
+    </footer>
+
+    <a class="btn btn-default" href="#top" role="button" style="position:fixed;right:0;bottom:0">
+        回到顶部
+    </a>
 
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>

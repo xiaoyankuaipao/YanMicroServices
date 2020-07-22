@@ -1,13 +1,16 @@
-﻿.about-header {
+﻿* {
+    margin:0;
+    padding:0;
+}
+.about-header {
     text-align: center;
-    font-size:10px;
+    font-size: 10px;
     padding: 10px;
     color: #DEDEDE;
     background: #8197fa;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
-
 
 .about-content {
     color: #1a1a1a;
@@ -19,7 +22,6 @@
     border-bottom-right-radius: 8px;
 }
 
-.category-list-header,
 .weixin-header {
     text-align: center;
     padding: 10px;
@@ -27,7 +29,6 @@
     background: #8197fa;
 }
 
-.category-list-content,
 .weixin-content {
     color: #1a1a1a;
     background: #F0FFFF;
@@ -44,7 +45,47 @@
 
 .about-header h3,
 .weixin-header h3,
-.category-list-header h3 {
+.count-header h3 {
     margin-top: 0px;
     margin-bottom: 0px;
 }
+
+.count-header {
+    text-align: center;
+    padding: 15px;
+    color: #DEDEDE;
+    background: #8197fa;
+}
+
+.count-content {
+    background: #F0FFFF;
+    /*padding: 15px;*/
+    line-height: 30px;
+    font-size: 15px;
+}
+
+    .count-content ul {
+        display: block;
+        width: 100%;
+    }
+        .count-content ul li {
+            list-style: none;
+            width: 100%;
+            padding: 5px 0;
+            border-bottom: 1px dotted #d8e5f3;
+        }
+            .count-content ul li:hover {
+                background-color:lightgray;
+            }
+            .count-content ul li a {
+                font-size: 15px;
+                text-decoration: none;
+                /*translate: color .3s;*/
+                color: #666;
+                cursor: pointer;
+                padding-left:35px;
+            }
+                .count-content ul li a:hover {
+                    color: #000;
+                }
+
