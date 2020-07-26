@@ -1,91 +1,24 @@
 ﻿* {
-    margin:0;
-    padding:0;
-}
-.about-header {
-    text-align: center;
-    font-size: 10px;
-    padding: 10px;
-    color: #DEDEDE;
-    background: #8197fa;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑","黑体","Consolas";
 }
 
-.about-content {
-    color: #1a1a1a;
-    background: #F0FFFF;
-    padding: 10px;
-    line-height: 28px;
-    font-size: 14px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+.go-to-top{
+    display:none;
+    position:fixed;
+    right:3em;
+    bottom:5em;
+
 }
 
-.weixin-header {
-    text-align: center;
-    padding: 10px;
-    color: #DEDEDE;
-    background: #8197fa;
+.go-to-top a{
+    display:inline-block;
+    width:50px;
+    height:50px;
+    background:url(../image/backTop.png) 0 0 no-repeat;
 }
 
-.weixin-content {
-    color: #1a1a1a;
-    background: #F0FFFF;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.weixin-content img {
-    width: 150px;
-    height: auto;
-}
-
-.about-header h3,
-.weixin-header h3,
-.count-header h3 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.count-header {
-    text-align: center;
-    padding: 15px;
-    color: #DEDEDE;
-    background: #8197fa;
-}
-
-.count-content {
-    background: #F0FFFF;
-    /*padding: 15px;*/
-    line-height: 30px;
-    font-size: 15px;
-}
-
-    .count-content ul {
-        display: block;
-        width: 100%;
+    .go-to-top a:hover{
+        background-position:-50px 0;
     }
-        .count-content ul li {
-            list-style: none;
-            width: 100%;
-            padding: 5px 0;
-            border-bottom: 1px dotted #d8e5f3;
-        }
-            .count-content ul li:hover {
-                background-color:lightgray;
-            }
-            .count-content ul li a {
-                font-size: 15px;
-                text-decoration: none;
-                /*translate: color .3s;*/
-                color: #666;
-                cursor: pointer;
-                padding-left:35px;
-            }
-                .count-content ul li a:hover {
-                    color: #000;
-                }
-

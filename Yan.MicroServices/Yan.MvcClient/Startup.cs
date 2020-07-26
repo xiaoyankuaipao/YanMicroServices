@@ -78,6 +78,7 @@ namespace Yan.MvcClient
                 app.UseExceptionHandler("/Home/Error");
             }
 
+
             app.UseStaticFiles();
 
             app.UseRouting();

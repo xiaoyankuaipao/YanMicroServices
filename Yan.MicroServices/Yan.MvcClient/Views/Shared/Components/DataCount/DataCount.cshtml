@@ -12,7 +12,7 @@
                     @foreach (var item in Model)
                     {
                         <li style="margin-left:0;padding-left:0;">
-                            <a asp-controller="Home" asp-action="ArticleList" asp-route-categoryId="@item.CategoryId">@item.CategoryName (@item.ArticleCount)</a>
+                            <a asp-controller="Home" asp-action="ArticleList" asp-route-categoryId="@item.CategoryId"  asp-route-pageIndex="1">@item.CategoryName (@item.ArticleCount)</a>
                         </li>
                     }
                 }

@@ -38,18 +38,46 @@ namespace Yan.MvcClient.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index()
         {
-            return View();
+            var ArticleList = await _articleClient.GetArticlePageByCategory(0, 1);
+            var pageTotalCount = ArticleList.TotalCount % 10 == 0 ? ArticleList.TotalCount / 10 : ArticleList.TotalCount / 10 + 1;
+            ArticleListPageViewModel viewModel = new ArticleListPageViewModel
+            {
+                PageIndex = 1,
+                PageTotalCount = pageTotalCount,
+                CategoryId = 0,
+                ResultPage = ArticleList
+            };
+            return View(viewModel);
+
+           // return View();
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="categoryId"></param>
+        /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public async Task<IActionResult> ArticleList(int categoryId)
+        public async Task<IActionResult> ArticleList(int categoryId, int pageIndex = 1)
         {
-            var ArticleList = await _articleClient.GetArticlePageByCategory(categoryId, 1);
-            return View(ArticleList);
+            var ArticleList = await _articleClient.GetArticlePageByCategory(categoryId, pageIndex);
+
+            var pageTotalCount = ArticleList.TotalCount % 10 == 0 ? ArticleList.TotalCount / 10 : ArticleList.TotalCount / 10 + 1;
+
+            ArticleListPageViewModel viewModel = new ArticleListPageViewModel
+            {
+                PageIndex = pageIndex,
+                PageTotalCount = pageTotalCount,
+                CategoryId = categoryId,
+                ResultPage = ArticleList
+            };
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> Article(int id)
+        {
+            var viewModel = await _articleClient.GetArticleById(id);
+            return View(viewModel);
         }
 
         /// <summary>

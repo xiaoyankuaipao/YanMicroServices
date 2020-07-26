@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Yan.MvcClient.ViewModel;
 
 namespace Yan.MvcClient.Clients
 {
@@ -26,7 +27,6 @@ namespace Yan.MvcClient.Clients
         /// 
         /// </summary>
         /// <returns></returns>
-
         public async Task<List<CategoryArticleCount>> GetArticleStaticCountByCategory()
         {
             var result= await _client.GetStringAsync("/api/articlemanage/Artilce/GetArticleStaticCountByCategory");
@@ -47,6 +47,20 @@ namespace Yan.MvcClient.Clients
             var model = JsonConvert.DeserializeObject<PageResultDto<ArticleListDto>>(result);
 
             return model.Result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ArticleOutputDto> GetArticleById(int id)
+        {
+            var result = await _client.GetStringAsync($"/api/articlemanage/Artilce/GetArticleById/{id}");
+
+            var model = JsonConvert.DeserializeObject<ResultDto<ArticleOutputDto>>(result);
+
+            return model.Data;
         }
 
     }

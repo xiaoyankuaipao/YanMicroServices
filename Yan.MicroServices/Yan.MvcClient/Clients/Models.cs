@@ -115,4 +115,76 @@ namespace Yan.MvcClient.Clients
         /// </summary>
         public string CategoryName { get; set; }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ArticleOutputDto
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public ArticleDto ArticleDto { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CategoryName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<string> TagNames { get; set; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ArticleDto
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int CategoryId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Remark { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Content { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Value { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime CreateTime { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ReadCount { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int LikeCount { get; set; }
+    }
 }

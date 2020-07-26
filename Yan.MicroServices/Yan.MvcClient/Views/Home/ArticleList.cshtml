@@ -1,9 +1,41 @@
-﻿@using Yan.MvcClient.Clients;
+﻿@using Yan.MvcClient.ViewModel;
 
-@model ResultPage<ArticleListDto>
+@model ArticleListPageViewModel
 @{
     ViewData["Title"] = "ArticleList";
 }
 
-<h2>ArticleList: @Model.TotalCount</h2>
+
+@foreach (var item in @Model.ResultPage.Data)
+{
+    <partial name="_ArticleInfoPartialView" for="@item" />
+}
+
+<ul class="pagination pagination-lg">
+    @if (Model.PageIndex == 1)
+    {
+        <li class="disabled"><a>&laquo;</a></li>
+    }
+    else
+    {
+        int pageIndex = Model.PageIndex - 1;
+        <li><a asp-controller="Home" asp-action="ArticleList" asp-route-categoryId="@Model.CategoryId" asp-route-pageIndex="@pageIndex">&laquo;</a></li>
+    }
+
+    @for (int i = 1; i <= Model.PageTotalCount; i++)
+    {
+        string activeCss = i == Model.PageIndex ? "active" : null;
+        <li class="@activeCss"><a asp-controller="Home" asp-action="ArticleList" asp-route-categoryId="@Model.CategoryId" asp-route-pageIndex="@i">@i</a></li>
+    }
+
+    @if (Model.PageIndex >= Model.PageTotalCount)
+    {
+        <li class="disabled"><a>&raquo;</a></li>
+    }
+    else
+    {
+        int pageIndex = Model.PageIndex + 1;
+        <li><a asp-controller="Home" asp-action="ArticleList" asp-route-categoryId="@Model.CategoryId" asp-route-pageIndex="@pageIndex">&raquo;</a></li>
+    }
+</ul>
 
