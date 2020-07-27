@@ -1,0 +1,145 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5000",
+    "ServiceDiscoveryProvider": {
+      "Type": "Consul", //使用Consul来实现服务发现
+      "Host": "127.0.0.1", //Consul IP
+      "Port": 8500 //Consul Port
+    }
+  },
+  "Routes": [
+    //systemmanageservice Swagger
+    {
+      "DownstreamPathTemplate": "/doc/systemmanageservice/swagger.json",
+      "DownstreamScheme": "http",
+      "ServiceName": "systemmanageservice",
+      "LoadBalancer": "RoundRobin",
+      "UseServiceDiscovery": true,
+      "UpstreamPathTemplate": "/doc/systemmanageservice/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
+
+    //systemmanageservice
+    {
+      "UseServiceDiscovery": true, //使用服务发现（Consul 发现）
+      "DownstreamPathTemplate": "/api/systemmanageservice/{url}", //下游服务器指的是提供API服务的REST Service Server（比如WebAPI、WCF App等）
+      "DownstreamScheme": "http", //http、https
+      "ServiceName": "systemmanageservice", //服务名称
+      "UpstreamPathTemplate": "/api/systemmanageservice/{url}", //上游服务器则指的是提供Web网页服务的Web Server（比如MVC Application，可能需要访问REST Service）
+      "UpstreamHttpMethod": [ "Get", "Post", "DELETE", "PUT" ],
+      "ReRoutesCaseSensitive": false, //不区分大小写
+      //负载均衡设置
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin" //RoundRobin - 轮询，挨着来，雨露均沾;LeastConnection - 最小连接数，谁的任务最少谁来接客,NoLoadBalance - 不要负载均衡，让我一个人累死吧　
+      },
+      //对下游服务的URL进行缓存，并可以设置一个以秒为单位的TTL使缓存过期
+      "FileCacheOptions": {
+        "TtlSeconds": 2, //这里表示缓存2秒，2秒后过期。
+        "Region": ""
+      },
+      //进行限流可以防止下游服务器因为访问过载而崩溃
+      "RateLimitOptions": {
+        "ClientWhitelist": [ "admin" ], //白名单，需要在请求头里面添加client_id=admin
+        "EnableRateLimiting": true, //是否启用限流
+        "Period": "1m", //统计时间段 1s，5m，1h，1d
+        "PeriodTimespan": 15, // 多少秒之后客户端可以重试
+        "Limit": 50 // 在统计时间段内允许的最大请求数量
+      },
+      //"AuthenticationOptions": { //api 在网关层就认证，需要该设置
+      //  "AuthenticationProviderKey": "SystemManageServiceKey",
+      //  "AllowedScopes": []
+      //}
+    },
+
+    //articlemanage Swagger
+    {
+      "DownstreamPathTemplate": "/doc/articlemanage/swagger.json",
+      "DownstreamScheme": "http",
+      "ServiceName": "articlemanage",
+      "LoadBalancer": "RoundRobin",
+      "UseServiceDiscovery": true,
+      "UpstreamPathTemplate": "/doc/articlemanage/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
+
+    //articlemanage
+    {
+      "UseServiceDiscovery": true, //使用服务发现（Consul 发现）
+      "DownstreamPathTemplate": "/api/articlemanage/{url}", //下游服务器指的是提供API服务的REST Service Server（比如WebAPI、WCF App等）
+      "DownstreamScheme": "http", //http、https
+      "ServiceName": "articlemanage", //服务名称
+      "UpstreamPathTemplate": "/api/articlemanage/{url}", //上游服务器则指的是提供Web网页服务的Web Server（比如MVC Application，可能需要访问REST Service）
+      "UpstreamHttpMethod": [ "Get", "Post", "DELETE", "PUT" ],
+      "ReRoutesCaseSensitive": false, //不区分大小写
+      //负载均衡设置
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin" //RoundRobin - 轮询，挨着来，雨露均沾;LeastConnection - 最小连接数，谁的任务最少谁来接客,NoLoadBalance - 不要负载均衡，让我一个人累死吧　
+      },
+      //对下游服务的URL进行缓存，并可以设置一个以秒为单位的TTL使缓存过期
+      "FileCacheOptions": {
+        "TtlSeconds": 2, //这里表示缓存2秒，2秒后过期。
+        "Region": ""
+      },
+      //进行限流可以防止下游服务器因为访问过载而崩溃
+      "RateLimitOptions": {
+        "ClientWhitelist": [ "admin" ], //白名单，需要在请求头里面添加client_id=admin
+        "EnableRateLimiting": true, //是否启用限流
+        "Period": "1m", //统计时间段 1s，5m，1h，1d
+        "PeriodTimespan": 15, // 多少秒之后客户端可以重试
+        "Limit": 50 // 在统计时间段内允许的最大请求数量
+      },
+      //服务质量与熔断
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3, // 允许多少个异常请求
+        "DurationOfBreak": 5, //熔断的时间，单位为秒
+        "TimeoutValue": 5000 //如果下游请求的处理时间超过多少则自如将请求设置为超时
+      }
+      //"AuthenticationOptions": { //api 在网关层就认证，需要该设置
+      //  "AuthenticationProviderKey": "SystemManageServiceKey",
+      //  "AllowedScopes": []
+      //}
+    },
+
+    //IdentityServer4 Swagger
+    {
+      "DownstreamPathTemplate": "/doc/identityservice/swagger.json",
+      "DownstreamScheme": "http",
+      "ServiceName": "identityservice",
+      "LoadBalancer": "RoundRobin",
+      "UseServiceDiscovery": true,
+      "UpstreamPathTemplate": "/doc/identityservice/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
+
+    //IdentityServer4
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/identityservice/{url}",
+      "DownstreamScheme": "http",
+      //当UseServiceDiscovery=true时，DownstreamHostAndPorts设置无效
+      "DownstreamHostAndPorts": [
+        {
+          //"Host": "127.0.0.1",
+          //"Port": "5100"
+          "Host": "10.100.45.33",
+          "Port": "5100"
+        }
+      ],
+      "ServiceName": "identityservice",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "UpstreamPathTemplate": "/api/identityservice/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [ "admin" ],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "PeriodTimespan": 15,
+        "Limit": 100
+      },
+      "ReRoutesCaseSensitive": false
+    }
+
+  ]
+}
