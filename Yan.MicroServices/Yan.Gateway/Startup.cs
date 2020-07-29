@@ -51,14 +51,6 @@ namespace Yan.Gateway
                     Version="V1.0"
                 });
             });
-
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("kuayu", policy =>
-            //    {
-            //        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-            //    });
-            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,8 +60,6 @@ namespace Yan.Gateway
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            //app.UseCors("kuayu");
 
             #region Swagger
             var apiList = Configuration["Swagger:ServiceDocNames"].Split(',').ToList();
