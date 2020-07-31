@@ -43,7 +43,6 @@ namespace Yan.Idp
             // in-memory, code config
             builder.AddInMemoryIdentityResources(Config.IdentityResources);
             builder.AddInMemoryApiScopes(Config.ApiScopes);
-            //builder.AddInMemoryApiResources(Config.ApiResources);
             builder.AddInMemoryClients(Config.Clients);
 
             // not recommended for production - you need to store your key material somewhere secure

@@ -54,7 +54,7 @@ namespace Yan.Idp
                 .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //webBuilder.UseUrls("http://*:5100");
+                    webBuilder.UseUrls("http://*:5100");
                     webBuilder.UseStartup<Startup>();
                 });
     }

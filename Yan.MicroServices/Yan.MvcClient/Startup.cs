@@ -37,6 +37,8 @@ namespace Yan.MvcClient
 
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+
             services.AddAuthentication(opions =>
             {
                 opions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -45,8 +47,8 @@ namespace Yan.MvcClient
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.Authority = "http://118.24.205.200:5100";
-                //options.Authority = "http://localhost:5100";
+                //options.Authority = "http://118.24.205.200:5100";
+                options.Authority = "http://localhost:5100";
                 options.RequireHttpsMetadata = false;
                 options.ClientId = "Yan.MvcClient";
                 options.ClientSecret = "Yan.MvcClient";
