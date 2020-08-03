@@ -36,7 +36,7 @@ namespace Yan.MvcClient
             });
 
 
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            //JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
             services.AddAuthentication(opions =>
@@ -54,7 +54,6 @@ namespace Yan.MvcClient
                 options.ClientSecret = "Yan.MvcClient";
                 options.SaveTokens = true;
                 options.ResponseType = "code";
-
                 options.Scope.Clear();
                 options.Scope.Add("system");
                 options.Scope.Add("article");

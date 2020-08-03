@@ -38,6 +38,7 @@ namespace Yan.MvcClient.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index()
         {
+            var user = User;
             var ArticleList = await _articleClient.GetArticlePageByCategory(0, 1);
             var pageTotalCount = ArticleList.TotalCount % 10 == 0 ? ArticleList.TotalCount / 10 : ArticleList.TotalCount / 10 + 1;
             ArticleListPageViewModel viewModel = new ArticleListPageViewModel
@@ -103,12 +104,21 @@ namespace Yan.MvcClient.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task Logout()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
+        //public async Task Logout()
+        //{
+        //    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        //    await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
 
-            //SignOut(CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
+        //    //SignOut(CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
+        //}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Logout()
+        {
+          return  SignOut(CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
         }
 
     }

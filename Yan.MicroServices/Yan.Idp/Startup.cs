@@ -6,9 +6,13 @@ using IdentityServer4;
 using IdentityServerHost.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Yan.Idp.Data;
+using Yan.Idp.Models;
 
 namespace Yan.Idp
 {
@@ -28,6 +32,17 @@ namespace Yan.Idp
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
 
+            services.AddHttpClient();
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
+            );
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+
             var builder = services.AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
@@ -38,7 +53,8 @@ namespace Yan.Idp
                 // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
                 options.EmitStaticAudienceClaim = true;
             })
-                .AddTestUsers(TestUsers.Users);
+                //.AddTestUsers(TestUsers.Users);
+                .AddAspNetIdentity<ApplicationUser>();
 
             // in-memory, code config
             builder.AddInMemoryIdentityResources(Config.IdentityResources);
@@ -48,17 +64,26 @@ namespace Yan.Idp
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
 
-            services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+            //services.AddAuthentication()
+            //    .AddGoogle(options =>
+            //    {
+            //        options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
 
-                    // register your IdentityServer with Google at https://console.developers.google.com
-                    // enable the Google+ API
-                    // set the redirect URI to https://localhost:5001/signin-google
-                    options.ClientId = "copy client ID from Google here";
-                    options.ClientSecret = "copy client secret from Google here";
-                });
+            //        // register your IdentityServer with Google at https://console.developers.google.com
+            //        // enable the Google+ API
+            //        // set the redirect URI to https://localhost:5001/signin-google
+            //        options.ClientId = "copy client ID from Google here";
+            //        options.ClientSecret = "copy client secret from Google here";
+            //    });
+
+            services.AddAuthentication()
+                   .AddGitHub(option =>
+                   {
+                       option.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                       option.ClientId = "f117b3563aad82f1ab2e";
+                       option.ClientSecret = "761f7a94755e5b15479a67c97609a56e18205103";
+                       option.Scope.Add("user:email");
+                   });
         }
 
         public void Configure(IApplicationBuilder app)

@@ -51,10 +51,78 @@ namespace Yan.Idp
                 },
                 new Client
                 {
+                    ClientId="vue-manage", //后台管理系统vue spa client
+                    ClientName="Yan Spa client",
+                    ClientSecrets = new [] { new Secret("spasecret".Sha256()) },
+                    AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
+                    AllowedScopes=new []
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        IdentityServerConstants.StandardScopes.Address,
+                        IdentityServerConstants.StandardScopes.Phone,
+                        IdentityServerConstants.StandardScopes.OfflineAccess,//如果要获取refresh_tokens ,必须在scopes中加上OfflineAccess
+                        "system","article"
+                    },
+                    AlwaysIncludeUserClaimsInIdToken=true,//
+                    AccessTokenLifetime=3600,
+                    AllowAccessTokensViaBrowser=true,//
+                    RefreshTokenUsage=TokenUsage.ReUse,//
+                    AllowOfflineAccess=true,//如果要获取refresh_token ,必须把AllowOfflineAccess设置为true
+                    RefreshTokenExpiration=TokenExpiration.Absolute,//刷新令牌将在固定的时间点上过期 //
+                    AbsoluteRefreshTokenLifetime=3600*24*7,//刷新令牌将在固定的时间点上过期 //
+                },
+                new Client
+                {
+                    ClientId="vue-blog",
+                    ClientName="Spa Client",
+                    ClientUri="http://localhost:8080",
+                    //ClientUri="http://118.24.205.200",
+                    AllowedGrantTypes=GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser=true,
+                    RequireConsent=false,
+                    AccessTokenLifetime=60*5,
+                    AlwaysIncludeUserClaimsInIdToken=true,
+                    RedirectUris={
+                        "http://localhost:8080/signin-oidc",//登录成功之后，跳转回来的uri
+                        "http://localhost:8080/redirect-silentrenew"//用于刷新token的uri
+                    },
+
+                    PostLogoutRedirectUris={
+                        "http://localhost:8080"//登出之后，跳转的uri
+                    },
+
+                    //RedirectUris={
+                    //    "http://118.24.205.200/signin-oidc",//登录成功之后，跳转回来的uri
+                    //    "http://118.24.205.200/redirect-silentrenew"//用于刷新token的uri
+                    //},
+
+                    //PostLogoutRedirectUris={
+                    //    "http://118.24.205.200"//登出之后，跳转的uri
+                    //},
+
+                    AllowedCorsOrigins={
+                        "http://118.24.205.200",
+                        "http://localhost:8080"
+                    },
+
+                    AllowedScopes={
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Address,
+                        IdentityServerConstants.StandardScopes.Email,
+                        IdentityServerConstants.StandardScopes.Phone,
+                        "system","article"
+                    }
+                },
+                new Client
+                {
                     ClientId="Yan.MvcClient",
                     ClientSecrets={new Secret("Yan.MvcClient".Sha256())},
 
                     AllowedGrantTypes=GrantTypes.Code,
+                     AlwaysIncludeUserClaimsInIdToken=true,
 
                     RedirectUris={ "http://localhost:9898/signin-oidc" },
                     PostLogoutRedirectUris={ "http://localhost:9898/signout-callback-oidc" },
