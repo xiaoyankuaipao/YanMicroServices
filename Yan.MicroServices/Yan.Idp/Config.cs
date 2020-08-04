@@ -77,30 +77,30 @@ namespace Yan.Idp
                 {
                     ClientId="vue-blog",
                     ClientName="Spa Client",
-                    ClientUri="http://localhost:8080",
-                    //ClientUri="http://118.24.205.200",
+                    //ClientUri="http://localhost:8080",
+                    ClientUri="http://118.24.205.200",
                     AllowedGrantTypes=GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser=true,
                     RequireConsent=false,
                     AccessTokenLifetime=60*5,
                     AlwaysIncludeUserClaimsInIdToken=true,
-                    RedirectUris={
-                        "http://localhost:8080/signin-oidc",//登录成功之后，跳转回来的uri
-                        "http://localhost:8080/redirect-silentrenew"//用于刷新token的uri
-                    },
-
-                    PostLogoutRedirectUris={
-                        "http://localhost:8080"//登出之后，跳转的uri
-                    },
-
                     //RedirectUris={
-                    //    "http://118.24.205.200/signin-oidc",//登录成功之后，跳转回来的uri
-                    //    "http://118.24.205.200/redirect-silentrenew"//用于刷新token的uri
+                    //    "http://localhost:8080/signin-oidc",//登录成功之后，跳转回来的uri
+                    //    "http://localhost:8080/redirect-silentrenew"//用于刷新token的uri
                     //},
 
                     //PostLogoutRedirectUris={
-                    //    "http://118.24.205.200"//登出之后，跳转的uri
+                    //    "http://localhost:8080"//登出之后，跳转的uri
                     //},
+
+                    RedirectUris={
+                        "http://118.24.205.200/signin-oidc",//登录成功之后，跳转回来的uri
+                        "http://118.24.205.200/redirect-silentrenew"//用于刷新token的uri
+                    },
+
+                    PostLogoutRedirectUris={
+                        "http://118.24.205.200"//登出之后，跳转的uri
+                    },
 
                     AllowedCorsOrigins={
                         "http://118.24.205.200",
@@ -119,13 +119,16 @@ namespace Yan.Idp
                 new Client
                 {
                     ClientId="Yan.MvcClient",
+                    ClientName="Yan.MvcClient",
                     ClientSecrets={new Secret("Yan.MvcClient".Sha256())},
 
                     AllowedGrantTypes=GrantTypes.Code,
-                     AlwaysIncludeUserClaimsInIdToken=true,
+                    RequireConsent=false,
+                    AlwaysIncludeUserClaimsInIdToken=true,
 
-                    RedirectUris={ "http://localhost:9898/signin-oidc" },
-                    PostLogoutRedirectUris={ "http://localhost:9898/signout-callback-oidc" },
+                    RedirectUris={ "http://118.24.205.200:9898/signin-oidc" },
+                    FrontChannelLogoutUri="http://118.24.205.200:9898/signout-oidc",
+                    PostLogoutRedirectUris={ "http://118.24.205.200:9898/signout-callback-oidc" },
 
                     AllowOfflineAccess=true,
 

@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using IdentityModel;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,6 +32,7 @@ namespace Yan.MvcClient
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation(); //cshtml 代码更改之后 不用重启服务 即可生效
 
+            services.AddHttpClient();
             services.AddHttpClient<ArticleServiceClient>(client =>
             {
                 client.BaseAddress = new Uri("http://118.24.205.200:5000");
@@ -47,8 +50,8 @@ namespace Yan.MvcClient
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                //options.Authority = "http://118.24.205.200:5100";
-                options.Authority = "http://localhost:5100";
+                options.Authority = "http://118.24.205.200:5100";
+                //options.Authority = "http://localhost:5100";
                 options.RequireHttpsMetadata = false;
                 options.ClientId = "Yan.MvcClient";
                 options.ClientSecret = "Yan.MvcClient";
@@ -79,8 +82,17 @@ namespace Yan.MvcClient
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.MapWhen(x => x.Request.Path.StartsWithSegments("/api/articlemanage/src/Pictures"), builder =>
+            {
+                builder.Run(async context =>
+                {
+                     context.Response.Redirect("http://118.24.205.200:5000" + context.Request.Path);
+                });
+            });
 
             app.UseRouting();
             app.UseAuthentication();

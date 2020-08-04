@@ -10,18 +10,22 @@ using Yan.Idp.Models.ApiModels;
 
 namespace Yan.Idp.Quickstart
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/identityservice/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private IHttpClientFactory HttpClientFactory;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="configuration"></param>
         /// <param name="httpClientFactory"></param>
-        /// <param name="repository"></param>
         public LoginController(IHttpClientFactory httpClientFactory)
         {
             HttpClientFactory = httpClientFactory;

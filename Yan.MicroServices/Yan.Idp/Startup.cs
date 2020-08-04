@@ -11,6 +11,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Linq;
+using Yan.Consul;
 using Yan.Idp.Data;
 using Yan.Idp.Models;
 
@@ -84,6 +89,18 @@ namespace Yan.Idp
                        option.ClientSecret = "761f7a94755e5b15479a67c97609a56e18205103";
                        option.Scope.Add("user:email");
                    });
+
+            #region Swagger
+            services.AddSwaggerGen(options =>
+            {
+                //options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+                options.SwaggerDoc("identityservice", new OpenApiInfo
+                {
+                    Title = "Yan.Idp",
+                    Version = "v1"
+                });
+            });
+            #endregion
         }
 
         public void Configure(IApplicationBuilder app)
@@ -93,8 +110,16 @@ namespace Yan.Idp
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
+            #region Swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                //options.SwaggerEndpoint($"/doc/identityservice/swagger.json", "identityservice");
+                options.SwaggerEndpoint("/swagger/identityservice/swagger.json", "identityservice");
+            });
+            #endregion
 
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseIdentityServer();
             app.UseAuthorization();
@@ -102,6 +127,9 @@ namespace Yan.Idp
             {
                 endpoints.MapDefaultControllerRoute();
             });
+
+
+           ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "identityservice", "localhost", 5100).Wait();
         }
     }
 }
