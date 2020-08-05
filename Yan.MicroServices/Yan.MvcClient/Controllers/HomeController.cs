@@ -49,8 +49,6 @@ namespace Yan.MvcClient.Controllers
                 ResultPage = ArticleList
             };
             return View(viewModel);
-
-           // return View();
         }
 
         /// <summary>
@@ -100,25 +98,15 @@ namespace Yan.MvcClient.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        //public async Task Logout()
-        //{
-        //    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //    await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
-
-        //    //SignOut(CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
-        //}
-
+       
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         public IActionResult Logout()
         {
-          return  SignOut(CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
+            return SignOut(CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
+
         }
 
     }

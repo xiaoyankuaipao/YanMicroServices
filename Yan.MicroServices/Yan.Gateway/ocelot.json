@@ -102,7 +102,7 @@
 
     //IdentityServer4 Swagger
     {
-      "DownstreamPathTemplate": "/doc/identityservice/swagger.json",
+      "DownstreamPathTemplate": "/swagger/identityservice/swagger.json",
       "DownstreamScheme": "http",
       "ServiceName": "identityservice",
       "LoadBalancer": "RoundRobin",

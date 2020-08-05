@@ -3,13 +3,11 @@
 
 
 using IdentityModel;
-using IdentityServer4;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
-using IdentityServer4.Test;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -22,11 +20,6 @@ using Yan.Idp.Models;
 
 namespace IdentityServerHost.Quickstart.UI
 {
-    /// <summary>
-    /// This sample controller implements a typical login/logout/provision workflow for local and external accounts.
-    /// The login service encapsulates the interactions with the user data store. This data store is in-memory only and cannot be used for production!
-    /// The interaction service provides a way for the UI to communicate with identityserver for validation and context retrieval
-    /// </summary>
     [SecurityHeaders]
     [AllowAnonymous]
     public class AccountController : Controller
@@ -48,7 +41,6 @@ namespace IdentityServerHost.Quickstart.UI
         {
             _userManager = userManager;
             _signInManager = signInManager;
-
             _interaction = interaction;
             _clientStore = clientStore;
             _schemeProvider = schemeProvider;
@@ -127,8 +119,11 @@ namespace IdentityServerHost.Quickstart.UI
                             return this.LoadingPage("Redirect", model.ReturnUrl);
                         }
 
+                        // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
                         return Redirect(model.ReturnUrl);
                     }
+
+                    // request for a local page
                     if (Url.IsLocalUrl(model.ReturnUrl))
                     {
                         return Redirect(model.ReturnUrl);
@@ -143,7 +138,6 @@ namespace IdentityServerHost.Quickstart.UI
                         throw new Exception("invalid return URL");
                     }
                 }
-
 
                 await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId:context?.Client.ClientId));
                 ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
@@ -187,7 +181,7 @@ namespace IdentityServerHost.Quickstart.UI
             if (User?.Identity.IsAuthenticated == true)
             {
                 // delete local authentication cookie
-                await HttpContext.SignOutAsync();
+                await _signInManager.SignOutAsync();
 
                 // raise the logout event
                 await _events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()));
@@ -206,16 +200,14 @@ namespace IdentityServerHost.Quickstart.UI
             }
 
             var refererUrl = Request.Headers["Referer"].ToString();
-
             if (!String.IsNullOrEmpty(refererUrl))
             {
                 return Redirect(refererUrl);
             }
-            else
-            {
-                return Redirect(vm.PostLogoutRedirectUri);
-            }
-            //return View("LoggedOut", vm);
+
+            
+
+            return View("LoggedOut", vm);
         }
 
         [HttpGet]

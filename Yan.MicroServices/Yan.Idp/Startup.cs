@@ -21,17 +21,36 @@ using Yan.Idp.Models;
 
 namespace Yan.Idp
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public IWebHostEnvironment Environment { get; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public IConfiguration Configuration { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="environment"></param>
+        /// <param name="configuration"></param>
         public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
             Environment = environment;
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews()
@@ -47,53 +66,47 @@ namespace Yan.Idp
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-
             var builder = services.AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
-
-                // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
                 options.EmitStaticAudienceClaim = true;
-            })
-                //.AddTestUsers(TestUsers.Users);
-                .AddAspNetIdentity<ApplicationUser>();
+            });
 
-            // in-memory, code config
             builder.AddInMemoryIdentityResources(Config.IdentityResources);
             builder.AddInMemoryApiScopes(Config.ApiScopes);
+            builder.AddInMemoryApiResources(Config.ApiResources);
             builder.AddInMemoryClients(Config.Clients);
+            builder.AddAspNetIdentity<ApplicationUser>();
 
-            // not recommended for production - you need to store your key material somewhere secure
+           
             builder.AddDeveloperSigningCredential();
 
+            //腾讯云用
             //services.AddAuthentication()
-            //    .AddGoogle(options =>
-            //    {
-            //        options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+            //       .AddGitHub(option =>
+            //       {
+            //           option.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+            //           option.ClientId = "f117b3563aad82f1ab2e";
+            //           option.ClientSecret = "761f7a94755e5b15479a67c97609a56e18205103";
+            //           option.Scope.Add("user:email");
+            //       });
 
-            //        // register your IdentityServer with Google at https://console.developers.google.com
-            //        // enable the Google+ API
-            //        // set the redirect URI to https://localhost:5001/signin-google
-            //        options.ClientId = "copy client ID from Google here";
-            //        options.ClientSecret = "copy client secret from Google here";
-            //    });
-
+            //本次测试用
             services.AddAuthentication()
-                   .AddGitHub(option =>
-                   {
-                       option.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                       option.ClientId = "f117b3563aad82f1ab2e";
-                       option.ClientSecret = "761f7a94755e5b15479a67c97609a56e18205103";
-                       option.Scope.Add("user:email");
-                   });
+               .AddGitHub(option =>
+               {
+                   option.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                   option.ClientId = "5ecea3f522395ffe982d";
+                   option.ClientSecret = "331b43cc58fa2b6e8765842f3aadaaab43e5b264";
+                   option.Scope.Add("user:email");
+               });
 
             #region Swagger
             services.AddSwaggerGen(options =>
             {
-                //options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                 options.SwaggerDoc("identityservice", new OpenApiInfo
                 {
                     Title = "Yan.Idp",
@@ -103,6 +116,10 @@ namespace Yan.Idp
             #endregion
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
         public void Configure(IApplicationBuilder app)
         {
             if (Environment.IsDevelopment())
@@ -120,6 +137,7 @@ namespace Yan.Idp
             #endregion
 
             app.UseStaticFiles();
+
             app.UseRouting();
             app.UseIdentityServer();
             app.UseAuthorization();

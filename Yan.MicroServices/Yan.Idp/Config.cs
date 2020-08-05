@@ -8,8 +8,14 @@ using System.Collections.Generic;
 
 namespace Yan.Idp
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Config
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static IEnumerable<IdentityResource> IdentityResources =>
             new IdentityResource[]
             {
@@ -20,22 +26,42 @@ namespace Yan.Idp
                 new IdentityResources.Phone(),
             };
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope("article","My Artilce"),
-                new ApiScope("system","My System"),
+                new ApiScope("article.scope"),
+                new ApiScope("system.scope"),
+                new ApiScope("api1.weather.scope"),
+                new ApiScope("system"),
+                new ApiScope("article")
             };
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static IEnumerable<ApiResource> ApiResources =>
             new ApiResource[]
             {
+                new ApiResource("system","#system")
+                {
+                    Scopes = { "system.scope", "system" }
+                },
+                new ApiResource("article","#article")
+                { 
+                    Scopes = {"article.scope", "article" }
+                },
                 new ApiResource("api1","#api1")
                 {
                     Scopes = { "api1.weather.scope", "api1.test.scope" }
-                }
+                },
             };
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static IEnumerable<Client> Clients =>
             new Client[]
             {
@@ -47,7 +73,8 @@ namespace Yan.Idp
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = { new Secret("postman secret".Sha256()) },
 
-                    AllowedScopes = { "api1.weather.scope", "api1.test.scope" },
+                    //AllowedScopes = { "article.scope","system.scope" },
+                    AllowedScopes = { "api1.weather.scope", "api1.test.scope" }
                 },
                 new Client
                 {
@@ -55,15 +82,15 @@ namespace Yan.Idp
                     ClientName="Yan Spa client",
                     ClientSecrets = new [] { new Secret("spasecret".Sha256()) },
                     AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
-                    AllowedScopes=new []
-                    {
+                    AllowedScopes= {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.Address,
                         IdentityServerConstants.StandardScopes.Phone,
                         IdentityServerConstants.StandardScopes.OfflineAccess,//如果要获取refresh_tokens ,必须在scopes中加上OfflineAccess
-                        "system","article"
+                        "system","article",
+                        "article.scope","system.scope","api1.weather.scope"
                     },
                     AlwaysIncludeUserClaimsInIdToken=true,//
                     AccessTokenLifetime=3600,
@@ -123,12 +150,16 @@ namespace Yan.Idp
                     ClientSecrets={new Secret("Yan.MvcClient".Sha256())},
 
                     AllowedGrantTypes=GrantTypes.Code,
-                    RequireConsent=false,
+                    //RequireConsent=false,
                     AlwaysIncludeUserClaimsInIdToken=true,
 
-                    RedirectUris={ "http://118.24.205.200:9898/signin-oidc" },
-                    FrontChannelLogoutUri="http://118.24.205.200:9898/signout-oidc",
-                    PostLogoutRedirectUris={ "http://118.24.205.200:9898/signout-callback-oidc" },
+                    //RedirectUris={ "http://118.24.205.200:9898/signin-oidc" },
+                    //FrontChannelLogoutUri="http://118.24.205.200:9898/signout-oidc",
+                    //PostLogoutRedirectUris={ "http://118.24.205.200:9898/signout-callback-oidc" },
+
+                    RedirectUris={ "http://localhost:9898/signin-oidc" },
+                    FrontChannelLogoutUri="http://localhost:9898/signout-oidc",
+                    PostLogoutRedirectUris={ "http://localhost:9898/signout-callback-oidc" },
 
                     AllowOfflineAccess=true,
 
