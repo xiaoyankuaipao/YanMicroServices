@@ -51,7 +51,7 @@ namespace Yan.Idp
                 },
                 new ApiResource("article","#article")
                 { 
-                    Scopes = {"article.scope", "article" }
+                    Scopes = { "article.scope", "article" }
                 },
                 new ApiResource("api1","#api1")
                 {
@@ -153,13 +153,13 @@ namespace Yan.Idp
                     //RequireConsent=false,
                     AlwaysIncludeUserClaimsInIdToken=true,
 
-                    //RedirectUris={ "http://118.24.205.200:9898/signin-oidc" },
-                    //FrontChannelLogoutUri="http://118.24.205.200:9898/signout-oidc",
-                    //PostLogoutRedirectUris={ "http://118.24.205.200:9898/signout-callback-oidc" },
+                    RedirectUris={ "http://118.24.205.200:9898/signin-oidc" },
+                    FrontChannelLogoutUri="http://118.24.205.200:9898/signout-oidc",
+                    PostLogoutRedirectUris={ "http://118.24.205.200:9898/signout-callback-oidc" },
 
-                    RedirectUris={ "http://localhost:9898/signin-oidc" },
-                    FrontChannelLogoutUri="http://localhost:9898/signout-oidc",
-                    PostLogoutRedirectUris={ "http://localhost:9898/signout-callback-oidc" },
+                    //RedirectUris={ "http://localhost:9898/signin-oidc" },
+                    //FrontChannelLogoutUri="http://localhost:9898/signout-oidc",
+                    //PostLogoutRedirectUris={ "http://localhost:9898/signout-callback-oidc" },
 
                     AllowOfflineAccess=true,
 

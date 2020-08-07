@@ -34,7 +34,7 @@ namespace Yan.Domain.Abstractions
         /// <summary>
         /// 领域事件应该是可以被领域模型之外的代码读到，所以这里定义的是IReadOnlyCollection
         /// </summary>
-        public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+        public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents?.AsReadOnly();
 
         /// <summary>
         /// 添加领域事件

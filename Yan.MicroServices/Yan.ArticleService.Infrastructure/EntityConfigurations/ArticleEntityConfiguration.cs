@@ -21,6 +21,7 @@ namespace Yan.ArticleService.Infrastructure.EntityConfigurations
             builder.HasKey(p => p.Id);
             builder.ToTable("Articles");
             builder.Property(p => p.Title).HasMaxLength(255);
+            builder.Ignore(p => p.TagIds);
         }
     }
 }

@@ -16,6 +16,12 @@ using Microsoft.OpenApi.Models;
 using Yan.ArticleService.API.Extensions;
 using Yan.Core.Filters;
 using Yan.Core.Extensions;
+using Yan.Consul;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Swashbuckle.AspNetCore.Filters;
+using AutoMapper;
+using Yan.ArticleService.API.Application.Queries.Profiles;
+using Microsoft.Extensions.FileProviders;
 
 namespace Yan.ArticleService.API
 {
@@ -47,7 +53,7 @@ namespace Yan.ArticleService.API
             services.AddControllers(options =>
             {
                 options.Filters.Add<ValidateModelAttribute>(); 
-                options.Filters.Add<ApiResultFilterAttribute>();
+                //options.Filters.Add<ApiResultFilterAttribute>();
                 options.Filters.Add<CustomExceptionAttribute>();
             });
 
@@ -67,14 +73,9 @@ namespace Yan.ArticleService.API
                 };
             });
 
-
-
-            services.AddSwaggerGen(c =>
+            Mapper.Initialize(cfg =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Article", Version = "v1" });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
+                cfg.AddProfile<AutoMapProfiles>();
             });
 
             services.AddMediatRServices();
@@ -82,7 +83,19 @@ namespace Yan.ArticleService.API
             services.AddMySqlContext(Configuration["ConnectionStrings:MySqlConnection"]);
             services.AddRepositories();
 
+            services.AddDapper(Configuration["ConnectionStrings:MySqlConnection"]);
+
             services.AddEventBus(Configuration);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = "http://localhost:5100";
+                    options.Audience = "article";
+                    options.RequireHttpsMetadata = false;
+                });
+
+            services.AddSwaggerDoc();
         }
 
         /// <summary>
@@ -95,21 +108,31 @@ namespace Yan.ArticleService.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                });
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/articlemanage/swagger.json", "My API V1");
+            });
 
             app.UseRouting();
 
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/Files")),
+                RequestPath = new Microsoft.AspNetCore.Http.PathString("/api/articlemanage/src")
+            });
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "articlemanage", "localhost", 6010).Wait();
         }
     }
 }

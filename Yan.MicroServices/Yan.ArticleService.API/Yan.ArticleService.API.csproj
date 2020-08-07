@@ -1,7 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
+    <UserSecretsId>55dd708c-78ea-49bc-9af8-f1edd5fbd32b</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -10,21 +12,31 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Yan.ArticleService.Infrastructure\Yan.ArticleService.Infrastructure.csproj" />
+    <ProjectReference Include="..\Yan.Consul\Yan.Consul.csproj" />
     <ProjectReference Include="..\Yan.Core\Yan.Core.csproj" />
+    <ProjectReference Include="..\Yan.Dapper\Yan.Dapper.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Queries\" />
     <Folder Include="Infrastructure\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.6" />
     <PackageReference Include="Microsoft.NETCore.DotNetHostResolver" Version="3.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="5.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Files\Pictures\json.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

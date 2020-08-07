@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Yan.ArticleService.Domain.Aggregate.ArticleAggregate;
 using Yan.ArticleService.Domain.Aggregate.ArticleCategoryAggregate;
+using Yan.ArticleService.Domain.Entities;
 using Yan.ArticleService.Infrastructure.EntityConfigurations;
 using Yan.Infrastructure.Core;
 
@@ -31,8 +32,9 @@ namespace Yan.ArticleService.Infrastructure
         {
             #region 注册领域模型与数据库的映射关系
             modelBuilder.ApplyConfiguration(new ArticleCategoryEntityConfiguration());
-
             modelBuilder.ApplyConfiguration(new ArticleEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ArticleTagEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ArticleTagRelationEntityConfiguration());
             #endregion
 
             base.OnModelCreating(modelBuilder);
@@ -47,6 +49,11 @@ namespace Yan.ArticleService.Infrastructure
         /// 
         /// </summary>
         public DbSet<Article> Articles { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<ArticleTagRelation> ArticleTagRelations { get; set; }
     }
 
 

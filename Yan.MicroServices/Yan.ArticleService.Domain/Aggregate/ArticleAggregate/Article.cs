@@ -8,7 +8,7 @@ namespace Yan.ArticleService.Domain.Aggregate.ArticleAggregate
     /// <summary>
     /// 
     /// </summary>
-    public class Article:Entity<int>,IAggregateRoot
+    public class Article : Entity<int>, IAggregateRoot
     {
         /// <summary>
         /// 
@@ -49,5 +49,69 @@ namespace Yan.ArticleService.Domain.Aggregate.ArticleAggregate
         /// 
         /// </summary>
         public DateTime CreateTime { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<int> TagIds { get; private set; }
+
+        public Article()
+        { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <param name="title"></param>
+        /// <param name="remark"></param>
+        /// <param name="content"></param>
+        /// <param name="value"></param>
+        public Article(int categoryId, string title, string remark, string content, string value, List<int> tagIds)
+        {
+            this.CategoryId = categoryId;
+            this.Title = title;
+            this.Remark = remark;
+            this.Content = content;
+            this.Value = value;
+            this.ReadCount = 0;
+            this.likeCount = 0;
+            this.TagIds = tagIds;
+            this.CreateTime = DateTime.Now;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <param name="title"></param>
+        /// <param name="remark"></param>
+        /// <param name="content"></param>
+        /// <param name="value"></param>
+        public void UpdateArticle(int categoryId, string title, string remark, string content, string value)
+        {
+            this.CategoryId = categoryId;
+            this.Title = title;
+            this.Remark = remark;
+            this.Content = content;
+            this.Value = value;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void IncrementLikeCout()
+        {
+            this.likeCount++;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void IncrementReadCount()
+        {
+            this.ReadCount++;    
+        }
+
+
     }
 }

@@ -81,10 +81,19 @@ namespace Yan.Idp
             builder.AddInMemoryClients(Config.Clients);
             builder.AddAspNetIdentity<ApplicationUser>();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 1;
+                options.Password.RequiredUniqueChars = 1;
+            });
            
             builder.AddDeveloperSigningCredential();
 
-            //腾讯云用
+            #region 腾讯云用
             //services.AddAuthentication()
             //       .AddGitHub(option =>
             //       {
@@ -93,6 +102,7 @@ namespace Yan.Idp
             //           option.ClientSecret = "761f7a94755e5b15479a67c97609a56e18205103";
             //           option.Scope.Add("user:email");
             //       });
+            #endregion
 
             //本次测试用
             services.AddAuthentication()
@@ -147,7 +157,7 @@ namespace Yan.Idp
             });
 
 
-           ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "identityservice", "localhost", 5100).Wait();
+            ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "identityservice", "localhost", 5100).Wait();
         }
     }
 }

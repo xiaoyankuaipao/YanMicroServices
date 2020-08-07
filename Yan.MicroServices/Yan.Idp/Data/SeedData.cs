@@ -12,8 +12,15 @@ using Serilog;
 
 namespace Yan.Idp.Data
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class SeedData
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionString"></param>
         public static void EnsureSeedData(string connectionString)
         {
             var services = new ServiceCollection();
@@ -25,6 +32,16 @@ namespace Yan.Idp.Data
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 1;
+                options.Password.RequiredUniqueChars = 1;
+            });
+
             using (var serviceProvider = services.BuildServiceProvider())
             {
                 using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -33,36 +50,36 @@ namespace Yan.Idp.Data
                     context.Database.Migrate();
 
                     var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-                    var alice = userMgr.FindByNameAsync("ycp").Result;
-                    if (alice == null)
+                    var test = userMgr.FindByNameAsync("test").Result;
+                    if (test == null)
                     {
-                        alice = new ApplicationUser
+                        test = new ApplicationUser
                         {
-                            UserName = "ycp",
+                            UserName = "test",
                             Email = "511657675@qq.com",
                             EmailConfirmed = true,
                         };
-                        var result = userMgr.CreateAsync(alice, "Bjycp2015$").Result;
+                        var result = userMgr.CreateAsync(test, "test").Result;
                         if (!result.Succeeded)
                         {
                             throw new Exception(result.Errors.First().Description);
                         }
 
-                        result = userMgr.AddClaimsAsync(alice, new Claim[]{
-                            new Claim(JwtClaimTypes.Name, "严传鹏"),
-                            new Claim(JwtClaimTypes.GivenName, "传鹏"),
-                            new Claim(JwtClaimTypes.FamilyName, "严"),
+                        result = userMgr.AddClaimsAsync(test, new Claim[]{
+                            new Claim(JwtClaimTypes.Name, "测试人员"),
+                            new Claim(JwtClaimTypes.GivenName, "Test"),
+                            new Claim(JwtClaimTypes.FamilyName, "test"),
                             new Claim(JwtClaimTypes.WebSite, "http://118.24.205.200:9090"),
                         }).Result;
                         if (!result.Succeeded)
                         {
                             throw new Exception(result.Errors.First().Description);
                         }
-                        Log.Debug("alice created");
+                        Log.Debug("test created");
                     }
                     else
                     {
-                        Log.Debug("alice already exists");
+                        Log.Debug("test already exists");
                     }
 
                     

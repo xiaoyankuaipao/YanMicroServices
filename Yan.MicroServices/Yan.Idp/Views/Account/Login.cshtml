@@ -2,7 +2,7 @@
 
     <div class="login-page"  style="margin-top:-50px;">
 
-        <partial name="_ValidationSummary" />
+        @*<partial name="_ValidationSummary" />*@
 
         <div class="row">
 
@@ -21,10 +21,12 @@
 
                                 <div class="form-group">
                                     <input class="form-control" placeholder="用户名" asp-for="Username" autofocus>
+                                    <span asp-validation-for="Username"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="密码" asp-for="Password" autocomplete="off">
-                                </div>
+                                    <span asp-validation-for="Password"></span>
+                                </div> 
                                 @if (Model.AllowRememberLogin)
                                 {
                                     <div class="form-group">
@@ -40,6 +42,7 @@
 
          
                                 @*<button class="btn btn-secondary" name="button" value="cancel">取消</button>*@
+                                <div asp-validation-summary="All"></div>
                             </form>
                         </div>
                     </div>

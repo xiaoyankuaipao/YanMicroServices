@@ -5,9 +5,9 @@ using System.Text;
 namespace Yan.Infrastructure.Core.Attributes
 {
     /// <summary>
-    /// 标记 不开启事务
+    /// 标记 使用事务
     /// </summary>
-    public class NoTransactionAttribute : Attribute
+    public class UseTransactionAttribute : Attribute
     {
     }
 }

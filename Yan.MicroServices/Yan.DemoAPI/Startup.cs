@@ -34,7 +34,8 @@ namespace Yan.DemoAPI
                     //IdentityServer地址
                     options.Authority = "http://localhost:5100";
                     //对应Idp中ApiResource的Name
-                    options.Audience = "system";
+                    //options.Audience = "system";
+                    options.Audience = "article";
                     //不使用https
                     options.RequireHttpsMetadata = false;
                 });

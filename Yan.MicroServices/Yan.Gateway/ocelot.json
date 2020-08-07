@@ -53,7 +53,7 @@
 
     //articlemanage Swagger
     {
-      "DownstreamPathTemplate": "/doc/articlemanage/swagger.json",
+      "DownstreamPathTemplate": "/swagger/articlemanage/swagger.json",
       "DownstreamScheme": "http",
       "ServiceName": "articlemanage",
       "LoadBalancer": "RoundRobin",

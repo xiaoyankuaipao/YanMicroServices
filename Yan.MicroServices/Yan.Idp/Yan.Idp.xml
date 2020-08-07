@@ -29,6 +29,17 @@
             
             </summary>
         </member>
+        <member name="T:Yan.Idp.Data.SeedData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.Idp.Data.SeedData.EnsureSeedData(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="connectionString"></param>
+        </member>
         <member name="T:Yan.Idp.Models.ApiModels.LoginRequestParam">
             <summary>
             
@@ -88,6 +99,29 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="T:Yan.Idp.Quickstart.LoginController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.Idp.Quickstart.LoginController.HttpClientFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.Idp.Quickstart.LoginController.#ctor(System.Net.Http.IHttpClientFactory)">
+            <summary>
+            
+            </summary>
+            <param name="httpClientFactory"></param>
+        </member>
+        <member name="M:Yan.Idp.Quickstart.LoginController.RequestToken(Yan.Idp.Models.ApiModels.LoginRequestParam)">
+            <summary>
+            资源所有者密码凭据授权类型的用户获取Token
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
         </member>
         <member name="T:Yan.Idp.Startup">
             <summary>

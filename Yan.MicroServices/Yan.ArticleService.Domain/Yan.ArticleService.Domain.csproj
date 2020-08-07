@@ -8,8 +8,4 @@
     <ProjectReference Include="..\Yan.Domain.Abstractions\Yan.Domain.Abstractions.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-
 </Project>

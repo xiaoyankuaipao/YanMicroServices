@@ -140,7 +140,8 @@ namespace IdentityServerHost.Quickstart.UI
                 }
 
                 await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId:context?.Client.ClientId));
-                ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
+                //ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
+                ModelState.AddModelError("", "用户名或者密码错误");
             }
 
             // something went wrong, show form with error
