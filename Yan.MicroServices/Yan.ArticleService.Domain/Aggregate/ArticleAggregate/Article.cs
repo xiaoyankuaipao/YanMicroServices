@@ -55,6 +55,8 @@ namespace Yan.ArticleService.Domain.Aggregate.ArticleAggregate
         /// </summary>
         public List<int> TagIds { get; private set; }
 
+
+
         public Article()
         { }
 

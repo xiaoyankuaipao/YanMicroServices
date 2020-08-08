@@ -1,4 +1,7 @@
-﻿.body-container {
+﻿* {
+    color: #b5b5b5;
+}
+.body-container {
   margin-top: 60px;
   padding-bottom: 40px; }
 
@@ -22,3 +25,35 @@
       height: 100px; }
   .grants-page .card label {
     font-weight: bold; }
+
+.body-back {
+    background-color: #f1f1f1;
+    height: 100%
+}
+.logo {
+    position: absolute;
+    top: 56px;
+    margin-left: 50px;
+}
+
+.login-btn {
+    border-radius: 15px;
+    height: 40px;
+    font-size: 20px;
+    background-color: #3194d0;
+    border-style:none;
+}
+
+.login-more {
+    margin-top: 50px;
+}
+
+h6 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    color: #b5b5b5;
+    margin-bottom: 0;
+}
+.login-more hr{
+    margin-top:5px;
+}

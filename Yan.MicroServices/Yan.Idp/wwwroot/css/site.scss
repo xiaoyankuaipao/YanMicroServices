@@ -1,4 +1,8 @@
-﻿.body-container {
+﻿* {
+    color: #b5b5b5;
+}
+
+.body-container {
     margin-top: 60px;
     padding-bottom:40px;
 }
@@ -37,6 +41,34 @@
             font-weight: bold;
         }
     }
+}
+
+.body-back {
+    background-color:aqua;
+    height: 100%
+}
+
+
+.login-btn {
+    border-radius: 15px;
+    height: 30px;
+    font-size: 20px;
+    background-color: #3194d0;
+    border-style: none;
+}
+
+.login-more {
+    margin-top: 50px;
+    hr {
+        margin-bottom: 5px;
+    }
+}
+
+h6 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    color: #b5b5b5;
+    margin-bottom:0;
 }
 
 
