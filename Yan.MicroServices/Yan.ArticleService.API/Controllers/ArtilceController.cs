@@ -43,6 +43,7 @@ namespace Yan.ArticleService.API.Controllers
         [Authorize]
         public async Task<HandleResultDto> AddArticle([FromBody] CreateArticleCommand cmd)
         {
+            var user = User;
             return await _mediator.Send(cmd, HttpContext.RequestAborted);
         }
 
@@ -86,7 +87,7 @@ namespace Yan.ArticleService.API.Controllers
         [HttpGet]
         public async Task<ResultDto<List<CategoryArticleCount>>> GetArticleStaticCountByCategory()
         {
-            return await _mediator.Send(new QueryCategoryArticleCountCommand(), HttpContext.RequestAborted);
+            return await _mediator.Send(new CategoryArticleCountQuery(), HttpContext.RequestAborted);
         }
 
         /// <summary>
@@ -99,7 +100,7 @@ namespace Yan.ArticleService.API.Controllers
         [HttpGet]
         public async Task<PageResultDto<ArticleListDto>> GetArticlePageByCategory(int categoryId, int page, int rows)
         {
-            return await _mediator.Send(new QueryArticlePageByCategoryCommand { CategoryId = categoryId, Page = page, Rows = rows }, HttpContext.RequestAborted);
+            return await _mediator.Send(new ArticlePageByCategoryQuery { CategoryId = categoryId, Page = page, Rows = rows }, HttpContext.RequestAborted);
         }
 
         /// <summary>
@@ -110,7 +111,9 @@ namespace Yan.ArticleService.API.Controllers
         [HttpGet("{articleId}")]
         public async Task<ActionResult<ResultDto<ArticleOutputDto>>> GetArticleById(int articleId)
         {
-            return await _mediator.Send(new QueryArticleCommand { ArticleId = articleId }, HttpContext.RequestAborted);
+            var user = User;
+            await _mediator.Send(new AddArticleReadCountCommand { ArticleId = articleId });
+            return await _mediator.Send(new ArticleQuery { ArticleId = articleId }, HttpContext.RequestAborted);
         }
 
     }

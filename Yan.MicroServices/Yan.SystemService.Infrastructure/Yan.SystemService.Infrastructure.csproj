@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yan.Infrastructure.Core\Yan.Infrastructure.Core.csproj" />
+    <ProjectReference Include="..\Yan.SystemService.Domain\Yan.SystemService.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EntityConfigurations\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+</Project>

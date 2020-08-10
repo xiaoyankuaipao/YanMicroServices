@@ -16,14 +16,14 @@ namespace Yan.ArticleService.API.Application.Queries
     /// <summary>
     /// 
     /// </summary>
-    public class QueryArticleCategoryListCommand:IRequest<PageResultDto<ArticleCategoryDto>>
+    public class ArticleCategoryListQuery:IRequest<PageResultDto<ArticleCategoryDto>>
     {
     }
 
     /// <summary>
     /// 
     /// </summary>
-    public class QueryArticleCategoryListCommandHandler : IRequestHandler<QueryArticleCategoryListCommand, PageResultDto<ArticleCategoryDto>>
+    public class ArticleCategoryListQueryHandler : IRequestHandler<ArticleCategoryListQuery, PageResultDto<ArticleCategoryDto>>
     {
         /// <summary>
         ///  
@@ -34,7 +34,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// 
         /// </summary>
         /// <param name="dapper"></param>
-        public QueryArticleCategoryListCommandHandler(DapperHelper dapper)
+        public ArticleCategoryListQueryHandler(DapperHelper dapper)
         {
             _dapper = dapper;
         }
@@ -45,7 +45,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<PageResultDto<ArticleCategoryDto>> Handle(QueryArticleCategoryListCommand request, CancellationToken cancellationToken)
+        public async Task<PageResultDto<ArticleCategoryDto>> Handle(ArticleCategoryListQuery request, CancellationToken cancellationToken)
         {
             var sql = "select * from ArticleCategory";
             var entities = await _dapper.QueryAsync<ArticleCategory>(sql);

@@ -17,7 +17,7 @@ namespace Yan.ArticleService.API.Application.Queries
     /// <summary>
     /// 
     /// </summary>
-    public class QueryArticlePageByCategoryCommand:IRequest<PageResultDto<ArticleListDto>>
+    public class ArticlePageByCategoryQuery:IRequest<PageResultDto<ArticleListDto>>
     {
         /// <summary>
         /// 
@@ -38,7 +38,7 @@ namespace Yan.ArticleService.API.Application.Queries
     /// <summary>
     /// 
     /// </summary>
-    public class QueryArticlePageByCategoryCommandHandler : IRequestHandler<QueryArticlePageByCategoryCommand, PageResultDto<ArticleListDto>>
+    public class QueryArticlePageByCategoryQueryHandler : IRequestHandler<ArticlePageByCategoryQuery, PageResultDto<ArticleListDto>>
     {
         /// <summary>
         ///  
@@ -49,7 +49,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// 
         /// </summary>
         /// <param name="dapper"></param>
-        public QueryArticlePageByCategoryCommandHandler(DapperHelper dapper)
+        public QueryArticlePageByCategoryQueryHandler(DapperHelper dapper)
         {
             _dapper = dapper;
         }
@@ -60,7 +60,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<PageResultDto<ArticleListDto>> Handle(QueryArticlePageByCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<PageResultDto<ArticleListDto>> Handle(ArticlePageByCategoryQuery request, CancellationToken cancellationToken)
         {
             StringBuilder sqlBuilder = new StringBuilder(@"select SQL_CALC_FOUND_ROWS Articles.Id,Articles.Title,Articles.Remark,Articles.ReadCount,Articles.likeCount,Articles.CreateTime,ArticleCategory.Category as CategoryName
                                                          from Articles

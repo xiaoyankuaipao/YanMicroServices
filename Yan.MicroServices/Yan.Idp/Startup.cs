@@ -157,7 +157,7 @@ namespace Yan.Idp
             });
 
 
-            //ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "identityservice", "localhost", 5100).Wait();
+            ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "identityservice", "localhost", 5100).Wait();
         }
     }
 }

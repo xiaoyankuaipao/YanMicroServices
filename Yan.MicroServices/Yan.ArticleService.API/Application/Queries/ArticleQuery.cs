@@ -15,7 +15,7 @@ namespace Yan.ArticleService.API.Application.Queries
     /// <summary>
     /// 
     /// </summary>
-    public class QueryArticleCommand: IRequest<ResultDto<ArticleOutputDto>>
+    public class ArticleQuery: IRequest<ResultDto<ArticleOutputDto>>
     {
         /// <summary>
         /// 
@@ -26,7 +26,7 @@ namespace Yan.ArticleService.API.Application.Queries
     /// <summary>
     /// 
     /// </summary>
-    public class QueryArticleCommandHandler : IRequestHandler<QueryArticleCommand, ResultDto<ArticleOutputDto>>
+    public class QueryArticleQueryHandler : IRequestHandler<ArticleQuery, ResultDto<ArticleOutputDto>>
     {
         /// <summary>
         ///  
@@ -36,17 +36,11 @@ namespace Yan.ArticleService.API.Application.Queries
         /// <summary>
         /// 
         /// </summary>
-        private readonly IArticleRepository _articleRepository;
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="dapper"></param>
         /// <param name="articleRepository"></param>
-        public QueryArticleCommandHandler(DapperHelper dapper, IArticleRepository articleRepository)
+        public QueryArticleQueryHandler(DapperHelper dapper, IArticleRepository articleRepository)
         {
             _dapper = dapper;
-            _articleRepository = articleRepository;
         }
 
         /// <summary>
@@ -55,7 +49,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<ResultDto<ArticleOutputDto>> Handle(QueryArticleCommand request, CancellationToken cancellationToken)
+        public async Task<ResultDto<ArticleOutputDto>> Handle(ArticleQuery request, CancellationToken cancellationToken)
         {
             var sql = @"select 
                                 Articles.Id,Articles.CategoryId,Articles.Title,Articles.Remark,Articles.Content,Articles.Value,Articles.CreateTime,
@@ -93,11 +87,6 @@ namespace Yan.ArticleService.API.Application.Queries
                     result.Data.TagNames.Add(entity.Tag);
                 }
             }
-
-            var artilceEntity = await _articleRepository.GetAsync(request.ArticleId);
-            artilceEntity.IncrementReadCount();
-            await _articleRepository.UpdateAsync(artilceEntity);
-            await _articleRepository.UnitOfWork.SaveEntitiesAsync();
 
             return result;
         }

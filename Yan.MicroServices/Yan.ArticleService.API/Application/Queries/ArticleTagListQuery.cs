@@ -16,14 +16,14 @@ namespace Yan.ArticleService.API.Application.Queries
     /// <summary>
     /// 
     /// </summary>
-    public class QueryArticleTagListCommand:IRequest<ResultDto<List<ArticleTagDto>>>
+    public class ArticleTagListQuery:IRequest<ResultDto<List<ArticleTagDto>>>
     {
     }
 
     /// <summary>
     /// 
     /// </summary>
-    public class QueryArticleTagListCommandHandler : IRequestHandler<QueryArticleTagListCommand, ResultDto<List<ArticleTagDto>>>
+    public class QueryArticleTagListQueryHandler : IRequestHandler<ArticleTagListQuery, ResultDto<List<ArticleTagDto>>>
     {
         /// <summary>
         ///  
@@ -34,7 +34,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// 
         /// </summary>
         /// <param name="dapper"></param>
-        public QueryArticleTagListCommandHandler(DapperHelper dapper)
+        public QueryArticleTagListQueryHandler(DapperHelper dapper)
         {
             _dapper = dapper;
         }
@@ -45,7 +45,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<ResultDto<List<ArticleTagDto>>> Handle(QueryArticleTagListCommand request, CancellationToken cancellationToken)
+        public async Task<ResultDto<List<ArticleTagDto>>> Handle(ArticleTagListQuery request, CancellationToken cancellationToken)
         {
             string sql = "select * from ArticleTag";
             var entities = await _dapper.QueryAsync<ArticleTag>(sql);

@@ -78,7 +78,7 @@ namespace Yan.ArticleService.API.Controllers
         [HttpGet("[action]")]
         public async Task<PageResultDto<ArticleCategoryDto>> GetArticleCategoryList()
         {
-            var response = await _mediator.Send(new QueryArticleCategoryListCommand(), HttpContext.RequestAborted);
+            var response = await _mediator.Send(new ArticleCategoryListQuery(), HttpContext.RequestAborted);
             return response;
         }
     }

@@ -14,14 +14,14 @@ namespace Yan.ArticleService.API.Application.Queries
     /// <summary>
     /// 
     /// </summary>
-    public class QueryCategoryArticleCountCommand:IRequest<ResultDto<List<CategoryArticleCount>>>
+    public class CategoryArticleCountQuery:IRequest<ResultDto<List<CategoryArticleCount>>>
     {
     }
 
     /// <summary>
     /// 
     /// </summary>
-    public class QueryCategoryArticleCountCommandHandler : IRequestHandler<QueryCategoryArticleCountCommand, ResultDto<List<CategoryArticleCount>>>
+    public class CategoryArticleCountQueryHandler : IRequestHandler<CategoryArticleCountQuery, ResultDto<List<CategoryArticleCount>>>
     {
         /// <summary>
         ///  
@@ -32,7 +32,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// 
         /// </summary>
         /// <param name="dapper"></param>
-        public QueryCategoryArticleCountCommandHandler(DapperHelper dapper)
+        public CategoryArticleCountQueryHandler(DapperHelper dapper)
         {
             _dapper = dapper;
         }
@@ -43,7 +43,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<ResultDto<List<CategoryArticleCount>>> Handle(QueryCategoryArticleCountCommand request, CancellationToken cancellationToken)
+        public async Task<ResultDto<List<CategoryArticleCount>>> Handle(CategoryArticleCountQuery request, CancellationToken cancellationToken)
         {
             string sql = @"SELECT ArticleCategory.id as CategoryId,ArticleCategory.Category CategoryName,Count(Articles.Id) as ArticleCount  FROM ArticleCategory
                           LEFT JOIN Articles on ArticleCategory.Id = Articles.CategoryId

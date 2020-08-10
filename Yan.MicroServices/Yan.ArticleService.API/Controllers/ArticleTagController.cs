@@ -39,7 +39,7 @@ namespace Yan.ArticleService.API.Controllers
         [HttpGet]
         public async Task<ResultDto<List<ArticleTagDto>>> GetAllTagList()
         {
-            return await _mediator.Send(new QueryArticleTagListCommand(), HttpContext.RequestAborted);
+            return await _mediator.Send(new ArticleTagListQuery(), HttpContext.RequestAborted);
         }
     }
 }

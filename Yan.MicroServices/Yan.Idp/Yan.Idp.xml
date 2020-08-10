@@ -29,6 +29,23 @@
             
             </summary>
         </member>
+        <member name="T:Yan.Idp.Data.ApplicationDbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.Idp.Data.ApplicationDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Yan.Idp.Data.ApplicationDbContext})">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Yan.Idp.Data.ApplicationDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+        </member>
         <member name="T:Yan.Idp.Data.SeedData">
             <summary>
             
