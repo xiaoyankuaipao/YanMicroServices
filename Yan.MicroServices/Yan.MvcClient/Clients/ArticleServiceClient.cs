@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Yan.Core.Dtos;
 using Yan.MvcClient.ViewModel;
 
 namespace Yan.MvcClient.Clients
@@ -61,6 +62,14 @@ namespace Yan.MvcClient.Clients
             var model = JsonConvert.DeserializeObject<ResultDto<ArticleOutputDto>>(result);
 
             return model.Data;
+        }
+
+        public async Task<HandleResultDto> LikeIt(int id)
+        {
+            var result = await _client.GetStringAsync($"/api/articlemanage/Artilce/LikeThisArticle/{id}");
+            var model = JsonConvert.DeserializeObject<HandleResultDto>(result);
+            return model;
+
         }
 
     }

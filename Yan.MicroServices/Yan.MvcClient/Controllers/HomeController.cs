@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Yan.Core.Dtos;
 using Yan.MvcClient.Clients;
 using Yan.MvcClient.ViewModel;
 
@@ -77,6 +78,12 @@ namespace Yan.MvcClient.Controllers
         {
             var viewModel = await _articleClient.GetArticleById(id);
             return View(viewModel);
+        }
+
+        public  async Task<HandleResultDto> LikeArticle(int id)
+        {
+            var result= await _articleClient.LikeIt(id);
+            return result;
         }
 
         /// <summary>
