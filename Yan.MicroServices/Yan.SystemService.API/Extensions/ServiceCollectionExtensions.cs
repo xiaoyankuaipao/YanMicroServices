@@ -14,16 +14,32 @@ using System.Threading.Tasks;
 using Yan.Dapper;
 using Yan.SystemService.Domain.Aggregate;
 using Yan.SystemService.Infrastructure;
+using Yan.SystemService.Infrastructure.Repositories;
 
 namespace Yan.SystemService.API.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public static IServiceCollection AddDomainDbContext(this IServiceCollection services, Action<DbContextOptionsBuilder> options)
         {
             return services.AddDbContext<SystemContext>(options);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
         public static IServiceCollection AddMySqlContext(this IServiceCollection services, string connectionString)
         {
             return services.AddDomainDbContext(builder =>
@@ -32,11 +48,25 @@ namespace Yan.SystemService.API.Extensions
             });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
+            services.AddTransient<ISystemUserRepository, SystemUserRepository>();
+            services.AddTransient<ISystemRoleRepository, SystemRoleRepository>();
+            services.AddTransient<ISystemMenuRepository, SystemMenuRepository>();
             return services;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="mysqlConnection"></param>
+        /// <returns></returns>
         public static IServiceCollection AddDapper(this IServiceCollection services, string mysqlConnection)
         {
             services.AddTransient<DapperHelper>(proiver =>
@@ -47,12 +77,23 @@ namespace Yan.SystemService.API.Extensions
             return services;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddMediatRServices(this IServiceCollection services)
         {
             services.AddTransient(typeof(IPipelineBehavior<,>),typeof(SystemContextTransactionBehavior<,>));
-            return services.AddMediatR(typeof(TestRoot).Assembly, typeof(Program).Assembly);
+            return services.AddMediatR(typeof(SystemUser).Assembly, typeof(Program).Assembly);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddCap(options =>
@@ -66,6 +107,11 @@ namespace Yan.SystemService.API.Extensions
             return services;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddSwaggerDoc(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>

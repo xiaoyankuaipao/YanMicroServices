@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Yan.SystemService.API.Extensions;
 using Yan.Consul;
 using System.IdentityModel.Tokens.Jwt;
+using Yan.SystemService.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Yan.SystemService.API
 {
@@ -62,11 +64,16 @@ namespace Yan.SystemService.API
                     options.RequireHttpsMetadata = false;
                 });
 
+
             services.AddMediatRServices();
+
             services.AddMySqlContext(Configuration["ConnectionStrings:MySqlConnection"]);
             services.AddRepositories();
+
             services.AddDapper(Configuration["ConnectionStrings:MySqlConnection"]);
+
             services.AddEventBus(Configuration);
+
             services.AddSwaggerDoc();
         }
         
