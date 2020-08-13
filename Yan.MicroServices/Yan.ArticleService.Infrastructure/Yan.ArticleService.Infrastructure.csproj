@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Yan.ArticleService.Domain\Yan.ArticleService.Domain.csproj" />
     <ProjectReference Include="..\Yan.Infrastructure.Core\Yan.Infrastructure.Core.csproj" />
   </ItemGroup>

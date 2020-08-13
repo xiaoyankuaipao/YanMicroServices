@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Yan.Domain.Abstractions;
+using Yan.Utility;
 
 namespace Yan.SystemService.Domain.Aggregate
 {
@@ -44,7 +45,7 @@ namespace Yan.SystemService.Domain.Aggregate
         /// <param name="email"></param>
         public SystemUser(string userName, string password, string realName, string email)
         {
-            this.Id = "";
+            this.Id = SnowflakeId.Default().NextId().ToString();
             this.UserName = userName;
             this.Password = password;
             this.RealName = realName;

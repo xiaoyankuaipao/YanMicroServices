@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Yan.Domain.Abstractions;
+using Yan.SystemService.Domain.Entities;
+using Yan.Utility;
 
 namespace Yan.SystemService.Domain.Aggregate
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class SystemRole : Entity<string>, IAggregateRoot
     {
         /// <summary>
@@ -23,11 +22,16 @@ namespace Yan.SystemService.Domain.Aggregate
         /// <summary>
         /// 
         /// </summary>
+        public List<SystemRoleMenu> SystemRoleMenus { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="name"></param>
         /// <param name="displayName"></param>
         public SystemRole(string name, string displayName)
         {
-            this.Id = "";
+            this.Id = SnowflakeId.Default().NextId().ToString();
             this.Name = name;
             this.DisplayName = displayName;
         }
@@ -41,6 +45,34 @@ namespace Yan.SystemService.Domain.Aggregate
         {
             this.Name = name;
             this.DisplayName = displayName;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="systemRoleMenus"></param>
+        public void AddRoleMenu(SystemRoleMenu systemRoleMenu)
+        {
+            if (this.SystemRoleMenus == null)
+            {
+                this.SystemRoleMenus = new List<SystemRoleMenu> { systemRoleMenu };
+            }
+            else
+            {
+                this.SystemRoleMenus.Add(systemRoleMenu);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+
+        public void DeleteRoleMenu()
+        {
+            if (this.SystemRoleMenus != null)
+            {
+                this.SystemRoleMenus.Clear();
+            }
         }
 
     }

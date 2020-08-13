@@ -8,7 +8,7 @@ namespace Yan.SystemService.Domain.Entities
     /// <summary>
     /// 
     /// </summary>
-    public class SystemRoleMenu : Entity<string>
+    public class SystemRoleMenu : Entity<int>
     {
         /// <summary>
         /// 

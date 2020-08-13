@@ -45,11 +45,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yan.DemoAPI", "Yan.DemoAPI\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yan.Dapper", "Yan.Dapper\Yan.Dapper.csproj", "{608D0302-3DFA-4596-8ED6-8FBB8E96946B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yan.SystemService.API", "Yan.SystemService.API\Yan.SystemService.API.csproj", "{0EC2BFA1-2371-42F2-B2B3-4AE2FFDDE7CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yan.SystemService.API", "Yan.SystemService.API\Yan.SystemService.API.csproj", "{0EC2BFA1-2371-42F2-B2B3-4AE2FFDDE7CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yan.SystemService.Domain", "Yan.SystemService.Domain\Yan.SystemService.Domain.csproj", "{9194FAEB-7819-430A-9024-779A50FB8418}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yan.SystemService.Domain", "Yan.SystemService.Domain\Yan.SystemService.Domain.csproj", "{9194FAEB-7819-430A-9024-779A50FB8418}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yan.SystemService.Infrastructure", "Yan.SystemService.Infrastructure\Yan.SystemService.Infrastructure.csproj", "{B333C7BA-83C0-4F21-92F6-83E4964D5282}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yan.SystemService.Infrastructure", "Yan.SystemService.Infrastructure\Yan.SystemService.Infrastructure.csproj", "{B333C7BA-83C0-4F21-92F6-83E4964D5282}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yan.Utility", "Yan.Utility\Yan.Utility.csproj", "{E314FB26-2C82-486E-ADBD-B465B7C8F46A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{B333C7BA-83C0-4F21-92F6-83E4964D5282}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B333C7BA-83C0-4F21-92F6-83E4964D5282}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B333C7BA-83C0-4F21-92F6-83E4964D5282}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E314FB26-2C82-486E-ADBD-B465B7C8F46A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E314FB26-2C82-486E-ADBD-B465B7C8F46A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E314FB26-2C82-486E-ADBD-B465B7C8F46A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E314FB26-2C82-486E-ADBD-B465B7C8F46A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +146,7 @@ Global
 		{0EC2BFA1-2371-42F2-B2B3-4AE2FFDDE7CC} = {7E13F4DC-06FF-44DD-A594-620AD22717F1}
 		{9194FAEB-7819-430A-9024-779A50FB8418} = {7E13F4DC-06FF-44DD-A594-620AD22717F1}
 		{B333C7BA-83C0-4F21-92F6-83E4964D5282} = {7E13F4DC-06FF-44DD-A594-620AD22717F1}
+		{E314FB26-2C82-486E-ADBD-B465B7C8F46A} = {765107D4-33A7-4D17-9A6D-32CC82A74535}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B8BB4AF-2990-4BA1-8C0E-64C70A1AC864}

@@ -43,7 +43,7 @@ namespace Yan.SystemService.API.Application.Commands
         /// <summary>
         /// 
         /// </summary>
-        public Nullable<int> RoleId { get; set; }
+        public string RoleId { get; set; }
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ namespace Yan.SystemService.API.Application.Commands
             if (String.IsNullOrEmpty(request.Id))
             {
                 var entity = new SystemUser(request.UserName, request.Password, request.RealName, request.Email);
-                await _systemUserRepository.AddAsync(entity);
+                await _systemUserRepository.AddAsync(entity, cancellationToken);
             }
             else
             {
@@ -84,11 +84,11 @@ namespace Yan.SystemService.API.Application.Commands
                 if (entity != null)
                 {
                     entity.UpdateUser(request.UserName, request.Password, request.RealName, request.Email);
-                    await _systemUserRepository.UpdateAsync(entity);
+                    await _systemUserRepository.UpdateAsync(entity,cancellationToken);
                 }
             }
 
-            await _systemUserRepository.UnitOfWork.SaveEntitiesAsync();
+            await _systemUserRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
 
             return new HandleResultDto
             {

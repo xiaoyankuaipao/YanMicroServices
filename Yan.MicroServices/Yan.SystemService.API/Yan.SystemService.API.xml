@@ -4,5 +4,1098 @@
         <name>Yan.SystemService.API</name>
     </assembly>
     <members>
+        <member name="T:Yan.SystemService.API.Application.Commands.CreateMenuCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateMenuCommand.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateMenuCommand.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateMenuCommand.Code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateMenuCommand.Address">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateMenuCommand.Icon">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateMenuCommand.MenuType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateMenuCommand.ParentId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.CreateMenuCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Commands.CreateMenuCommandHandler._systemMenuRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.CreateMenuCommandHandler.#ctor(Yan.SystemService.Infrastructure.Repositories.ISystemMenuRepository)">
+            <summary>
+            
+            </summary>
+            <param name="systemMenuRepository"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.CreateMenuCommandHandler.Handle(Yan.SystemService.API.Application.Commands.CreateMenuCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.CreateRoleCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateRoleCommand.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateRoleCommand.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateRoleCommand.DisplayName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.CreateRoleCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Commands.CreateRoleCommandHandler._systemRoleRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.CreateRoleCommandHandler.#ctor(Yan.SystemService.Infrastructure.Repositories.ISystemRoleRepository)">
+            <summary>
+            
+            </summary>
+            <param name="systemRoleRepository"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.CreateRoleCommandHandler.Handle(Yan.SystemService.API.Application.Commands.CreateRoleCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.CreateUserCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateUserCommand.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateUserCommand.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateUserCommand.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateUserCommand.RealName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateUserCommand.Email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.CreateUserCommand.RoleId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.CreateUserCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Commands.CreateUserCommandHandler._systemUserRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.CreateUserCommandHandler.#ctor(Yan.SystemService.Infrastructure.Repositories.ISystemUserRepository)">
+            <summary>
+            
+            </summary>
+            <param name="systemUserRepository"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.CreateUserCommandHandler.Handle(Yan.SystemService.API.Application.Commands.CreateUserCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.DeleteMenuCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.DeleteMenuCommand.MenuId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.DeleteMenuCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Commands.DeleteMenuCommandHandler._systemMenuRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.DeleteMenuCommandHandler.#ctor(Yan.SystemService.Infrastructure.Repositories.ISystemMenuRepository)">
+            <summary>
+            
+            </summary>
+            <param name="systemMenuRepository"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.DeleteMenuCommandHandler.Handle(Yan.SystemService.API.Application.Commands.DeleteMenuCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.DeleteRoleCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.DeleteRoleCommand.RoleId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.DeleteRoleCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Commands.DeleteRoleCommandHandler._systemRoleRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.DeleteRoleCommandHandler.#ctor(Yan.SystemService.Infrastructure.Repositories.ISystemRoleRepository)">
+            <summary>
+            
+            </summary>
+            <param name="systemRoleRepository"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.DeleteRoleCommandHandler.Handle(Yan.SystemService.API.Application.Commands.DeleteRoleCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.DeleteUserCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.DeleteUserCommand.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.DeleteUserCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Commands.DeleteUserCommandHandler._systemUserRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.DeleteUserCommandHandler.#ctor(Yan.SystemService.Infrastructure.Repositories.ISystemUserRepository)">
+            <summary>
+            
+            </summary>
+            <param name="systemUserRepository"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.DeleteUserCommandHandler.Handle(Yan.SystemService.API.Application.Commands.DeleteUserCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.SaveRoleMenuCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.SaveRoleMenuCommand.MenuIds">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.SaveRoleMenuCommand.RoleId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.SaveRoleMenuCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Commands.SaveRoleMenuCommandHandler._systemRoleRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.SaveRoleMenuCommandHandler.#ctor(Yan.SystemService.Infrastructure.Repositories.ISystemRoleRepository)">
+            <summary>
+            
+            </summary>
+            <param name="systemRoleRepository"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.SaveRoleMenuCommandHandler.Handle(Yan.SystemService.API.Application.Commands.SaveRoleMenuCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.UpdateUserRoleCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.UpdateUserRoleCommand.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Commands.UpdateUserRoleCommand.RoleId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Commands.UpdateUserRoleCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Commands.UpdateUserRoleCommandHandler._systemUserRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.UpdateUserRoleCommandHandler.#ctor(Yan.SystemService.Infrastructure.Repositories.ISystemUserRepository)">
+            <summary>
+            
+            </summary>
+            <param name="systemUserRepository"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Commands.UpdateUserRoleCommandHandler.Handle(Yan.SystemService.API.Application.Commands.UpdateUserRoleCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.MenuByIdQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Queries.MenuByIdQuery.MenuId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.MenuByIdQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Queries.MenuByIdQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.MenuByIdQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.MenuByIdQueryHandler.Handle(Yan.SystemService.API.Application.Queries.MenuByIdQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.MenuComboxTreeQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.MenuComboxTreeQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Queries.MenuComboxTreeQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.MenuComboxTreeQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.MenuComboxTreeQueryHandler.Handle(Yan.SystemService.API.Application.Queries.MenuComboxTreeQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.MenuComboxTreeQueryHandler.GetChildren(Yan.SystemService.API.Models.MenuDto,System.Collections.Generic.IEnumerable{Yan.SystemService.API.Models.MenuDto})">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="menuEntities"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.MenuTreeByRoleIdQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Queries.MenuTreeByRoleIdQuery.RoleId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.MenuTreeByRoleIdQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Queries.MenuTreeByRoleIdQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.MenuTreeByRoleIdQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.MenuTreeByRoleIdQueryHandler.Handle(Yan.SystemService.API.Application.Queries.MenuTreeByRoleIdQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.MenuTreeByRoleIdQueryHandler.GetChildren(Yan.SystemService.API.Models.MenuDto,System.Collections.Generic.IEnumerable{Yan.SystemService.API.Models.MenuDto})">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="menuEntities"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.MenuTreeQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.MenuTreeQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Queries.MenuTreeQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.MenuTreeQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.MenuTreeQueryHandler.Handle(Yan.SystemService.API.Application.Queries.MenuTreeQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.MenuTreeQueryHandler.GetChildren(Yan.SystemService.API.Models.MenuDto,System.Collections.Generic.IEnumerable{Yan.SystemService.API.Models.MenuDto})">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="menuEntities"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.RoleByIdQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Queries.RoleByIdQuery.RoleId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.RoleByIdQueryHandle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Queries.RoleByIdQueryHandle._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.RoleByIdQueryHandle.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.RoleByIdQueryHandle.Handle(Yan.SystemService.API.Application.Queries.RoleByIdQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.RoleListQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.RoleListQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Queries.RoleListQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.RoleListQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.RoleListQueryHandler.Handle(Yan.SystemService.API.Application.Queries.RoleListQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.UserBtnPermissionQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Queries.UserBtnPermissionQuery.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.UserBtnPermissionQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Queries.UserBtnPermissionQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.UserBtnPermissionQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.UserBtnPermissionQueryHandler.Handle(Yan.SystemService.API.Application.Queries.UserBtnPermissionQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.UserListQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Queries.UserListQuery.Page">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Queries.UserListQuery.Rows">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.UserListQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Queries.UserListQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.UserListQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.UserListQueryHandler.Handle(Yan.SystemService.API.Application.Queries.UserListQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.UserPermissionMenuTreeQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Application.Queries.UserPermissionMenuTreeQuery.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Application.Queries.UserPermissionMenuTreeQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Application.Queries.UserPermissionMenuTreeQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.UserPermissionMenuTreeQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.UserPermissionMenuTreeQueryHandler.Handle(Yan.SystemService.API.Application.Queries.UserPermissionMenuTreeQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Application.Queries.UserPermissionMenuTreeQueryHandler.GetChildren(Yan.SystemService.API.Models.MenuDto,System.Collections.Generic.IEnumerable{Yan.SystemService.API.Models.MenuDto})">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="menuEntities"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Controllers.MenuController">
+            <summary>
+            s
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Controllers.MenuController._mediator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.MenuController.#ctor(MediatR.IMediator)">
+            <summary>
+            
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.MenuController.Get(System.String)">
+            <summary>
+            根据Id获取菜单信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.MenuController.Delete(System.String)">
+            <summary>
+            根据Id删除菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.MenuController.Post(Yan.SystemService.API.Application.Commands.CreateMenuCommand)">
+            <summary>
+            添加菜单
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.MenuController.Put(Yan.SystemService.API.Application.Commands.CreateMenuCommand)">
+            <summary>
+            修改菜单
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.MenuController.GetMenuTree">
+            <summary>
+            获取菜单树列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.MenuController.GetMenuComboxTree">
+            <summary>
+            获取菜单树combox Tree
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.MenuController.GetMenuTreeByRoleId(System.String)">
+            <summary>
+            根据角色获取该角色具有的菜单树列表
+            </summary>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Controllers.PermissionController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Controllers.PermissionController._mediator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.PermissionController.#ctor(MediatR.IMediator)">
+            <summary>
+            
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.PermissionController.GetUserPermissionMenuTree">
+            <summary>
+            获取当前用户具有的菜单树列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.PermissionController.GetUserBtnPermission">
+            <summary>
+            获取当前用户具有的按钮
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Controllers.RoleController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Controllers.RoleController._mediator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.RoleController.#ctor(MediatR.IMediator)">
+            <summary>
+            
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.RoleController.GetRoleById(System.String)">
+            <summary>
+            根据角色Id获取角色信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.RoleController.GetRoleList">
+            <summary>
+            获取角色列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.RoleController.Post(Yan.SystemService.API.Application.Commands.CreateRoleCommand)">
+            <summary>
+            添加或者修改角色
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.RoleController.Delete(System.String)">
+            <summary>
+            根据Id删除角色
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Controllers.RoleMenuController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Controllers.RoleMenuController._mediator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.RoleMenuController.#ctor(MediatR.IMediator)">
+            <summary>
+            
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.RoleMenuController.Post(System.String[],System.String)">
+            <summary>
+            保存角色具有的菜单权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Controllers.UserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.SystemService.API.Controllers.UserController._mediator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.UserController.#ctor(MediatR.IMediator)">
+            <summary>
+            
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.UserController.GetUserInfo">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.UserController.GetUserList(System.Int32,System.Int32)">
+            <summary>
+            获取用户列表
+            </summary>
+            <param name="page"></param>
+            <param name="rows"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.UserController.Post(Yan.SystemService.API.Application.Commands.CreateUserCommand)">
+            <summary>
+            添加或者更新用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.UserController.Delete(System.String)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Controllers.UserController.SetUserRole(System.String,System.String)">
+            <summary>
+            为用户分配角色
+            </summary>
+            <param name="userId"></param>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Extensions.ServiceCollectionExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.SystemService.API.Extensions.ServiceCollectionExtensions.AddDomainDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder})">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Extensions.ServiceCollectionExtensions.AddMySqlContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="connectionString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Extensions.ServiceCollectionExtensions.AddRepositories(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Extensions.ServiceCollectionExtensions.AddDapper(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="mysqlConnection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Extensions.ServiceCollectionExtensions.AddMediatRServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Extensions.ServiceCollectionExtensions.AddEventBus(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.SystemService.API.Extensions.ServiceCollectionExtensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.SystemService.API.Models.ComboxTreeDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.ComboxTreeDto.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.ComboxTreeDto.Text">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.ComboxTreeDto.Children">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Models.MenuDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuDto.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuDto.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuDto.Code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuDto.Address">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuDto.Icon">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuDto.MenuType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuDto.ParentId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Models.MenuTreeDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuTreeDto.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuTreeDto.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuTreeDto.Code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuTreeDto.Address">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuTreeDto.Icon">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuTreeDto.MenuType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuTreeDto.ParentId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.MenuTreeDto.Children">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Models.RoleDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.RoleDto.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.RoleDto.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.RoleDto.DisplayName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.SystemService.API.Models.UserInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.UserInfo.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.UserInfo.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.UserInfo.RealName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.UserInfo.Email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.SystemService.API.Models.UserInfo.RegisteTime">
+            <summary>
+            
+            </summary>
+        </member>
     </members>
 </doc>

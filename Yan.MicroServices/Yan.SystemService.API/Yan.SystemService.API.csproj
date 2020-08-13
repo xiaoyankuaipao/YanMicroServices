@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Application\Queries\RoleByIdQuery.cs~RF2bb6ae64.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Yan.Consul\Yan.Consul.csproj" />
     <ProjectReference Include="..\Yan.Core\Yan.Core.csproj" />
     <ProjectReference Include="..\Yan.Dapper\Yan.Dapper.csproj" />

@@ -8,8 +8,8 @@ using Yan.SystemService.Infrastructure;
 namespace Yan.SystemService.Infrastructure.Migrations
 {
     [DbContext(typeof(SystemContext))]
-    [Migration("20200812104219_initsystemdb")]
-    partial class initsystemdb
+    [Migration("20200813111413_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,22 +24,27 @@ namespace Yan.SystemService.Infrastructure.Migrations
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Address")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.Property<string>("Code")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.Property<string>("Icon")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.Property<int>("MenuType")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.Property<string>("ParentId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.HasKey("Id");
 
@@ -52,14 +57,16 @@ namespace Yan.SystemService.Infrastructure.Migrations
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("DisplayName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.HasKey("Id");
 
-                    b.ToTable("SystemRoles");
+                    b.ToTable("SystemRole");
                 });
 
             modelBuilder.Entity("Yan.SystemService.Domain.Aggregate.SystemUser", b =>
@@ -68,19 +75,22 @@ namespace Yan.SystemService.Infrastructure.Migrations
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Email")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.Property<string>("Password")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("RealName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.Property<string>("RoleId")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.HasKey("Id");
 
@@ -89,8 +99,9 @@ namespace Yan.SystemService.Infrastructure.Migrations
 
             modelBuilder.Entity("Yan.SystemService.Domain.Entities.SystemRoleMenu", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     b.Property<string>("MenuId")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -98,9 +109,21 @@ namespace Yan.SystemService.Infrastructure.Migrations
                     b.Property<string>("RoleId")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("SystemRoleId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("SystemRoleId");
+
                     b.ToTable("SystemRoleMenu");
+                });
+
+            modelBuilder.Entity("Yan.SystemService.Domain.Entities.SystemRoleMenu", b =>
+                {
+                    b.HasOne("Yan.SystemService.Domain.Aggregate.SystemRole", null)
+                        .WithMany("SystemRoleMenus")
+                        .HasForeignKey("SystemRoleId");
                 });
 #pragma warning restore 612, 618
         }

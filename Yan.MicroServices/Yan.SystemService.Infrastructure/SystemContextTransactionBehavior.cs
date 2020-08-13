@@ -13,7 +13,7 @@ namespace Yan.SystemService.Infrastructure
     /// </summary>
     public class SystemContextTransactionBehavior<TRequest, TResponse> : TransactionBehavior<SystemContext, TRequest, TResponse>
     {
-        public SystemContextTransactionBehavior(SystemContext dbContext, ICapPublisher capBus, ILogger logger) : base(dbContext, capBus, logger)
+        public SystemContextTransactionBehavior(SystemContext dbContext, ICapPublisher capBus, ILogger<SystemContextTransactionBehavior<TRequest, TResponse>> logger) : base(dbContext, capBus, logger)
         {
         }
     }

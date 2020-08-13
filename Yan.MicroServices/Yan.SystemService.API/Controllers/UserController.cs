@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Yan.Core.Dtos;
 using Yan.SystemService.API.Application.Commands;
+using Yan.SystemService.API.Application.Queries;
 using Yan.SystemService.API.Models;
 
 namespace Yan.SystemService.API.Controllers
@@ -70,7 +71,7 @@ namespace Yan.SystemService.API.Controllers
         [HttpGet("[action]")]
         public async Task<PageResultDto<UserDto>> GetUserList(int page, int rows)
         {
-            var response = await _userService.GetUserListAsync(page, rows);
+            var response = await _mediator.Send(new UserListQuery { Page = page, Rows = rows }, HttpContext.RequestAborted);
             return response;
         }
 
@@ -81,7 +82,7 @@ namespace Yan.SystemService.API.Controllers
         [HttpPost]
         public async Task<HandleResultDto> Post([FromBody] CreateUserCommand cmd)
         {
-            var response = await _mediator.Send(cmd);
+            var response = await _mediator.Send(cmd, HttpContext.RequestAborted);
             return response;
         }
 
@@ -91,9 +92,10 @@ namespace Yan.SystemService.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<HandleResultDto> Delete(int id)
+        public async Task<HandleResultDto> Delete(string id)
         {
-            throw new NotImplementedException();
+            var response = await _mediator.Send(new DeleteUserCommand { UserId = id } ,HttpContext.RequestAborted);
+            return response;
         }
 
         /// <summary>
@@ -103,9 +105,10 @@ namespace Yan.SystemService.API.Controllers
         /// <param name="roleId"></param>
         /// <returns></returns>
         [HttpGet("[action]")]
-        public async Task<HandleResultDto> SetUserRole(int userId, int roleId)
+        public async Task<HandleResultDto> SetUserRole(string userId, string roleId)
         {
-            throw new NotImplementedException();
+            var response = await _mediator.Send(new UpdateUserRoleCommand { UserId = userId, RoleId = roleId }, HttpContext.RequestAborted);
+            return response;
         }
 
 

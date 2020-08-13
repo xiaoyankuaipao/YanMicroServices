@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using Yan.Domain.Abstractions;
+using Yan.Utility;
 
 namespace Yan.SystemService.Domain.Aggregate
 {
@@ -52,7 +53,7 @@ namespace Yan.SystemService.Domain.Aggregate
         /// <param name="parentId"
         public SystemMenu(string name, string code, string address, string icon, int menuType,string parentId)
         {
-            this.Id = "";
+            this.Id = SnowflakeId.Default().NextId().ToString();
             this.Name = name;
             this.Code = code;
             this.Address = address;
