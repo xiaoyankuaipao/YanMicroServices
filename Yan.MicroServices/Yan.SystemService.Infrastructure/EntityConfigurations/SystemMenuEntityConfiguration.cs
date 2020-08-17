@@ -25,6 +25,8 @@ namespace Yan.SystemService.Infrastructure.EntityConfigurations
             builder.Property(p => p.Address).HasMaxLength(255); 
             builder.Property(p => p.Icon).HasMaxLength(255);
             builder.Property(p => p.ParentId).HasMaxLength(255);
+
+            builder.HasOne<SystemMenu>().WithMany().IsRequired(false).HasForeignKey(p => p.ParentId).OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

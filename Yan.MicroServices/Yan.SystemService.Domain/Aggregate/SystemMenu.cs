@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using Yan.Domain.Abstractions;
+using Yan.SystemService.Domain.Entities;
 using Yan.Utility;
 
 namespace Yan.SystemService.Domain.Aggregate
@@ -41,6 +42,12 @@ namespace Yan.SystemService.Domain.Aggregate
         /// 
         /// </summary>
         public string ParentId { get; set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<SystemRoleMenu> SystemRoleMenus { get; private set; }
 
         /// <summary>
         /// 

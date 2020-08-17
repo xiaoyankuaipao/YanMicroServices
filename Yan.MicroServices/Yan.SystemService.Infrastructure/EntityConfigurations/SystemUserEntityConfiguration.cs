@@ -19,6 +19,8 @@ namespace Yan.SystemService.Infrastructure.EntityConfigurations
             builder.Property(p => p.UserName).HasMaxLength(255);
             builder.Property(p => p.RealName).HasMaxLength(255);
             builder.Property(p => p.Email).HasMaxLength(255);
+
+            builder.HasOne<SystemRole>().WithMany().IsRequired(false).HasForeignKey(p => p.RoleId).OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

@@ -46,6 +46,8 @@ namespace Yan.SystemService.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ParentId");
+
                     b.ToTable("SystemMenu");
                 });
 
@@ -84,13 +86,15 @@ namespace Yan.SystemService.Infrastructure.Migrations
                         .HasMaxLength(255);
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("UserName")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
                         .HasMaxLength(255);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("SystemUser");
                 });
@@ -102,26 +106,47 @@ namespace Yan.SystemService.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MenuId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("SystemRoleId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SystemRoleId");
+                    b.HasIndex("MenuId");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("SystemRoleMenu");
                 });
 
-            modelBuilder.Entity("Yan.SystemService.Domain.Entities.SystemRoleMenu", b =>
+            modelBuilder.Entity("Yan.SystemService.Domain.Aggregate.SystemMenu", b =>
+                {
+                    b.HasOne("Yan.SystemService.Domain.Aggregate.SystemMenu", null)
+                        .WithMany()
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.SetNull);
+                });
+
+            modelBuilder.Entity("Yan.SystemService.Domain.Aggregate.SystemUser", b =>
                 {
                     b.HasOne("Yan.SystemService.Domain.Aggregate.SystemRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.SetNull);
+                });
+
+            modelBuilder.Entity("Yan.SystemService.Domain.Entities.SystemRoleMenu", b =>
+                {
+                    b.HasOne("Yan.SystemService.Domain.Aggregate.SystemMenu", null)
                         .WithMany("SystemRoleMenus")
-                        .HasForeignKey("SystemRoleId");
+                        .HasForeignKey("MenuId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Yan.SystemService.Domain.Aggregate.SystemRole", null)
+                        .WithMany("SystemRoleMenus")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }
