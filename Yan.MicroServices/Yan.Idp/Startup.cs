@@ -18,6 +18,7 @@ using System.Linq;
 using Yan.Consul;
 using Yan.Idp.Data;
 using Yan.Idp.Models;
+using Yan.Idp.Quickstart;
 
 namespace Yan.Idp
 {
@@ -58,13 +59,15 @@ namespace Yan.Idp
 
             services.AddHttpClient();
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
-            );
+            services.AddDapper(Configuration["ConnectionStrings:MySqlConnection"]);
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
+            //);
+
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders();
 
             var builder = services.AddIdentityServer(options =>
             {
@@ -79,17 +82,20 @@ namespace Yan.Idp
             builder.AddInMemoryApiScopes(Config.ApiScopes);
             builder.AddInMemoryApiResources(Config.ApiResources);
             builder.AddInMemoryClients(Config.Clients);
-            builder.AddAspNetIdentity<ApplicationUser>();
+            builder.AddResourceOwnerValidator<ResourceOwnerPasswordValidator>();
+            builder.AddProfileService<ProfileService>();
+            //builder.AddAspNetIdentity<ApplicationUser>();
 
-            services.Configure<IdentityOptions>(options =>
-            {
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequiredLength = 1;
-                options.Password.RequiredUniqueChars = 1;
-            });
+
+            //services.Configure<IdentityOptions>(options =>
+            //{
+            //    options.Password.RequireDigit = false;
+            //    options.Password.RequireLowercase = false;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //    options.Password.RequireUppercase = false;
+            //    options.Password.RequiredLength = 1;
+            //    options.Password.RequiredUniqueChars = 1;
+            //});
            
             builder.AddDeveloperSigningCredential();
 

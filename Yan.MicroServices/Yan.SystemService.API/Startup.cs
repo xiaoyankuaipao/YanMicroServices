@@ -102,7 +102,7 @@ namespace Yan.SystemService.API
                 endpoints.MapControllers();
             });
 
-            //ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "systemmanage", "localhost", 6020).Wait();
+            ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "systemmanage", "localhost", 6020).Wait();
         }
     }
 }

@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\" />
+    <Folder Include="wwwroot\Files\Pictures\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,16 +39,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\Files\Pictures\json.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Yan.ArticleService.API.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 
 </Project>

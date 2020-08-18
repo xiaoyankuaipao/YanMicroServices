@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Yan.Core.Dtos;
@@ -16,6 +17,7 @@ namespace Yan.SystemService.API.Controllers
     /// </summary>
     [Route("api/systemmanageservice/[controller]")]
     [ApiController]
+    [Authorize]
     public class PermissionController : ControllerBase
     {
         /// <summary>
@@ -39,7 +41,7 @@ namespace Yan.SystemService.API.Controllers
         [HttpGet("[action]")]
         public async Task<ActionResult<ResultDto<List<MenuTreeDto>>>> GetUserPermissionMenuTree()
         {
-            var userId = this.User.FindFirst("Id").Value;
+            var userId = this.User.FindFirst("id").Value;
             var response = await _mediator.Send(new UserPermissionMenuTreeQuery { UserId = userId });
             return response;
         }
@@ -51,7 +53,7 @@ namespace Yan.SystemService.API.Controllers
         [HttpGet("[action]")]
         public async Task<ActionResult<ResultDto<string>>> GetUserBtnPermission()
         {
-            var userId = this.User.FindFirst("Id").Value;
+            var userId = this.User.FindFirst("id").Value;
             var response = await _mediator.Send(new UserBtnPermissionQuery { UserId = userId }, HttpContext.RequestAborted);
             return response;
         }

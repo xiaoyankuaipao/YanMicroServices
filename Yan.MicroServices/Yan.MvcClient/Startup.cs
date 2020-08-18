@@ -35,8 +35,8 @@ namespace Yan.MvcClient
             services.AddHttpClient();
             services.AddHttpClient<ArticleServiceClient>(client =>
             {
-                //client.BaseAddress = new Uri("http://118.24.205.200:5000");
-                client.BaseAddress = new Uri("http://localhost:5000");
+                client.BaseAddress = new Uri("http://118.24.205.200:5000");
+                //client.BaseAddress = new Uri("http://localhost:5000");
             });
 
 
@@ -51,8 +51,8 @@ namespace Yan.MvcClient
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.Authority = "http://118.24.205.200:5100";
-                //options.Authority = "http://localhost:5100";
+                //options.Authority = "http://118.24.205.200:5100";
+                options.Authority = "http://localhost:5100";
                 options.RequireHttpsMetadata = false;
                 options.ClientId = "Yan.MvcClient";
                 options.ClientSecret = "Yan.MvcClient";

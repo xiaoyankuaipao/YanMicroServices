@@ -22,10 +22,10 @@
     //systemmanageservice
     {
       "UseServiceDiscovery": true, //使用服务发现（Consul 发现）
-      "DownstreamPathTemplate": "/api/systemmanage/{url}", //下游服务器指的是提供API服务的REST Service Server（比如WebAPI、WCF App等）
+      "DownstreamPathTemplate": "/api/systemmanageservice/{url}", //下游服务器指的是提供API服务的REST Service Server（比如WebAPI、WCF App等）
       "DownstreamScheme": "http", //http、https
       "ServiceName": "systemmanage", //服务名称
-      "UpstreamPathTemplate": "/api/systemmanage/{url}", //上游服务器则指的是提供Web网页服务的Web Server（比如MVC Application，可能需要访问REST Service）
+      "UpstreamPathTemplate": "/api/systemmanageservice/{url}", //上游服务器则指的是提供Web网页服务的Web Server（比如MVC Application，可能需要访问REST Service）
       "UpstreamHttpMethod": [ "Get", "Post", "DELETE", "PUT" ],
       "ReRoutesCaseSensitive": false, //不区分大小写
       //负载均衡设置

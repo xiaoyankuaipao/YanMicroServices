@@ -17,6 +17,6 @@ namespace Yan.SystemService.API.Models
 
         public string Email { get; set; }
 
-        public Nullable<int> RoleId { get; set; }
+        public string RoleId { get; set; }
     }
 }

@@ -22,13 +22,13 @@ namespace Yan.ArticleService.API.Controllers
         /// <summary>
         /// 
         /// </summary>
-        private IHostingEnvironment hostingEnv;
+        private IWebHostEnvironment hostingEnv;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="env"></param>
-        public PictureController(IHostingEnvironment env)
+        public PictureController(IWebHostEnvironment env)
         {
             this.hostingEnv = env;
         }
@@ -49,7 +49,7 @@ namespace Yan.ArticleService.API.Controllers
             foreach (var file in cols)
             {
                 string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                string filePath = hostingEnv.WebRootPath + $@"/Files/Pictures/";
+                string filePath = hostingEnv.WebRootPath + "/Files/Pictures/";
                 if (!Directory.Exists(filePath))
                 {
                     Directory.CreateDirectory(filePath);

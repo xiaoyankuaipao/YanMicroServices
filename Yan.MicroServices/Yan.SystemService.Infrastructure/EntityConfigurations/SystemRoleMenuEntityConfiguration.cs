@@ -17,8 +17,8 @@ namespace Yan.SystemService.Infrastructure.EntityConfigurations
         {
             builder.ToTable("SystemRoleMenu");
             builder.HasKey(p => p.Id);
-            builder.HasOne<SystemRole>().WithMany(c => c.SystemRoleMenus).HasForeignKey(c => c.RoleId).OnDelete(DeleteBehavior.SetNull);
-            builder.HasOne<SystemMenu>().WithMany(c => c.SystemRoleMenus).HasForeignKey(c => c.MenuId).OnDelete(DeleteBehavior.SetNull);
+            builder.HasOne<SystemRole>().WithMany(c => c.SystemRoleMenus).HasForeignKey(c => c.RoleId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne<SystemMenu>().WithMany(c => c.SystemRoleMenus).HasForeignKey(c => c.MenuId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

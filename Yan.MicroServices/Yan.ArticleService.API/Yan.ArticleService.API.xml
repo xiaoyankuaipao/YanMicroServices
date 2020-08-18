@@ -4,12 +4,51 @@
         <name>Yan.ArticleService.API</name>
     </assembly>
     <members>
+        <member name="T:Yan.ArticleService.API.Application.Commands.AddArticleReadCountCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.AddArticleReadCountCommand.ArticleId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.AddArticleReadCountCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Commands.AddArticleReadCountCommandHandler._articleRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.AddArticleReadCountCommandHandler.#ctor(Yan.ArticleService.Infrastructure.Repositories.IArticleRepository)">
+            <summary>
+            
+            </summary>
+            <param name="articleRepository"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.AddArticleReadCountCommandHandler.Handle(Yan.ArticleService.API.Application.Commands.AddArticleReadCountCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
         <member name="T:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand.CategoryName">
+        <member name="P:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand.Category">
             <summary>
             
             </summary>
@@ -31,6 +70,225 @@
             <param name="articleCategoryRepository"></param>
         </member>
         <member name="M:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommandHandler.Handle(Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.CreateArticleCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.CreateArticleCommand.ArticleDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.CreateArticleCommand.TagIds">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.CreateArticleCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Commands.CreateArticleCommandHandler._articleRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.CreateArticleCommandHandler.#ctor(Yan.ArticleService.Infrastructure.Repositories.IArticleRepository)">
+            <summary>
+            
+            </summary>
+            <param name="articleRepository"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.CreateArticleCommandHandler.Handle(Yan.ArticleService.API.Application.Commands.CreateArticleCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.DeleteArticleCategoryCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.DeleteArticleCategoryCommand.CategoryId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.DeleteArticleCategoryCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Commands.DeleteArticleCategoryCommandHandler._articleCategoryRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.DeleteArticleCategoryCommandHandler.#ctor(Yan.ArticleService.Infrastructure.Repositories.IArticleCategoryRepository)">
+            <summary>
+            
+            </summary>
+            <param name="articleCategoryRepository"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.DeleteArticleCategoryCommandHandler.Handle(Yan.ArticleService.API.Application.Commands.DeleteArticleCategoryCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.DeleteArticleCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.DeleteArticleCommand.ArticleId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.DeleteArticleCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Commands.DeleteArticleCommandHandler._articleRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.DeleteArticleCommandHandler.#ctor(Yan.ArticleService.Infrastructure.Repositories.IArticleRepository)">
+            <summary>
+            
+            </summary>
+            <param name="articleRepository"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.DeleteArticleCommandHandler.Handle(Yan.ArticleService.API.Application.Commands.DeleteArticleCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.LikeArticleCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.LikeArticleCommand.ArticleId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.LikeArticleCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Commands.LikeArticleCommandHandler._articleRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.LikeArticleCommandHandler.#ctor(Yan.ArticleService.Infrastructure.Repositories.IArticleRepository)">
+            <summary>
+            
+            </summary>
+            <param name="articleRepository"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.LikeArticleCommandHandler.Handle(Yan.ArticleService.API.Application.Commands.LikeArticleCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.UpdateArticleCategoryCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.UpdateArticleCategoryCommand.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.UpdateArticleCategoryCommand.Category">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.UpdateArticleCategoryCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Commands.UpdateArticleCategoryCommandHandler._articleCategoryRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.UpdateArticleCategoryCommandHandler.#ctor(Yan.ArticleService.Infrastructure.Repositories.IArticleCategoryRepository)">
+            <summary>
+            
+            </summary>
+            <param name="articleCategoryRepository"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.UpdateArticleCategoryCommandHandler.Handle(Yan.ArticleService.API.Application.Commands.UpdateArticleCategoryCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.UpdateArticleCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.UpdateArticleCommand.ArticleDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.UpdateArticleCommand.TagIds">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.UpdateArticleCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Commands.UpdateArticleCommandHandler._articleRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.UpdateArticleCommandHandler.#ctor(Yan.ArticleService.Infrastructure.Repositories.IArticleRepository)">
+            <summary>
+            
+            </summary>
+            <param name="articleRepository"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.UpdateArticleCommandHandler.Handle(Yan.ArticleService.API.Application.Commands.UpdateArticleCommand,System.Threading.CancellationToken)">
             <summary>
             
             </summary>
@@ -95,6 +353,242 @@
             </summary>
             <param name="event"></param>
         </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.ArticleCategoryListQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.ArticleCategoryListQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Queries.ArticleCategoryListQueryHandler._dapper">
+            <summary>
+             
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.ArticleCategoryListQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.ArticleCategoryListQueryHandler.Handle(Yan.ArticleService.API.Application.Queries.ArticleCategoryListQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.ArticlePageByCategoryQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticlePageByCategoryQuery.CategoryId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticlePageByCategoryQuery.Page">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticlePageByCategoryQuery.Rows">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.QueryArticlePageByCategoryQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Queries.QueryArticlePageByCategoryQueryHandler._dapper">
+            <summary>
+             
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.QueryArticlePageByCategoryQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.QueryArticlePageByCategoryQueryHandler.Handle(Yan.ArticleService.API.Application.Queries.ArticlePageByCategoryQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.ArticleQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleQuery.ArticleId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.QueryArticleQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Queries.QueryArticleQueryHandler._dapper">
+            <summary>
+             
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.QueryArticleQueryHandler.#ctor(Yan.Dapper.DapperHelper,Yan.ArticleService.Infrastructure.Repositories.IArticleRepository)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+            <param name="articleRepository"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.QueryArticleQueryHandler.Handle(Yan.ArticleService.API.Application.Queries.ArticleQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto.CategoryId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto.Content">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto.CreateTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto.ReadCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto.LikeCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto.CategoryName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.ArticleOutputTempDto.Tag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.ArticleTagListQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.QueryArticleTagListQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Queries.QueryArticleTagListQueryHandler._dapper">
+            <summary>
+             
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.QueryArticleTagListQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.QueryArticleTagListQueryHandler.Handle(Yan.ArticleService.API.Application.Queries.ArticleTagListQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.CategoryArticleCountQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.CategoryArticleCountQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Queries.CategoryArticleCountQueryHandler._dapper">
+            <summary>
+             
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.CategoryArticleCountQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.CategoryArticleCountQueryHandler.Handle(Yan.ArticleService.API.Application.Queries.CategoryArticleCountQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.Profiles.AutoMapProfiles">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.Profiles.AutoMapProfiles.#ctor">
+            <summary>
+             
+            </summary>
+        </member>
         <member name="T:Yan.ArticleService.API.Controllers.ArticleCategoryController">
             <summary>
             
@@ -111,11 +605,139 @@
             </summary>
             <param name="mediator"></param>
         </member>
-        <member name="M:Yan.ArticleService.API.Controllers.ArticleCategoryController.CreateArticleCategory(Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand)">
+        <member name="M:Yan.ArticleService.API.Controllers.ArticleCategoryController.Post(Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand)">
             <summary>
             create Article Category
             </summary>
             <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArticleCategoryController.Delete(System.Int32)">
+            <summary>
+            delete articlecategory
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArticleCategoryController.Put(Yan.ArticleService.API.Application.Commands.UpdateArticleCategoryCommand)">
+            <summary>
+            update artilcecategory
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArticleCategoryController.GetArticleCategoryList">
+            <summary>
+            get articlecategory list
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Controllers.ArticleTagController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Controllers.ArticleTagController._mediator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArticleTagController.#ctor(MediatR.IMediator)">
+            <summary>
+            
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArticleTagController.GetAllTagList">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Controllers.ArtilceController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Controllers.ArtilceController._mediator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.#ctor(MediatR.IMediator)">
+            <summary>
+            
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.AddArticle(Yan.ArticleService.API.Application.Commands.CreateArticleCommand)">
+            <summary>
+            add article
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.EditArticle(Yan.ArticleService.API.Application.Commands.UpdateArticleCommand)">
+            <summary>
+            edit article
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.DeleteArticle(System.Int32)">
+            <summary>
+            like article
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.LikeThisArticle(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="articleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.GetArticleStaticCountByCategory">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.GetArticlePageByCategory(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="categoryId"></param>
+            <param name="page"></param>
+            <param name="rows"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.GetArticleById(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="articleId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Controllers.PictureController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Controllers.PictureController.hostingEnv">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.PictureController.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="env"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.PictureController.Post(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            
+            </summary>
             <returns></returns>
         </member>
         <member name="T:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions">
@@ -139,19 +761,204 @@
             <param name="connectionString"></param>
             <returns></returns>
         </member>
-        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddMediatRServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddRepositories(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             
             </summary>
             <param name="services"></param>
             <returns></returns>
         </member>
+        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddDapper(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="mysqlConnection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddMediatRServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            add Mediat service
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
         <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddEventBus(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
-            DotNetCore.CAP
+            add DotNetCore.CAP service
             </summary>
             <param name="services"></param>
             <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            add Swagger doc service
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Models.ArticleDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleDto.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleDto.CategoryId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleDto.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleDto.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleDto.Content">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleDto.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleDto.CreateTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleDto.ReadCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleDto.LikeCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Models.ArticleListDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleListDto.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleListDto.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleListDto.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleListDto.ReadCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleListDto.LikeCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleListDto.CreateTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleListDto.CategoryName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Models.ArticleOutputDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleOutputDto.ArticleDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleOutputDto.CategoryName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleOutputDto.TagNames">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Models.ArticleTagDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleTagDto.Tag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.ArticleTagDto.ArticleCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Models.CategoryArticleCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.CategoryArticleCount.CategoryId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.CategoryArticleCount.CategoryName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.CategoryArticleCount.ArticleCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
             <returns></returns>
         </member>
         <member name="T:Yan.ArticleService.API.Startup">

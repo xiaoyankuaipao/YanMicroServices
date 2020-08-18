@@ -47,11 +47,12 @@ namespace Yan.SystemService.API.Application.Queries
         /// <returns></returns>
         public async Task<ResultDto<string>> Handle(UserBtnPermissionQuery request, CancellationToken cancellationToken)
         {
-            var sql = @"SELECT SystemMenu.`Code` FROM SystemUser
-                        join SystemRoles on SystemUser.RoleId=SystemRoles.Id
-                        join SystemRoleMenu on SystemRoles.Id=SystemRoleMenu.RoleId
+            var sql = @"SELECT SystemMenu.`Code` 
+                        FROM SystemUser
+                        join SystemRole on SystemUser.RoleId=SystemRole.Id
+                        join SystemRoleMenu on SystemRole.Id=SystemRoleMenu.RoleId
                         join SystemMenu on SystemRoleMenu.MenuId=SystemMenu.Id
-                        where SystemRoles.Id=@UserId and SystemMenu.MenuType=3";
+                        where SystemUser.Id=@UserId and SystemMenu.MenuType=3";
 
             var strLst = await _dapper.QueryAsync<string>(sql, new { UserId = request.UserId });
 

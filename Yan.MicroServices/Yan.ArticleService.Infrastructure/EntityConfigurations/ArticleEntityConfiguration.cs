@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Yan.ArticleService.Domain.Aggregate.ArticleAggregate;
+using Yan.ArticleService.Domain.Aggregate.ArticleCategoryAggregate;
 
 namespace Yan.ArticleService.Infrastructure.EntityConfigurations
 {

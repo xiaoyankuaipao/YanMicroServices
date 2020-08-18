@@ -23,7 +23,7 @@ namespace Yan.ArticleService.API.Application.Commands
         /// <summary>
         /// 
         /// </summary>
-        public string CategoryName { get; set; }
+        public string Category { get; set; }
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ namespace Yan.ArticleService.API.Application.Commands
         public async Task<HandleResultDto> Handle(UpdateArticleCategoryCommand request, CancellationToken cancellationToken)
         {
             var entity =await _articleCategoryRepository.GetAsync(request.Id, cancellationToken);
-            entity.ChangeName(request.CategoryName);
+            entity.ChangeName(request.Category);
             await _articleCategoryRepository.UpdateAsync(entity);
 
             var result =await _articleCategoryRepository.UnitOfWork.SaveEntitiesAsync();

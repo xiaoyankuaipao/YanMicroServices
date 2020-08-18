@@ -20,8 +20,13 @@ namespace Yan.ArticleService.API.Application.Commands
         /// <summary>
         /// 
         /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [Required(ErrorMessage ="分类名称不能为空")]
-        public string CategoryName { get; set; }
+        public string Category { get; set; }
     }
 
     /// <summary>
@@ -51,7 +56,7 @@ namespace Yan.ArticleService.API.Application.Commands
         /// <returns></returns>
         public  async Task<HandleResultDto> Handle(CreateArticleCategoryCommand request, CancellationToken cancellationToken)
         {
-            var articleCategory = new ArticleCategory(request.CategoryName);
+            var articleCategory = new ArticleCategory(request.Category);
 
             _articleCategoryRepository.Add(articleCategory);
             await _articleCategoryRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);

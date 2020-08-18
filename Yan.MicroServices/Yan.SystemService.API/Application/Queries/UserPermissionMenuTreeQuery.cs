@@ -48,11 +48,12 @@ namespace Yan.SystemService.API.Application.Queries
         /// <returns></returns>
         public async Task<ResultDto<List<MenuTreeDto>>> Handle(UserPermissionMenuTreeQuery request, CancellationToken cancellationToken)
         {
-            var sql = @"SELECT SystemMenu.Id,SystemMenu.`Name`,SystemMenu.`Code`,SystemMenu.Address,SystemMenu.Icon,SystemMenu.MenuType,SystemMenu.ParentId FROM SystemUser
-                        join SystemRoles on SystemUser.RoleId=SystemRoles.Id
-                        join SystemRoleMenu on SystemRoles.Id=SystemRoleMenu.RoleId
+            var sql = @"SELECT SystemMenu.Id,SystemMenu.`Name`,SystemMenu.`Code`,SystemMenu.Address,SystemMenu.Icon,SystemMenu.MenuType,SystemMenu.ParentId 
+                        FROM SystemUser
+                        join SystemRole on SystemUser.RoleId=SystemRole.Id
+                        join SystemRoleMenu on SystemRole.Id=SystemRoleMenu.RoleId
                         join SystemMenu on SystemRoleMenu.MenuId=SystemMenu.Id
-                        where SystemRoles.id=@UserId";
+                        where SystemUser.Id=@UserId and SystemMenu.MenuType !=3";
 
             var menus = await _dapper.QueryAsync<MenuDto>(sql, new { UserId = request.UserId });
 

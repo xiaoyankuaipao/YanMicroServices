@@ -3,6 +3,7 @@
 
 
 using IdentityModel;
+using IdentityServer4;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
@@ -11,36 +12,53 @@ using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+//using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Yan.Dapper;
 using Yan.Idp.Models;
 
 namespace IdentityServerHost.Quickstart.UI
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [SecurityHeaders]
     [AllowAnonymous]
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        //    private readonly UserManager<ApplicationUser> _userManager;
+        //    private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly DapperHelper _dapper;
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IClientStore _clientStore;
         private readonly IAuthenticationSchemeProvider _schemeProvider;
         private readonly IEventService _events;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dapper"></param>
+        /// <param name="interaction"></param>
+        /// <param name="clientStore"></param>
+        /// <param name="schemeProvider"></param>
+        /// <param name="events"></param>
         public AccountController(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
+            //UserManager<ApplicationUser> userManager,
+            //SignInManager<ApplicationUser> signInManager,
+            DapperHelper dapper,
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IAuthenticationSchemeProvider schemeProvider,
             IEventService events)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            //_userManager = userManager;
+            //_signInManager = signInManager;
+            _dapper = dapper;
             _interaction = interaction;
             _clientStore = clientStore;
             _schemeProvider = schemeProvider;
@@ -104,11 +122,42 @@ namespace IdentityServerHost.Quickstart.UI
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberLogin, lockoutOnFailure: true);
-                if (result.Succeeded)
+                //var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberLogin, lockoutOnFailure: true);
+                var sql = @"Select * from SystemUser where UserName=@name and Password=@password ";
+                SystemUser user = await _dapper.QueryFirstOrDefaultAsync<SystemUser>(sql, new { name = model.Username, password = model.Password });
+                if (user!=null)
                 {
-                    var user = await _userManager.FindByNameAsync(model.Username);
                     await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.UserName, clientId: context?.Client.ClientId));
+                    //仅当用户选择“记住我”时才在此处设置显式过期。
+                    //否则，我们依赖于在cookie中间件中配置的过期。
+                    AuthenticationProperties props = null;// 用于存储有关身份验证会话的状态值的字典
+                    //记住登陆
+                    if (AccountOptions.AllowRememberLogin && model.RememberLogin)
+                    {
+                        props = new AuthenticationProperties
+                        {
+                            IsPersistent = true,//设置或者获取是否跨多个请求持久化身份验证会话
+                            //获取或设置身份验证票证过期的时间。
+                            ExpiresUtc = DateTimeOffset.UtcNow.Add(AccountOptions.RememberMeLoginDuration),
+                        };
+                    }
+                    //颁发具有使用者ID和用户名的身份验证cookie
+
+                    var isuser = new IdentityServerUser(user.Id)
+                    {
+                        DisplayName = user.RealName,
+                        AdditionalClaims = new List<Claim>
+                            {
+                                new Claim("name",user.UserName),
+                                new Claim("id",user.Id.ToString()),
+                                new Claim("realname",user.RealName),
+                                new Claim("email",user.Email),
+                                new Claim("roleid",user.RoleId)
+                            }
+                    };
+
+                    await HttpContext.SignInAsync(isuser, props);
+
 
                     if (context != null)
                     {
@@ -182,7 +231,8 @@ namespace IdentityServerHost.Quickstart.UI
             if (User?.Identity.IsAuthenticated == true)
             {
                 // delete local authentication cookie
-                await _signInManager.SignOutAsync();
+                //await _signInManager.SignOutAsync();
+                await HttpContext.SignOutAsync();
 
                 // raise the logout event
                 await _events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()));

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Yan.Domain.Abstractions;
 using Yan.SystemService.Domain.Entities;
@@ -51,15 +52,28 @@ namespace Yan.SystemService.Domain.Aggregate
         /// 
         /// </summary>
         /// <param name="systemRoleMenus"></param>
-        public void AddRoleMenu(SystemRoleMenu systemRoleMenu)
+        public void UpdateRoleMenu(string[] menuIds)
         {
             if (this.SystemRoleMenus == null)
             {
-                this.SystemRoleMenus = new List<SystemRoleMenu> { systemRoleMenu };
+                this.SystemRoleMenus = new List<SystemRoleMenu>();
             }
-            else
+            foreach (var menuId in menuIds)
             {
-                this.SystemRoleMenus.Add(systemRoleMenu);
+                var temp = this.SystemRoleMenus.FirstOrDefault(c => c.MenuId == menuId);
+                if (temp == null)
+                {
+                    this.SystemRoleMenus.Add(new SystemRoleMenu { RoleId = this.Id, MenuId = menuId });
+                }
+            }
+            for (int i = 0; i < this.SystemRoleMenus.Count; i++)
+            {
+                var temp = this.SystemRoleMenus[i];
+                if (!menuIds.Contains(temp.MenuId))
+                {
+                    this.SystemRoleMenus.Remove(temp);
+                    i--;
+                }
             }
         }
 

@@ -140,7 +140,8 @@ namespace Yan.Idp
                         IdentityServerConstants.StandardScopes.Address,
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.Phone,
-                        "system","article"
+                        "system","article",
+                        "article.scope","system.scope","api1.weather.scope"
                     }
                 },
                 new Client

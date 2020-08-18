@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Yan.Core.Dtos;
@@ -17,6 +18,7 @@ namespace Yan.SystemService.API.Controllers
     /// </summary>
     [Route("api/systemmanageservice/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         /// <summary>
@@ -40,10 +42,11 @@ namespace Yan.SystemService.API.Controllers
         [HttpGet("[action]")]
         public ActionResult<ResultDto<UserInfo>> GetUserInfo()
         {
-            string id = this.User.FindFirst("Id").Value;
-            string userName = this.User.Identity.Name;
-            string realName = this.User.FindFirst("RealName").Value;
-            string email = this.User.FindFirst("Email").Value;
+            string id = this.User.FindFirst("id").Value;
+            //string userName = this.User.Identity.Name;
+            string userName = this.User.FindFirst("name").Value;
+            string realName = this.User.FindFirst("realname").Value;
+            string email = this.User.FindFirst("email").Value;
 
             UserInfo info = new UserInfo()
             {

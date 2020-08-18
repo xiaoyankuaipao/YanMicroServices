@@ -16,7 +16,7 @@ namespace Yan.SystemService.API.Application.Commands
     /// <summary>
     /// 
     /// </summary>
-    [UseTransaction]
+    //[UseTransaction]
     public class SaveRoleMenuCommand : IRequest<HandleResultDto>
     {
         /// <summary>
@@ -57,18 +57,10 @@ namespace Yan.SystemService.API.Application.Commands
         /// <returns></returns>
         public async Task<HandleResultDto> Handle(SaveRoleMenuCommand request, CancellationToken cancellationToken)
         {
-            var role = await _systemRoleRepository.GetAsync(request.RoleId);
-            _systemRoleRepository.DeleteRoleMenuAsnyc(request.RoleId);
-            foreach (var menuid in request.MenuIds)
-            {
-                role.AddRoleMenu(new SystemRoleMenu()
-                {
-                    RoleId = request.RoleId,
-                    MenuId = menuid
-                });
-            }
-            await _systemRoleRepository.UpdateAsync(role);
-            await _systemRoleRepository.UnitOfWork.SaveEntitiesAsync();
+            var role = await _systemRoleRepository.GetSystemRoleWithNavById(request.RoleId, cancellationToken);
+            role.UpdateRoleMenu(request.MenuIds);
+            await _systemRoleRepository.UpdateAsync(role, cancellationToken);
+            await _systemRoleRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
 
             return new HandleResultDto
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Yan.Core.Dtos;
@@ -15,6 +16,7 @@ namespace Yan.SystemService.API.Controllers
     /// </summary>
     [Route("api/systemmanageservice/[controller]")]
     [ApiController]
+    [Authorize]
     public class RoleMenuController : ControllerBase
     {
         /// <summary>

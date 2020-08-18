@@ -66,7 +66,7 @@ namespace Yan.SystemService.Domain.Aggregate
             this.Address = address;
             this.Icon = icon;
             this.MenuType = menuType;
-            this.ParentId = parentId;
+            this.ParentId = parentId == "" ? null : parentId;
         }
 
         /// <summary>

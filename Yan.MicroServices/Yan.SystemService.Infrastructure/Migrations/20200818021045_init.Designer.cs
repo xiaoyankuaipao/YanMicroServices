@@ -8,7 +8,7 @@ using Yan.SystemService.Infrastructure;
 namespace Yan.SystemService.Infrastructure.Migrations
 {
     [DbContext(typeof(SystemContext))]
-    [Migration("20200817150850_init")]
+    [Migration("20200818021045_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

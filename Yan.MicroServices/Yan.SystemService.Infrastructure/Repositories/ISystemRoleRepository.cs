@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Yan.Infrastructure.Core;
 using Yan.SystemService.Domain.Aggregate;
@@ -18,8 +20,9 @@ namespace Yan.SystemService.Infrastructure.Repositories
         /// 
         /// </summary>
         /// <param name="roleId"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        void DeleteRoleMenuAsnyc(string roleId);
+        Task<SystemRole> GetSystemRoleWithNavById(string roleId, CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -38,15 +41,12 @@ namespace Yan.SystemService.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="roleId"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public void DeleteRoleMenuAsnyc(string roleId)
+        public async Task<SystemRole> GetSystemRoleWithNavById(string roleId, CancellationToken cancellationToken = default)
         {
-            var rela = DbContext.Set<SystemRoleMenu>().AsQueryable().Where(c => c.RoleId == roleId);
-            foreach (var r in rela)
-            {
-                DbContext.Set<SystemRoleMenu>().Remove(r);
-            }
-
+            return await DbContext.Set<SystemRole>().Include(x => x.SystemRoleMenus).FirstOrDefaultAsync(x => x.Id == roleId, cancellationToken);
         }
     }
 
