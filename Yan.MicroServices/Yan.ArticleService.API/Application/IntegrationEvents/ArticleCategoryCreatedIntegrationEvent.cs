@@ -13,13 +13,13 @@ namespace Yan.ArticleService.API.Application.IntegrationEvents
         /// <summary>
         /// 
         /// </summary>
-        public int AricleCategoryId { get; }
+        public string AricleCategoryId { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="aricleCategoryId"></param>
-        public ArticleCategoryCreatedIntegrationEvent(int aricleCategoryId)
+        public ArticleCategoryCreatedIntegrationEvent(string aricleCategoryId)
         {
             this.AricleCategoryId = aricleCategoryId;
         }

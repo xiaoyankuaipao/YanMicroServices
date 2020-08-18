@@ -19,7 +19,7 @@ namespace Yan.ArticleService.API.Application.Commands
         /// <summary>
         /// 
         /// </summary>
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
     }
 
     /// <summary>

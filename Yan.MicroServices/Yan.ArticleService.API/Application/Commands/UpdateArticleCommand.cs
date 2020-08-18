@@ -24,7 +24,7 @@ namespace Yan.ArticleService.API.Application.Commands
         /// <summary>
         /// 
         /// </summary>
-        public List<int> TagIds { get; set; }
+        public List<string> TagIds { get; set; }
     }
 
     /// <summary>
@@ -54,9 +54,11 @@ namespace Yan.ArticleService.API.Application.Commands
         /// <returns></returns>
         public async Task<HandleResultDto> Handle(UpdateArticleCommand request, CancellationToken cancellationToken)
         {
-            var article = await _articleRepository.GetAsync(request.ArticleDto.Id);
+            var article = await _articleRepository.GetArticleWithTagsById(request.ArticleDto.Id, cancellationToken);
+
             article.UpdateArticle(request.ArticleDto.CategoryId, request.ArticleDto.Title, request.ArticleDto.Value,
                 request.ArticleDto.Content, request.ArticleDto.Value);
+            article.SetTags(request.TagIds);
 
             await _articleRepository.UpdateAsync(article);
             await _articleRepository.UnitOfWork.SaveEntitiesAsync();

@@ -13,12 +13,12 @@ namespace Yan.ArticleService.API.Models
         /// <summary>
         /// 
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         /// <summary>
         /// 

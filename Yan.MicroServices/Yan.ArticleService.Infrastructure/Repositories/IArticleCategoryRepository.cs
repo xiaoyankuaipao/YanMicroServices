@@ -9,7 +9,7 @@ namespace Yan.ArticleService.Infrastructure.Repositories
     /// <summary>
     /// 
     /// </summary>
-    public interface IArticleCategoryRepository : IRepository<ArticleCategory, int>
+    public interface IArticleCategoryRepository : IRepository<ArticleCategory, string>
     {
         //自定义方法，特殊的逻辑
     }
@@ -17,7 +17,7 @@ namespace Yan.ArticleService.Infrastructure.Repositories
     /// <summary>
     /// 
     /// </summary>
-    public class ArticleCategoryRepository : Repository<ArticleCategory, int, ArticleContext>, IArticleCategoryRepository
+    public class ArticleCategoryRepository : Repository<ArticleCategory, string, ArticleContext>, IArticleCategoryRepository
     {
         /// <summary>
         /// 

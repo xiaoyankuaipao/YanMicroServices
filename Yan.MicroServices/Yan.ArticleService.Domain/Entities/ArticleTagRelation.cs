@@ -6,18 +6,18 @@ using Yan.Domain.Abstractions;
 namespace Yan.ArticleService.Domain.Entities
 {
     /// <summary>
-    /// 
+    /// 文章与标签关系实体
     /// </summary>
     public class ArticleTagRelation:Entity<int>
     {
         /// <summary>
-        /// 
+        /// 文章ID
         /// </summary>
-        public int TagId { get; set; }
+        public string ArticleId { get; set; }
 
         /// <summary>
-        /// 
+        /// 标签ID
         /// </summary>
-        public int ArticleId { get; set; }
+        public string TagId { get; set; }
     }
 }

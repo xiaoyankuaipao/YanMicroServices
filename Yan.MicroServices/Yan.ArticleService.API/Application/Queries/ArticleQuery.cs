@@ -20,7 +20,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// <summary>
         /// 
         /// </summary>
-        public int ArticleId { get; set; }
+        public string ArticleId { get; set; }
     }
 
     /// <summary>
@@ -100,12 +100,12 @@ namespace Yan.ArticleService.API.Application.Queries
         /// <summary>
         /// 
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         /// <summary>
         /// 

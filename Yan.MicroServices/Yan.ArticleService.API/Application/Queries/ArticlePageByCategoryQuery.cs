@@ -22,7 +22,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// <summary>
         /// 
         /// </summary>
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         /// <summary>
         /// 
@@ -65,7 +65,7 @@ namespace Yan.ArticleService.API.Application.Queries
             StringBuilder sqlBuilder = new StringBuilder(@"select SQL_CALC_FOUND_ROWS Articles.Id,Articles.Title,Articles.Remark,Articles.ReadCount,Articles.likeCount,Articles.CreateTime,ArticleCategory.Category as CategoryName
                                                          from Articles
                                                          LEFT JOIN ArticleCategory on Articles.CategoryId=  ArticleCategory.Id ");
-            if (request.CategoryId != 0)
+            if (!String.IsNullOrEmpty(request.CategoryId))
             {
                 sqlBuilder.Append("where Articles.CategoryId=@CategoryId ");
             }

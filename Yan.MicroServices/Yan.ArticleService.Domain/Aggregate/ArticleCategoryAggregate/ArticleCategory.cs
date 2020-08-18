@@ -7,12 +7,12 @@ using Yan.Domain.Abstractions;
 namespace Yan.ArticleService.Domain.Aggregate.ArticleCategoryAggregate
 {
     /// <summary>
-    /// 
+    /// 文章分类
     /// </summary>
-    public class ArticleCategory : Entity<int>,IAggregateRoot
+    public class ArticleCategory : Entity<string>,IAggregateRoot
     {
         /// <summary>
-        /// 
+        /// 文章分类名称
         /// </summary>
         public string Category { get; private set; }
 
@@ -29,12 +29,6 @@ namespace Yan.ArticleService.Domain.Aggregate.ArticleCategoryAggregate
         public ArticleCategory(string categoryName)
         {
             this.Category = categoryName;
-
-            //当构造一个全新的 ArticleCategory 的时候，这里我们可以定义一个领域事件：ArticleCategoryCreate
-            //这个领域事件的构造函数的入参就是一个 ArticleCategory，
-            //当我们调用 ArticleCategory 的构造函数时，我们的行为就是创建一个全新的 ArticleCategory
-            //所以在这里添加一个领域事件
-            //领域事件的构造和添加都应该是在领域模型的方法内完成的
             this.AddDomainEvent(new ArticleCategoryCreateDomainEvent(this));
         }
 

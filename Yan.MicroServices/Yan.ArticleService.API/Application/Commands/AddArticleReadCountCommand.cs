@@ -16,7 +16,7 @@ namespace Yan.ArticleService.API.Application.Commands
         /// <summary>
         /// 
         /// </summary>
-        public int ArticleId { get; set; }
+        public string ArticleId { get; set; }
     }
 
     /// <summary>

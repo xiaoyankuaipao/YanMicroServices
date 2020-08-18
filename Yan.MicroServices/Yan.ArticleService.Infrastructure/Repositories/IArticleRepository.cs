@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Yan.ArticleService.Domain.Aggregate.ArticleAggregate;
 using Yan.ArticleService.Domain.Entities;
 using Yan.Infrastructure.Core;
@@ -10,18 +13,14 @@ namespace Yan.ArticleService.Infrastructure.Repositories
     /// <summary>
     /// 
     /// </summary>
-    public interface IArticleRepository:IRepository<Article,int>
+    public interface IArticleRepository:IRepository<Article,string>
     {
         //自定义方法，特殊的逻辑
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="article"></param>
-        void AddArticle(Article article);
+        Task<Article> GetArticleWithTagsById(string articleId, CancellationToken cancellationToken = default);
     }
 
-    public class ArticleRepository : Repository<Article, int, ArticleContext>, IArticleRepository
+    public class ArticleRepository : Repository<Article, string, ArticleContext>, IArticleRepository
     {
         /// <summary>
         /// 
@@ -31,26 +30,12 @@ namespace Yan.ArticleService.Infrastructure.Repositories
         {
         }
 
-        //自定义方法，特殊的逻辑
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="article"></param>
-        public void AddArticle(Article article)
+        public async Task<Article> GetArticleWithTagsById(string articleId, CancellationToken cancellationToken = default)
         {
-            var artilceEntity = this.Add(article);
-            this.DbContext.SaveChanges();
-            var set = this.DbContext.Set<ArticleTagRelation>();
-            foreach (var tagid in article.TagIds)
-            {
-                set.Add(new ArticleTagRelation()
-                {
-                    ArticleId = artilceEntity.Id,
-                    TagId = tagid
-                });
-            }
+            return await DbContext.Set<Article>().Include(x => x.ArticleTagRelations).FirstOrDefaultAsync(x => x.Id == articleId, cancellationToken);
         }
+
+
     }
 
 }

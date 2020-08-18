@@ -9,7 +9,7 @@ namespace Yan.ArticleService.Infrastructure.Repositories
     /// <summary>
     /// 
     /// </summary>
-    public interface IArticleTagRepository:IRepository<ArticleTag,int>
+    public interface IArticleTagRepository:IRepository<ArticleTag,string>
     {
 
     }
@@ -17,7 +17,7 @@ namespace Yan.ArticleService.Infrastructure.Repositories
     /// <summary>
     /// 
     /// </summary>
-    public class ArticleTagRepository : Repository<ArticleTag, int, ArticleContext>, IArticleTagRepository
+    public class ArticleTagRepository : Repository<ArticleTag, string, ArticleContext>, IArticleTagRepository
     {
         /// <summary>
         /// 

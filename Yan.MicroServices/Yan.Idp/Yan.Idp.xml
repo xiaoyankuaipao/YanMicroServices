@@ -117,6 +117,41 @@
             
             </summary>
         </member>
+        <member name="T:Yan.Idp.Models.SystemUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.Idp.Models.SystemUser.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.Idp.Models.SystemUser.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.Idp.Models.SystemUser.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.Idp.Models.SystemUser.RealName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.Idp.Models.SystemUser.Email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.Idp.Models.SystemUser.RoleId">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Yan.Idp.Quickstart.LoginController">
             <summary>
             
@@ -138,6 +173,56 @@
             资源所有者密码凭据授权类型的用户获取Token
             </summary>
             <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.Idp.Quickstart.ProfileService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.Idp.Quickstart.ProfileService.GetProfileDataAsync(IdentityServer4.Models.ProfileDataRequestContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.Idp.Quickstart.ProfileService.IsActiveAsync(IdentityServer4.Models.IsActiveContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.Idp.Quickstart.ResourceOwnerPasswordValidator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.Idp.Quickstart.ResourceOwnerPasswordValidator.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.Idp.Quickstart.ResourceOwnerPasswordValidator.ValidateAsync(IdentityServer4.Validation.ResourceOwnerPasswordValidationContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.Idp.ServiceCollectionExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.Idp.ServiceCollectionExtensions.AddDapper(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="mysqlConnection"></param>
             <returns></returns>
         </member>
         <member name="T:Yan.Idp.Startup">
@@ -173,6 +258,21 @@
             
             </summary>
             <param name="app"></param>
+        </member>
+        <member name="T:IdentityServerHost.Quickstart.UI.AccountController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IdentityServerHost.Quickstart.UI.AccountController.#ctor(Yan.Dapper.DapperHelper,IdentityServer4.Services.IIdentityServerInteractionService,IdentityServer4.Stores.IClientStore,Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider,IdentityServer4.Services.IEventService)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+            <param name="interaction"></param>
+            <param name="clientStore"></param>
+            <param name="schemeProvider"></param>
+            <param name="events"></param>
         </member>
         <member name="M:IdentityServerHost.Quickstart.UI.AccountController.Login(System.String)">
             <summary>
