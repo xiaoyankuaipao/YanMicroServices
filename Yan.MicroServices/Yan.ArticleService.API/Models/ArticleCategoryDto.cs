@@ -7,7 +7,7 @@ namespace Yan.ArticleService.API.Models
 {
     public class ArticleCategoryDto
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Category { get; set; }
     }

@@ -5,6 +5,7 @@ using System.Text;
 using Yan.ArticleService.Domain.Aggregate.ArticleTagAggregate;
 using Yan.ArticleService.Domain.Entities;
 using Yan.Domain.Abstractions;
+using Yan.Utility;
 
 namespace Yan.ArticleService.Domain.Aggregate.ArticleAggregate
 {
@@ -74,6 +75,7 @@ namespace Yan.ArticleService.Domain.Aggregate.ArticleAggregate
         /// <param name="value"></param>
         public Article(string categoryId, string title, string remark, string content, string value)
         {
+            this.Id = SnowflakeId.Default().NextId().ToString();
             this.CategoryId = categoryId;
             this.Title = title;
             this.Remark = remark;

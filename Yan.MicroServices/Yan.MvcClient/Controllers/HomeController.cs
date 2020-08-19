@@ -40,13 +40,13 @@ namespace Yan.MvcClient.Controllers
         public async Task<IActionResult> Index()
         {
             var user = User;
-            var ArticleList = await _articleClient.GetArticlePageByCategory(0, 1);
+            var ArticleList = await _articleClient.GetArticlePageByCategory("", 1);
             var pageTotalCount = ArticleList.TotalCount % 10 == 0 ? ArticleList.TotalCount / 10 : ArticleList.TotalCount / 10 + 1;
             ArticleListPageViewModel viewModel = new ArticleListPageViewModel
             {
                 PageIndex = 1,
                 PageTotalCount = pageTotalCount,
-                CategoryId = 0,
+                CategoryId = "",
                 ResultPage = ArticleList
             };
             return View(viewModel);
@@ -58,7 +58,7 @@ namespace Yan.MvcClient.Controllers
         /// <param name="categoryId"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public async Task<IActionResult> ArticleList(int categoryId, int pageIndex = 1)
+        public async Task<IActionResult> ArticleList(string categoryId, int pageIndex = 1)
         {
             var ArticleList = await _articleClient.GetArticlePageByCategory(categoryId, pageIndex);
 
@@ -74,13 +74,13 @@ namespace Yan.MvcClient.Controllers
             return View(viewModel);
         }
 
-        public async Task<IActionResult> Article(int id)
+        public async Task<IActionResult> Article(string id)
         {
             var viewModel = await _articleClient.GetArticleById(id);
             return View(viewModel);
         }
 
-        public  async Task<HandleResultDto> LikeArticle(int id)
+        public  async Task<HandleResultDto> LikeArticle(string id)
         {
             var result= await _articleClient.LikeIt(id);
             return result;

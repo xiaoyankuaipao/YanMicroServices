@@ -326,7 +326,7 @@
             
             </summary>
         </member>
-        <member name="M:Yan.ArticleService.API.Application.IntegrationEvents.ArticleCategoryCreatedIntegrationEvent.#ctor(System.Int32)">
+        <member name="M:Yan.ArticleService.API.Application.IntegrationEvents.ArticleCategoryCreatedIntegrationEvent.#ctor(System.String)">
             <summary>
             
             </summary>
@@ -612,7 +612,7 @@
             <param name="cmd"></param>
             <returns></returns>
         </member>
-        <member name="M:Yan.ArticleService.API.Controllers.ArticleCategoryController.Delete(System.Int32)">
+        <member name="M:Yan.ArticleService.API.Controllers.ArticleCategoryController.Delete(System.String)">
             <summary>
             delete articlecategory
             </summary>
@@ -684,12 +684,12 @@
             <param name="cmd"></param>
             <returns></returns>
         </member>
-        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.DeleteArticle(System.Int32)">
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.DeleteArticle(System.String)">
             <summary>
             like article
             </summary>
         </member>
-        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.LikeThisArticle(System.Int32)">
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.LikeThisArticle(System.String)">
             <summary>
             
             </summary>
@@ -702,7 +702,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.GetArticlePageByCategory(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.GetArticlePageByCategory(System.String,System.Int32,System.Int32)">
             <summary>
             
             </summary>
@@ -711,7 +711,7 @@
             <param name="rows"></param>
             <returns></returns>
         </member>
-        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.GetArticleById(System.Int32)">
+        <member name="M:Yan.ArticleService.API.Controllers.ArtilceController.GetArticleById(System.String)">
             <summary>
             
             </summary>
@@ -914,11 +914,6 @@
             </summary>
         </member>
         <member name="P:Yan.ArticleService.API.Models.ArticleTagDto.Tag">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Yan.ArticleService.API.Models.ArticleTagDto.ArticleCount">
             <summary>
             
             </summary>

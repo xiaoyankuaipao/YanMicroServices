@@ -34,7 +34,7 @@ namespace Yan.MvcClient.Clients
         /// <summary>
         /// 
         /// </summary>
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         /// <summary>
         /// 
@@ -83,7 +83,7 @@ namespace Yan.MvcClient.Clients
         /// <summary>
         /// 
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 
@@ -145,12 +145,12 @@ namespace Yan.MvcClient.Clients
         /// <summary>
         /// 
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         /// <summary>
         /// 

@@ -40,7 +40,7 @@
 
   <ItemGroup>
     <None Update="Yan.ArticleService.API.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

@@ -134,7 +134,7 @@ namespace Yan.ArticleService.API
                 endpoints.MapControllers();
             });
 
-            //ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "articlemanage", "localhost", 6010).Wait();
+            ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "articlemanage", "localhost", 6010).Wait();
         }
     }
 }

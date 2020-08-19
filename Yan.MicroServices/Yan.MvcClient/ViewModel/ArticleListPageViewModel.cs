@@ -9,7 +9,7 @@ namespace Yan.MvcClient.ViewModel
     public class ArticleListPageViewModel
     {
         public ResultPage<ArticleListDto> ResultPage { get; set; }
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public int PageIndex { get; set; }
         public int PageTotalCount { get; set; }
     }

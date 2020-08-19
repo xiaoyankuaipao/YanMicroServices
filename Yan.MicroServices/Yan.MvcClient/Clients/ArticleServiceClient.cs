@@ -41,7 +41,7 @@ namespace Yan.MvcClient.Clients
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<ResultPage<ArticleListDto>> GetArticlePageByCategory(int categoryId,int index)
+        public async Task<ResultPage<ArticleListDto>> GetArticlePageByCategory(string categoryId,int index)
         {
             var result = await _client.GetStringAsync($"/api/articlemanage/Artilce/GetArticlePageByCategory?categoryId={categoryId}&page={index}&rows=10");
 
@@ -55,7 +55,7 @@ namespace Yan.MvcClient.Clients
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<ArticleOutputDto> GetArticleById(int id)
+        public async Task<ArticleOutputDto> GetArticleById(string id)
         {
             var result = await _client.GetStringAsync($"/api/articlemanage/Artilce/GetArticleById/{id}");
 
@@ -64,7 +64,7 @@ namespace Yan.MvcClient.Clients
             return model.Data;
         }
 
-        public async Task<HandleResultDto> LikeIt(int id)
+        public async Task<HandleResultDto> LikeIt(string id)
         {
             var result = await _client.GetStringAsync($"/api/articlemanage/Artilce/LikeThisArticle/{id}");
             var model = JsonConvert.DeserializeObject<HandleResultDto>(result);

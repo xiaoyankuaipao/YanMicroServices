@@ -10,16 +10,11 @@ namespace Yan.ArticleService.API.Models
     /// </summary>
     public class ArticleTagDto
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         public string Tag { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int ArticleCount { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Yan.ArticleService.Domain.Events;
 using Yan.Domain.Abstractions;
+using Yan.Utility;
 
 namespace Yan.ArticleService.Domain.Aggregate.ArticleCategoryAggregate
 {
@@ -28,6 +29,7 @@ namespace Yan.ArticleService.Domain.Aggregate.ArticleCategoryAggregate
         /// <param name="categoryName"></param>
         public ArticleCategory(string categoryName)
         {
+            this.Id= SnowflakeId.Default().NextId().ToString();
             this.Category = categoryName;
             this.AddDomainEvent(new ArticleCategoryCreateDomainEvent(this));
         }

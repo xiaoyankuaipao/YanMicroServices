@@ -13,7 +13,7 @@ namespace Yan.ArticleService.API.Models
         /// <summary>
         /// 
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 
