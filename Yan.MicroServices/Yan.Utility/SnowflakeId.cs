@@ -2,6 +2,9 @@
 
 namespace Yan.Utility
 {
+    /// <summary>
+    /// 雪花Id
+    /// </summary>
     public class SnowflakeId
     {
         public const long Twepoch = 1288834974657L;

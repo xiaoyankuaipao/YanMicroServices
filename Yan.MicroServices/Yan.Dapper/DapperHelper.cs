@@ -11,21 +11,30 @@ using System.Threading.Tasks;
 
 namespace Yan.Dapper
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DapperHelper
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly string _connectionString;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionString"></param>
         public DapperHelper(string connectionString)
         {
-            //var Configuration = new ConfigurationBuilder()
-            //    .Add(new JsonConfigurationSource { Path = "appsettings.json", ReloadOnChange = true })
-            //    .Build();
-
-            //_connectionString = Configuration["ConnectionStrings:MySqlConnection"];
             _connectionString = connectionString;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public async Task<int> ExecuteAsync(string path)
         {
             using (IDbConnection connection = new MySqlConnection(_connectionString))
@@ -38,6 +47,12 @@ namespace Yan.Dapper
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public async Task<int> ExecuteAsync(string sql, object param = null)
         {
             using (IDbConnection connection = new MySqlConnection(_connectionString))
@@ -46,6 +61,11 @@ namespace Yan.Dapper
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public async Task<bool> ExecuteAsyncTransaction(List<string> list)
         {
             using (IDbConnection connection = new MySqlConnection(_connectionString))
@@ -74,6 +94,11 @@ namespace Yan.Dapper
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public async Task<bool> ExecuteAsyncTransaction(List<KeyValuePair<string, object>> list)
         {
             using (IDbConnection connection = new MySqlConnection(_connectionString))
@@ -102,6 +127,13 @@ namespace Yan.Dapper
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object param = null) where T : class
         {
             using (IDbConnection connection = new MySqlConnection(_connectionString))
@@ -110,6 +142,13 @@ namespace Yan.Dapper
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public async Task<T> QueryFirstOrDefaultAsync<T>(string sql, object param = null) where T : class
         {
             using (IDbConnection connection = new MySqlConnection(_connectionString))
@@ -125,7 +164,7 @@ namespace Yan.Dapper
         /// <param name="sql"></param>
         /// <param name="parm"></param>
         /// <returns></returns>
-        public async Task<DapperPageResult<T>> QueryPage<T>(string sql, object parm = null) where T:class
+        public async Task<DapperPageResult<T>> QueryPage<T>(string sql, object parm = null) where T : class
         {
             DapperPageResult<T> result = new DapperPageResult<T>();
             using (IDbConnection connection = new MySqlConnection(_connectionString))

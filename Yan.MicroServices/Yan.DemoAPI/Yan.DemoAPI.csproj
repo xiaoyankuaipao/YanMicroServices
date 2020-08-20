@@ -13,5 +13,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Yan.Utility\Yan.Utility.csproj" />
+  </ItemGroup>
+
 
 </Project>
