@@ -63,6 +63,7 @@ namespace Yan.ArticleService.API.Extensions
             services.AddScoped<IArticleRepository, ArticleRepository>();
             services.AddScoped<IArticleCategoryRepository, ArticleCategoryRepository>();
             services.AddScoped<IArticleTagRepository, ArticleTagRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
             return services;
         }
         #endregion

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Yan.ArticleService.Domain.Aggregate.ArticleAggregate;
 using Yan.ArticleService.Domain.Aggregate.ArticleCategoryAggregate;
+using Yan.ArticleService.Domain.Aggregate.MessageAggregate;
 using Yan.ArticleService.Domain.Entities;
 using Yan.ArticleService.Infrastructure.EntityConfigurations;
 using Yan.Infrastructure.Core;
@@ -35,6 +36,7 @@ namespace Yan.ArticleService.Infrastructure
             modelBuilder.ApplyConfiguration(new ArticleEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ArticleTagEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ArticleTagRelationEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new MessageEntityConfiguration());
             #endregion
 
             base.OnModelCreating(modelBuilder);
@@ -54,6 +56,11 @@ namespace Yan.ArticleService.Infrastructure
         /// 
         /// </summary>
         public DbSet<ArticleTagRelation> ArticleTagRelations { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<MessageAggregate> MessageAggregates { get; set; }
     }
 
 

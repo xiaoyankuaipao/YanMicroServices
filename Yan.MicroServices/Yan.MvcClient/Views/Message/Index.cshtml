@@ -1,7 +1,99 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    Layout = null;
 }
 
-<h2>Index</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>留言 - YY · 爱编程</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:ghostwhite;border-bottom:0px;" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="~/image/logo.png" style="margin-top:-5px;" />
+                </a>
+                <a class="navbar-brand" href="/" style="color:black">YY · 爱编程</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home"></span> 主页 </a></li>
+                    <li><a asp-controller="Message" asp-action="Index"><span class="glyphicon glyphicon-envelope"></span> 留言</a></li>
+                    <li><a href="#live"><span class="glyphicon glyphicon-headphones"></span> 生活</a></li>
+                </ul>
+                <partial name="../Shared/_Login.cshtml" />
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top:60px">
+        <div class="row col-md-12">
+            <form asp-controller="Message" asp-action="AddMessage" data-ajax="true" data-ajax-success="addSuccess" data-ajax-confirm="确认要提交吗？" data-ajax-method="post">
+                <div class="form-group">
+                    <label for="message">到此一游，留下你的足迹吧</label>
+                    <textarea class="form-control" id="message" name="message" style="width:100%;height:150px;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </form>
+        </div>
+    </div>
+    
+
+    <footer style="bottom:0px;width:100%;height:100px">
+        <hr />
+        <div class="container text-center">
+            <p> © Copyright YY · 爱编程</p>
+            <p style="color:#999999;">
+                ASP.NET Core（3.1） on Linux
+            </p>
+
+        </div>
+    </footer>
+
+
+    <div class="go-to-top">
+        <a href="#top"></a>
+    </div>
+
+
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script>
+          $(function () {
+              getMessagePage();
+              page++;
+          });
+
+        var page = 1;
+        var size = 5;
+        function getMessagePage() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetMessagePage", "Message")',
+                data: { "page": page, "size": size },
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+        function addSuccess() {
+            alert("感谢您的留言");
+        }
+
+    </script>
+</body>
+</html>

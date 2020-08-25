@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Yan.Core.Dtos;
 using Yan.MvcClient.ViewModel;
@@ -30,7 +31,7 @@ namespace Yan.MvcClient.Clients
         /// <returns></returns>
         public async Task<List<CategoryArticleCount>> GetArticleStaticCountByCategory()
         {
-            var result= await _client.GetStringAsync("/api/articlemanage/Artilce/GetArticleStaticCountByCategory");
+            var result = await _client.GetStringAsync("/api/articlemanage/Artilce/GetArticleStaticCountByCategory");
 
             var model = JsonConvert.DeserializeObject<ResultDto<List<CategoryArticleCount>>>(result);
 
@@ -41,7 +42,7 @@ namespace Yan.MvcClient.Clients
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<ResultPage<ArticleListDto>> GetArticlePageByCategory(string categoryId,int index)
+        public async Task<ResultPage<ArticleListDto>> GetArticlePageByCategory(string categoryId, int index)
         {
             var result = await _client.GetStringAsync($"/api/articlemanage/Artilce/GetArticlePageByCategory?categoryId={categoryId}&page={index}&rows=10");
 
@@ -70,6 +71,47 @@ namespace Yan.MvcClient.Clients
             var model = JsonConvert.DeserializeObject<HandleResultDto>(result);
             return model;
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public async Task<PageResultDto<MessageOutputDto>> GetMessagePage(int page, int size)
+        {
+            var result = await _client.GetStringAsync($"/api/articlemanage/Message/GetMessagePage?page={page}&size={size}&rows=10");
+
+            var model = JsonConvert.DeserializeObject<PageResultDto<MessageOutputDto>>(result);
+
+            return model;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<HandleResultDto> AddMessage(MessageCreateDto input)
+        {
+            var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(input), Encoding.UTF8, "application/json");
+
+            var result = await _client.PostAsync("/api/articlemanage/Message/AddMessage", content);
+
+            if (result.IsSuccessStatusCode)
+            {
+                var responseStr = await result.Content.ReadAsStringAsync();
+                var response = JsonConvert.DeserializeObject<HandleResultDto>(responseStr);
+                return response;
+            }
+            else
+            {
+                return new HandleResultDto
+                {
+                    State = 0,
+                };
+            }
         }
 
     }

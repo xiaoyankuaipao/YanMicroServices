@@ -187,4 +187,60 @@ namespace Yan.MvcClient.Clients
         /// </summary>
         public int LikeCount { get; set; }
     }
+
+    public class MessageOutputDto
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ImgUrl { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CreateTime { get; set; }
+    }
+
+    public class MessageCreateDto
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ImgUrl { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime CreateTime { get; set; }
+    }
 }

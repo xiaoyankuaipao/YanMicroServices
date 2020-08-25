@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Yan.ArticleService.API.Models;
 using Yan.ArticleService.Domain.Aggregate.ArticleCategoryAggregate;
+using Yan.ArticleService.Domain.Aggregate.MessageAggregate;
 
 namespace Yan.ArticleService.API.Application.Queries.Profiles
 {
@@ -29,11 +30,18 @@ namespace Yan.ArticleService.API.Application.Queries.Profiles
                 });
 
 
-                // CreateMap<BaseOperateLogTemplate, BaseOperateLogOutput>()
-                //.ForMember(m => m.LogTime, opts =>
-                //{
-                //    opts.MapFrom(c => c.LogTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                //});
+            // CreateMap<BaseOperateLogTemplate, BaseOperateLogOutput>()
+            //.ForMember(m => m.LogTime, opts =>
+            //{
+            //    opts.MapFrom(c => c.LogTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            //});
+
+            CreateMap<MessageAggregate, MessageOutputDto>()
+                .ForMember(m => m.CreateTime, opts =>
+                {
+                    opts.MapFrom(c => c.CreateTime.ToString("yyyy-mm-dd HH:mm:ss"));
+                });
         }
+        
     }
 }
