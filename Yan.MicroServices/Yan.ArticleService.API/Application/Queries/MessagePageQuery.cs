@@ -57,7 +57,7 @@ namespace Yan.ArticleService.API.Application.Queries
         /// <returns></returns>
         public async Task<PageResultDto<MessageOutputDto>> Handle(MessagePageQuery request, CancellationToken cancellationToken)
         {
-            var sqlBuilder = new StringBuilder(@"select SQL_CALC_FOUND_ROWS Id,UserName,ImageUrl,Message,CreateTime from Message limit @skip,@take ;");
+            var sqlBuilder = new StringBuilder(@"select SQL_CALC_FOUND_ROWS Id,UserName,ImageUrl,Message,CreateTime from Message order by CreateTime Desc limit @skip,@take ;");
             sqlBuilder.Append("SELECT FOUND_ROWS() as Total;");
 
             var messages = await _dapper.QueryPage<MessageOutputDto>(sqlBuilder.ToString(), new { skip = (request.Page - 1) * request.Size, take = request.Size });

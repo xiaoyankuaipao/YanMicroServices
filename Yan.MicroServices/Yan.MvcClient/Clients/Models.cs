@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -242,5 +243,12 @@ namespace Yan.MvcClient.Clients
         /// 
         /// </summary>
         public DateTime CreateTime { get; set; }
+    }
+
+    public class CreateMessagDto
+    {
+        [Required]
+        [StringLength(1000,MinimumLength =5,ErrorMessage ="留言的长度要大于5")]
+        public string Message { get; set; }
     }
 }

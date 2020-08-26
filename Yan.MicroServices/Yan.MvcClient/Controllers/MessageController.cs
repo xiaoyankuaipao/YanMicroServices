@@ -53,16 +53,32 @@ namespace Yan.MvcClient.Controllers
         /// <param name="message"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<HandleResultDto> AddMessage(string message)
+        public async Task<MessageCreateDto> AddMessage(CreateMessagDto dto)
         {
-            MessageCreateDto input = new MessageCreateDto() { Message = message };
+            MessageCreateDto input = new MessageCreateDto() { Message = dto.Message };
 
             if (User.Identity.IsAuthenticated)
             {
-                input.UserName = User.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+                var nameClaim = User.Claims.FirstOrDefault(c => c.Type == "name");
+                if (nameClaim == null)
+                {
+                    input.UserName = "佚名";
+                }
+                else
+                {
+                    input.UserName = nameClaim.Value;
+                }
             }
-            var result = await _articleClient.AddMessage(new MessageCreateDto { Message = message });
-            return result;
+            else
+            {
+                input.UserName = "佚名";
+            }
+            var result = await _articleClient.AddMessage(input);
+            if(result.State==1)
+            {
+                return input;
+            }
+            return null;
         }
 
     }

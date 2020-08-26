@@ -35,8 +35,8 @@ namespace Yan.MvcClient
             services.AddHttpClient();
             services.AddHttpClient<ArticleServiceClient>(client =>
             {
-                client.BaseAddress = new Uri("http://118.24.205.200:5000");
-                //client.BaseAddress = new Uri("http://localhost:5000");
+                //client.BaseAddress = new Uri("http://118.24.205.200:5000");
+                client.BaseAddress = new Uri("http://localhost:5000");
             });
 
 
