@@ -96,21 +96,28 @@ namespace Yan.ArticleService.Domain.Aggregate.ArticleAggregate
             {
                 this.ArticleTagRelations = new List<ArticleTagRelation>();
             }
-            foreach (var tagId in tagIds)
+            if (tagIds == null || tagIds.Count == 0)
             {
-                var temp = this.ArticleTagRelations.FirstOrDefault(c => c.TagId == tagId);
-                if (temp == null)
-                {
-                    this.ArticleTagRelations.Add(new ArticleTagRelation { ArticleId = this.Id, TagId = tagId });
-                }
+                this.ArticleTagRelations.Clear();
             }
-            for (var i = 0; i < this.ArticleTagRelations.Count; i++)
+            else
             {
-                var temp = this.ArticleTagRelations[i];
-                if (!tagIds.Contains(temp.TagId))
+                foreach (var tagId in tagIds)
                 {
-                    this.ArticleTagRelations.Remove(temp);
-                    i--;
+                    var temp = this.ArticleTagRelations.FirstOrDefault(c => c.TagId == tagId);
+                    if (temp == null)
+                    {
+                        this.ArticleTagRelations.Add(new ArticleTagRelation { ArticleId = this.Id, TagId = tagId });
+                    }
+                }
+                for (var i = 0; i < this.ArticleTagRelations.Count; i++)
+                {
+                    var temp = this.ArticleTagRelations[i];
+                    if (!tagIds.Contains(temp.TagId))
+                    {
+                        this.ArticleTagRelations.Remove(temp);
+                        i--;
+                    }
                 }
             }
         }

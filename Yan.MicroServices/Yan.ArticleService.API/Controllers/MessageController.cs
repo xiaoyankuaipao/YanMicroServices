@@ -56,5 +56,18 @@ namespace Yan.ArticleService.API.Controllers
         {
             return await _mediator.Send(new MessagePageQuery { Page = page, Size = size }, HttpContext.RequestAborted);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        [HttpGet("[action]")]
+        public async Task<PageResultDto<MessageOutputDto>> GetMessageSkipPage(int skip, int size)
+        {
+            return await _mediator.Send(new MessageSkipPageQuery { Skip = skip, Size = size }, HttpContext.RequestAborted);
+        }
+
     }
 }

@@ -56,7 +56,7 @@ namespace Yan.ArticleService.API.Application.Commands
         {
             var article = await _articleRepository.GetArticleWithTagsById(request.ArticleDto.Id, cancellationToken);
 
-            article.UpdateArticle(request.ArticleDto.CategoryId, request.ArticleDto.Title, request.ArticleDto.Value,
+            article.UpdateArticle(request.ArticleDto.CategoryId, request.ArticleDto.Title, request.ArticleDto.Remark,
                 request.ArticleDto.Content, request.ArticleDto.Value);
             article.SetTags(request.TagIds);
 
