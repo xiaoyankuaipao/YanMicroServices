@@ -91,6 +91,21 @@ namespace Yan.MvcClient.Clients
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public async Task<PageResultDto<MessageOutputDto>> GetMessageSkipPage(int skip, int size)
+        {
+            var result = await _client.GetStringAsync($"/api/articlemanage/Message/GetMessageSkipPage?skip={skip}&size={size}");
+
+            var model = JsonConvert.DeserializeObject<PageResultDto<MessageOutputDto>>(result);
+
+            return model;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         public async Task<HandleResultDto> AddMessage(MessageCreateDto input)

@@ -10,11 +10,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>留言 - YY · 爱编程</title>
     <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="~/lib/toastr.js/toastr.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:ghostwhite;border-bottom:0px;" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:ghostwhite;border-bottom:0px;" role="navigation" >
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -39,8 +40,8 @@
         </div>
     </nav>
 
-    <div class="container" style="margin-top:60px">
-        <div class="row">
+    <div class="container" id="top">
+        <div class="row"  style="margin-top:60px">
             <div class="col-md-12">
                 <form asp-controller="Message" asp-action="AddMessage" data-ajax="true" data-ajax-success="addSuccess" data-ajax-confirm="确认要提交吗？" data-ajax-method="post">
                     <div class="form-group">
@@ -60,7 +61,6 @@
         </div>
     </div>
 
-
     <footer style="bottom:0px;width:100%;height:100px">
         <hr />
         <div class="container text-center">
@@ -68,7 +68,6 @@
             <p style="color:#999999;">
                 ASP.NET Core（3.1） on Linux
             </p>
-
         </div>
     </footer>
 
@@ -89,10 +88,10 @@
                 debug: false,                                                    // 是否使用deBug模式
                 progressBar: true,                                            // 是否显示进度条，（设置关闭的超时时间进度条）
                 positionClass: "toast-top-center",              // 设置提示款显示的位置
-                onclick: null,                                                     // 点击消息框自定义事件 
+                onclick: null,                                                     // 点击消息框自定义事件
                 showDuration: "300",                                      // 显示动画的时间
                 hideDuration: "1000",                                     //  消失的动画时间
-                timeOut: "2000",                                             //  自动关闭超时时间 
+                timeOut: "2000",                                             //  自动关闭超时时间
                 extendedTimeOut: "1000",                             //  加长展示时间
                 showEasing: "swing",                                     //  显示时的动画缓冲方式
                 hideEasing: "linear",                                       //   消失时的动画缓冲方式
@@ -100,33 +99,34 @@
                 hideMethod: "fadeOut"                                   //   消失时的动画方式
             };
             getMessagePage();
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 1000)
+                    $('div.go-to-top').show();
+                else
+                    $('div.go-to-top').hide();
+            });
         });
 
-        var page = 0;
+        var skip = 0;
         var size = 5;
-        var totalPage = 1;
         function getMessagePage() {
-            if (totalPage == page) {
-                toastr.warning("没有更多留言了");
-                return;
-            }
-            page++;
             $.ajax({
                 type: "GET",
-                url: '@Url.Action("GetMessagePage", "Message")',
-                data: { "page": page, "size": size },
+                url: '@Url.Action("GetMessageSkipPage", "Message")',
+                data: { "skip": skip, "size": size },
                 success: function (data) {
                     console.log(data);
                     var item = "";
                     if (data.state == 1) {
-                        totalPage = parseInt(data.result.totalCount / size);
-
-                        if (data.result.totalCount % size != 0) {
-                            totalPage++;
-                        }
                         var lst = data.result.data;
-                        for (var i = 0; i < lst.length; i++) {
-                            item += "<div class='panel panel-default'><div class='panel-heading'>" + lst[i].userName + "</div><div class='panel-body'>" + lst[i].message + "</div></div>";
+                        if (lst.length > 0) {
+                            skip += lst.length;
+                            for (var i = 0; i < lst.length; i++) {
+                                item += "<div class='panel panel-default'><div class='panel-heading'>" + lst[i].userName + "</div><div class='panel-body'>" + lst[i].message + "</div></div>";
+                            }
+                        } else {
+                            toastr.warning("没有更多留言了");
                         }
                     }
                     $("#messageDiv").append(item);
@@ -134,6 +134,7 @@
             });
         }
         function addSuccess(data) {
+            skip++;
             $("#messageDiv").prepend("<div class='panel panel-default'><div class='panel-heading'>" + data.userName + "</div><div class='panel-body'>" + data.message + "</div></div>");
             toastr.success('感谢您的留言');
         }

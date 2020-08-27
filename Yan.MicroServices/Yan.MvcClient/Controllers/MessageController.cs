@@ -50,12 +50,24 @@ namespace Yan.MvcClient.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public async Task<Clients.PageResultDto<MessageOutputDto>> GetMessageSkipPage(int skip, int size)
+        {
+            var result = await _articleClient.GetMessageSkipPage(skip, size);
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
         [HttpPost]
         public async Task<MessageCreateDto> AddMessage(CreateMessagDto dto)
         {
-            MessageCreateDto input = new MessageCreateDto() { Message = dto.Message };
+            MessageCreateDto input = new MessageCreateDto() { Message = dto.Message, CreateTime = DateTime.Now };
 
             if (User.Identity.IsAuthenticated)
             {
