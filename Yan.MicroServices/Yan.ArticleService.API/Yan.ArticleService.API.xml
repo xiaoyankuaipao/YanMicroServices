@@ -38,6 +38,59 @@
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.AddMessageCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.AddMessageCommand.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.AddMessageCommand.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.AddMessageCommand.ImgUrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.AddMessageCommand.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Commands.AddMessageCommand.CreateTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Commands.AddMessageCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Commands.AddMessageCommandHandler._messageRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.AddMessageCommandHandler.#ctor(Yan.ArticleService.Infrastructure.Repositories.IMessageRepository)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Commands.AddMessageCommandHandler.Handle(Yan.ArticleService.API.Application.Commands.AddMessageCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
         <member name="T:Yan.ArticleService.API.Application.Commands.CreateArticleCategoryCommand">
             <summary>
             
@@ -579,6 +632,84 @@
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.MessagePageQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.MessagePageQuery.Page">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.MessagePageQuery.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.MessagePageQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Queries.MessagePageQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.MessagePageQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.MessagePageQueryHandler.Handle(Yan.ArticleService.API.Application.Queries.MessagePageQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.MessageSkipPageQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.MessageSkipPageQuery.Skip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Application.Queries.MessageSkipPageQuery.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Application.Queries.MessageSkipPageQueryHandle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Application.Queries.MessageSkipPageQueryHandle._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.MessageSkipPageQueryHandle.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Application.Queries.MessageSkipPageQueryHandle.Handle(Yan.ArticleService.API.Application.Queries.MessageSkipPageQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
         <member name="T:Yan.ArticleService.API.Application.Queries.Profiles.AutoMapProfiles">
             <summary>
             
@@ -716,6 +847,45 @@
             
             </summary>
             <param name="articleId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.ArticleService.API.Controllers.MessageController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.Controllers.MessageController._mediator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.MessageController.#ctor(MediatR.IMediator)">
+            <summary>
+            
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.MessageController.AddMessage(Yan.ArticleService.API.Application.Commands.AddMessageCommand)">
+            <summary>
+            
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.MessageController.GetMessagePage(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="page"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.ArticleService.API.Controllers.MessageController.GetMessageSkipPage(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="skip"></param>
+            <param name="size"></param>
             <returns></returns>
         </member>
         <member name="T:Yan.ArticleService.API.Controllers.PictureController">
@@ -934,6 +1104,36 @@
             </summary>
         </member>
         <member name="P:Yan.ArticleService.API.Models.CategoryArticleCount.ArticleCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.Models.MessageOutputDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.MessageOutputDto.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.MessageOutputDto.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.MessageOutputDto.ImgUrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.MessageOutputDto.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.ArticleService.API.Models.MessageOutputDto.CreateTime">
             <summary>
             
             </summary>

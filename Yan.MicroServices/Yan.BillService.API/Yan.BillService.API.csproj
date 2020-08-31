@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>1fb8f462-35b7-46ef-a3db-838b164a2a7c</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\LocalGithub\MicroServices\YanMicroServices\Yan.MicroServices\Yan.BillService.API\Yan.BillService.API.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="5.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yan.BillService.Infrastructure\Yan.BillService.Infrastructure.csproj" />
+    <ProjectReference Include="..\Yan.Consul\Yan.Consul.csproj" />
+    <ProjectReference Include="..\Yan.Core\Yan.Core.csproj" />
+    <ProjectReference Include="..\Yan.Dapper\Yan.Dapper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Commands\" />
+    <Folder Include="Application\DomainEventHandlers\" />
+    <Folder Include="Application\IntegrationEvents\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+
+</Project>

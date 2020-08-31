@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -157,6 +158,11 @@ namespace Yan.Infrastructure.Core
         /// <param name="id"></param>
         /// <returns></returns>
         public virtual TEntity Get(TKey id)
+        {
+            return DbContext.Find<TEntity>(id);
+        }
+
+        public virtual TEntity Get(TKey id, string navigation)
         {
             return DbContext.Find<TEntity>(id);
         }
