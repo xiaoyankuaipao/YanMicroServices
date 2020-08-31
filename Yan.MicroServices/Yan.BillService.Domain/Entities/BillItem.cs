@@ -9,12 +9,12 @@ namespace Yan.BillService.Domain.Entities
     /// <summary>
     /// 账单项
     /// </summary>
-    public class BillItem:Entity<string>
+    public class BillItem : Entity<string>
     {
         /// <summary>
         /// 账单项类型
         /// </summary>
-        public BillItemTypeEnum BillItemTypeEnum { get; set; } 
+        public BillItemTypeEnum BillItemTypeEnum { get; set; }
 
         /// <summary>
         /// 账单项费用
@@ -30,6 +30,13 @@ namespace Yan.BillService.Domain.Entities
         /// 账单Id
         /// </summary>
         public string BillId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BillItem()
+        { 
+        }
 
         /// <summary>
         /// 

@@ -33,12 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Commands\" />
     <Folder Include="Application\DomainEventHandlers\" />
     <Folder Include="Application\IntegrationEvents\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Infrastructure\" />
-    <Folder Include="Models\" />
   </ItemGroup>
 
 

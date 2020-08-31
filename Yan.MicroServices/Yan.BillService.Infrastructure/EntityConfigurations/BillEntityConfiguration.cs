@@ -19,7 +19,9 @@ namespace Yan.BillService.Infrastructure.EntityConfigurations
         public void Configure(EntityTypeBuilder<Bill> builder)
         {
             builder.ToTable("Bill");
+            builder.Property(t => t.BillName).HasMaxLength(255).IsRequired();
             builder.Property(t => t.Person).HasMaxLength(255).IsRequired();
+
             builder.HasKey(p => p.Id);
         }
     }

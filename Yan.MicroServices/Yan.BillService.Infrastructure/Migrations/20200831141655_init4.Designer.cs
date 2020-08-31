@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yan.BillService.Infrastructure;
 
 namespace Yan.BillService.Infrastructure.Migrations
 {
     [DbContext(typeof(BillContext))]
-    partial class BillContextModelSnapshot : ModelSnapshot
+    [Migration("20200831141655_init4")]
+    partial class init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,9 +28,7 @@ namespace Yan.BillService.Infrastructure.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("BillName")
-                        .IsRequired()
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
-                        .HasMaxLength(255);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Person")
                         .IsRequired()

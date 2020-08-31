@@ -178,6 +178,22 @@ namespace Yan.Dapper
 
             return result;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="parm"></param>
+        /// <returns></returns>
+        public async Task<T> GetResult<T>(string sql, object parm = null)
+        {
+            using (IDbConnection connection = new MySqlConnection(_connectionString))
+            {
+                return await connection.QueryFirstOrDefaultAsync<T>(sql, parm);
+            }
+        }
+
     }
 
 }
