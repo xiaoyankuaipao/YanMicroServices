@@ -46,14 +46,23 @@
                 <div class="jumbotron" style="margin:10px;text-align:center;">
                     本年花销：@Model.TheYearCost 元
                 </div>
-                
+
             </div>
             <div class="col-md-6">
                 <div class="jumbotron" style="margin:10px;text-align:center;">
                     本月花销：@Model.TheMonthCost 元
                 </div>
             </div>
+        </div>
         <hr />
+        <div class="row">
+            <div class="col-md-6" id="yearPie" style="height:400px;">
+
+            </div>
+            <div class="col-md-6" id="monthPie" style="height:400px;">
+
+            </div>
+        </div>
     </div>
 
     <footer style="bottom:0px;width:100%;height:100px">
@@ -74,27 +83,10 @@
 
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
-    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
-    <script src="~/lib/toastr.js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.min.js" integrity="sha512-OvWfXEXFlgwaMYESoKZRrPGq9Ndjcf7pMgp+NjbUNeqEA1OOOUbLgquJGOzvh7H78qinNObGwRiFIj22es61Eg==" crossorigin="anonymous"></script>
     <script>
         $(function () {
-            toastr.options = {
-                closeButton: true,                                            // 是否显示关闭按钮，（提示框右上角关闭按钮）
-                debug: false,                                                    // 是否使用deBug模式
-                progressBar: true,                                            // 是否显示进度条，（设置关闭的超时时间进度条）
-                positionClass: "toast-top-center",              // 设置提示款显示的位置
-                onclick: null,                                                     // 点击消息框自定义事件
-                showDuration: "300",                                      // 显示动画的时间
-                hideDuration: "1000",                                     //  消失的动画时间
-                timeOut: "2000",                                             //  自动关闭超时时间
-                extendedTimeOut: "1000",                             //  加长展示时间
-                showEasing: "swing",                                     //  显示时的动画缓冲方式
-                hideEasing: "linear",                                       //   消失时的动画缓冲方式
-                showMethod: "fadeIn",                                   //   显示时的动画方式
-                hideMethod: "fadeOut"                                   //   消失时的动画方式
-            };
-            //getMessagePage();
-
+            getYearPie();
             $(window).scroll(function () {
                 if ($(window).scrollTop() > 1000)
                     $('div.go-to-top').show();
@@ -105,34 +97,57 @@
 
         var skip = 0;
         var size = 5;
-        function getMessagePage() {
+        var yearPie = echarts.init(document.getElementById('yearPie'));
+        var monthPie = echarts.init(document.getElementById('monthPie'));
+        function getYearPie() {
+            //yearPie.showLoading();
             $.ajax({
                 type: "GET",
-                url: '@Url.Action("GetMessageSkipPage", "Message")',
-                data: { "skip": skip, "size": size },
+                url: '@Url.Action("GetYearPieData", "Life")',
                 success: function (data) {
-                    console.log(data);
-                    var item = "";
-                    if (data.state == 1) {
-                        var lst = data.result.data;
-                        if (lst.length > 0) {
-                            skip += lst.length;
-                            for (var i = 0; i < lst.length; i++) {
-                                item += "<div class='panel panel-default'><div class='panel-heading'>" + lst[i].userName + "</div><div class='panel-body'>" + lst[i].message + "</div></div>";
+                    yearPie.setOption({
+                       title:{
+                            text:'本年度花费分布',
+                            x:'center',
+                            y:'top',
+                            textAlign:'left'
+                        },
+                        series : [
+                            {
+                                name: '访问来源',
+                                type: 'pie',    // 设置图表类型为饼图
+                                radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
+                                data:data
                             }
-                        } else {
-                            toastr.warning("没有更多留言了");
-                        }
-                    }
-                    $("#messageDiv").append(item);
+                        ]
+                    })
+                }
+            });
+            //monthPie.showLoading();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetMonthPieData", "Life")',
+                success: function (data) {
+                    monthPie.setOption({
+                        title:{
+                            text:'本月花费分布',
+                            x:'center',
+                            y:'top',
+                            textAlign:'left'
+                        },
+                        series : [
+                            {
+                                name: '访问来源',
+                                type: 'pie',    // 设置图表类型为饼图
+                                radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
+                                data:data
+                            }
+                        ]
+                    })
                 }
             });
         }
-        function addSuccess(data) {
-            skip++;
-            $("#messageDiv").prepend("<div class='panel panel-default'><div class='panel-heading'>" + data.userName + "</div><div class='panel-body'>" + data.message + "</div></div>");
-            toastr.success('感谢您的留言');
-        }
+
 
     </script>
 </body>
