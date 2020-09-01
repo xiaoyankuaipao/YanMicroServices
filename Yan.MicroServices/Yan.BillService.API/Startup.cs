@@ -124,7 +124,7 @@ namespace Yan.BillService.API
                 endpoints.MapControllers();
             });
 
-            //ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "billmanage", "localhost", 6030).Wait();
+            ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "billmanage", "localhost", 6030).Wait();
         }
     }
 }

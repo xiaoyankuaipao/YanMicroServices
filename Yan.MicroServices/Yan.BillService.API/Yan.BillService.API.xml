@@ -4,6 +4,274 @@
         <name>Yan.BillService.API</name>
     </assembly>
     <members>
+        <member name="T:Yan.BillService.API.Application.Commands.CreateBillCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.CreateBillCommand.Person">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Commands.CreateBillCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Application.Commands.CreateBillCommandHandler._repository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Commands.CreateBillCommandHandler.#ctor(Yan.BillService.Infrastructure.Repositories.IBillRepository)">
+            <summary>
+            
+            </summary>
+            <param name="repository"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Commands.CreateBillCommandHandler.Handle(Yan.BillService.API.Application.Commands.CreateBillCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Commands.CreateBillItemCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.CreateBillItemCommand.BillId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.CreateBillItemCommand.BillItemTypeEnum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.CreateBillItemCommand.Cost">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.CreateBillItemCommand.remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Commands.CreateBillItemCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Application.Commands.CreateBillItemCommandHandler._repository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Commands.CreateBillItemCommandHandler.#ctor(Yan.BillService.Infrastructure.Repositories.IBillRepository)">
+            <summary>
+            
+            </summary>
+            <param name="repository"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Commands.CreateBillItemCommandHandler.Handle(Yan.BillService.API.Application.Commands.CreateBillItemCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Commands.DeleteBillCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.DeleteBillCommand.BillId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Commands.DeleteBillCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Application.Commands.DeleteBillCommandHandler._repository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Commands.DeleteBillCommandHandler.#ctor(Yan.BillService.Infrastructure.Repositories.IBillRepository)">
+            <summary>
+            
+            </summary>
+            <param name="repository"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Commands.DeleteBillCommandHandler.Handle(Yan.BillService.API.Application.Commands.DeleteBillCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Commands.DeleteBillItemCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.DeleteBillItemCommand.BillId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.DeleteBillItemCommand.ItemId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Commands.DeleteBillItemCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Application.Commands.DeleteBillItemCommandHandler._repository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Commands.DeleteBillItemCommandHandler.#ctor(Yan.BillService.Infrastructure.Repositories.IBillRepository)">
+            <summary>
+            
+            </summary>
+            <param name="repository"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Commands.DeleteBillItemCommandHandler.Handle(Yan.BillService.API.Application.Commands.DeleteBillItemCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Commands.UpdateBillItemCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.UpdateBillItemCommand.BillId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.UpdateBillItemCommand.ItemId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.UpdateBillItemCommand.BillItemTypeEnum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.UpdateBillItemCommand.Cost">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Commands.UpdateBillItemCommand.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Commands.UpdateBillItemCommandHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Application.Commands.UpdateBillItemCommandHandler._repository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Commands.UpdateBillItemCommandHandler.#ctor(Yan.BillService.Infrastructure.Repositories.IBillRepository)">
+            <summary>
+            
+            </summary>
+            <param name="repository"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Commands.UpdateBillItemCommandHandler.Handle(Yan.BillService.API.Application.Commands.UpdateBillItemCommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.CostStatisticsQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.CostStatisticsQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Application.Queries.CostStatisticsQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.CostStatisticsQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.CostStatisticsQueryHandler.Handle(Yan.BillService.API.Application.Queries.CostStatisticsQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.MonthPieDataQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.MonthPieDataQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Application.Queries.MonthPieDataQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.MonthPieDataQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.MonthPieDataQueryHandler.Handle(Yan.BillService.API.Application.Queries.MonthPieDataQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
         <member name="T:Yan.BillService.API.Application.Queries.Profiles.AutoMapProfiles">
             <summary>
             
@@ -13,6 +281,142 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.RecentExpenditureQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.RecentExpenditureQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Application.Queries.RecentExpenditureQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.RecentExpenditureQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.RecentExpenditureQueryHandler.Handle(Yan.BillService.API.Application.Queries.RecentExpenditureQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.RecentTemp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.YearPieDataQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.YearPieDataQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Application.Queries.YearPieDataQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.YearPieDataQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.YearPieDataQueryHandler.Handle(Yan.BillService.API.Application.Queries.YearPieDataQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.BillService.API.Controllers.BillController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Controllers.BillController._mediator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.#ctor(MediatR.IMediator)">
+            <summary>
+            
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.CreateBill">
+            <summary>
+            创建账单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.DeleteBill(System.String)">
+            <summary>
+            删除账单
+            </summary>
+            <param name="billId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.CreateBillItem(Yan.BillService.API.Application.Commands.CreateBillItemCommand)">
+            <summary>
+            创建账单项
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.DeleteBillItem(Yan.BillService.API.Application.Commands.DeleteBillItemCommand)">
+            <summary>
+            删除账单项
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.UpdateBillItem(Yan.BillService.API.Application.Commands.UpdateBillItemCommand)">
+            <summary>
+            更新账单项
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.GetCostStatics">
+            <summary>
+            统计当年当月花费
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.GetYearPieData">
+            <summary>
+            年度饼图
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.GetMonthPieData">
+            <summary>
+            月度饼图
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.GetRecentExpenditure">
+            <summary>
+            获取最近花费记录
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Yan.BillService.API.Extensions.ServiceCollectionExtensions">
             <summary>
@@ -71,6 +475,111 @@
             </summary>
             <param name="services"></param>
             <returns></returns>
+        </member>
+        <member name="T:Yan.BillService.API.Models.BillItemOutput">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.BillItemOutput.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.BillItemOutput.BillItemTypeEnum">
+            <summary>
+            账单项类型
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.BillItemOutput.Cost">
+            <summary>
+            账单项费用
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.BillItemOutput.Remark">
+            <summary>
+            账单项说明
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.BillItemOutput.BillId">
+            <summary>
+            账单Id
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Models.BillOutput">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.BillOutput.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.BillOutput.BillName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.BillOutput.Person">
+            <summary>
+            账单记录人
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.BillOutput.TotalCost">
+            <summary>
+            账单 总费用
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.BillOutput.BillCreateTime">
+            <summary>
+            账单创建时间
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Models.CostStatisticsOutput">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.CostStatisticsOutput.TheYearCost">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.CostStatisticsOutput.TheMonthCost">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Models.EChartPieData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.EChartPieData.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.EChartPieData.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Models.PieDbData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.PieDbData.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Models.PieDbData.Type">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Yan.BillService.API.Startup">
             <summary>

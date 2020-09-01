@@ -5,14 +5,16 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Yan.BillService.API.Models;
+using Yan.BillService.Domain.Entities;
 using Yan.Dapper;
+using Yan.Utility;
 
 namespace Yan.BillService.API.Application.Queries
 {
     /// <summary>
     /// 
     /// </summary>
-    public class CostStatisticsQuery:IRequest<CostStatisticsOutput>
+    public class MonthPieDataQuery : IRequest<List<EChartPieData>>
     {
 
     }
@@ -20,7 +22,7 @@ namespace Yan.BillService.API.Application.Queries
     /// <summary>
     /// 
     /// </summary>
-    public class CostStatisticsQueryHandler : IRequestHandler<CostStatisticsQuery, CostStatisticsOutput>
+    public class MonthPieDataQueryHandler : IRequestHandler<MonthPieDataQuery, List<EChartPieData>>
     {
         /// <summary>
         /// 
@@ -31,7 +33,7 @@ namespace Yan.BillService.API.Application.Queries
         /// 
         /// </summary>
         /// <param name="dapper"></param>
-        public CostStatisticsQueryHandler(DapperHelper dapper)
+        public MonthPieDataQueryHandler(DapperHelper dapper)
         {
             _dapper = dapper;
         }
@@ -42,14 +44,9 @@ namespace Yan.BillService.API.Application.Queries
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<CostStatisticsOutput> Handle(CostStatisticsQuery request, CancellationToken cancellationToken)
+        public async Task<List<EChartPieData>> Handle(MonthPieDataQuery request, CancellationToken cancellationToken)
         {
-            var year = DateTime.Now.Year;
-            var startYear = new DateTime(year, 1, 1, 0, 0, 0);
-            var endYear = new DateTime(year, 12, 31, 23, 59, 59);
-            var yearSql = @"select SUM(TotalCost) as TheYearCost from Bill where BillCreateTime>@begin and BillCreateTime<@end;";
-            var yearResult = await _dapper.GetResult<decimal>(yearSql, new { begin = startYear, end = endYear });
-
+            List<EChartPieData> result = new List<EChartPieData>();
             DateTime dt = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
             //获得本月月初时间
             var startMonth = dt.AddDays(1 - dt.Day);
@@ -58,16 +55,25 @@ namespace Yan.BillService.API.Application.Queries
             DateTime ss = s.AddDays(1 - s.Day);
             var endMonth = ss.AddMonths(1).AddDays(-1);
 
-            var monthSql= @"select SUM(TotalCost) as TheYearCost from Bill where BillCreateTime>@begin and BillCreateTime<@end;";
-            var monthResult= await _dapper.GetResult<decimal>(monthSql, new { begin = startMonth, end = endMonth });
+            var monthSql = @"SELECT BillItem.BillItemTypeEnum as Type,SUM(Cost) as Value FROM BillItem  
+                            join Bill on BillItem.BillId = Bill.Id where Bill.BillCreateTime>=@beginTime and Bill.BillCreateTime<=@endTime
+                            GROUP BY BillItem.BillItemTypeEnum;";
+            var sqlResult = await _dapper.QueryAsync<PieDbData>(monthSql, new { beginTime = startMonth, endTime = endMonth });
 
-            var result = new CostStatisticsOutput
+            if (sqlResult.Any())
             {
-                TheYearCost = Math.Round(yearResult, 2).ToString(),
-                TheMonthCost = Math.Round(monthResult, 2).ToString()
-            };
-            
+                foreach (var r in sqlResult)
+                {
+                    result.Add(new EChartPieData
+                    {
+                        Value = Math.Round(r.Value, 2),
+                        Name = ((BillItemTypeEnum)r.Type).GetDescription()
+                    });
+                }
+            }
+
             return result;
         }
     }
+
 }

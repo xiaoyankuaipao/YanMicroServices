@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Yan.BillService.Domain.Entities
@@ -9,11 +10,17 @@ namespace Yan.BillService.Domain.Entities
     /// </summary>
     public enum BillItemTypeEnum
     {
-        衣 = 0,
-        食 = 1,
-        住 = 2,
-        行 = 3,
-        交友 = 4,
-        娱乐 = 5
+        [Description("衣")]
+        衣 = 1,
+        [Description("食")]
+        食 = 2,
+        [Description("住")]
+        住 = 3,
+        [Description("行 ")]
+        行 = 4,
+        [Description("交友")]
+        交友 = 5,
+        [Description("娱乐")]
+        娱乐 = 6
     }
 }

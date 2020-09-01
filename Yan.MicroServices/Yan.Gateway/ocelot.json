@@ -51,6 +51,49 @@
       //}
     },
 
+    //billmanage Swagger
+    {
+      "DownstreamPathTemplate": "/swagger/billmanage/swagger.json",
+      "DownstreamScheme": "http",
+      "ServiceName": "billmanage",
+      "LoadBalancer": "RoundRobin",
+      "UseServiceDiscovery": true,
+      "UpstreamPathTemplate": "/doc/billmanage/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
+
+    //billmanage
+    {
+      "UseServiceDiscovery": true, //使用服务发现（Consul 发现）
+      "DownstreamPathTemplate": "/api/billmanage/{url}", //下游服务器指的是提供API服务的REST Service Server（比如WebAPI、WCF App等）
+      "DownstreamScheme": "http", //http、https
+      "ServiceName": "billmanage", //服务名称
+      "UpstreamPathTemplate": "/api/billmanage/{url}", //上游服务器则指的是提供Web网页服务的Web Server（比如MVC Application，可能需要访问REST Service）
+      "UpstreamHttpMethod": [ "Get", "Post", "DELETE", "PUT" ],
+      "ReRoutesCaseSensitive": false, //不区分大小写
+      //负载均衡设置
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin" //RoundRobin - 轮询，挨着来，雨露均沾;LeastConnection - 最小连接数，谁的任务最少谁来接客,NoLoadBalance - 不要负载均衡，让我一个人累死吧　
+      },
+      //对下游服务的URL进行缓存，并可以设置一个以秒为单位的TTL使缓存过期
+      "FileCacheOptions": {
+        "TtlSeconds": 2, //这里表示缓存2秒，2秒后过期。
+        "Region": ""
+      },
+      //进行限流可以防止下游服务器因为访问过载而崩溃
+      "RateLimitOptions": {
+        "ClientWhitelist": [ "admin" ], //白名单，需要在请求头里面添加client_id=admin
+        "EnableRateLimiting": true, //是否启用限流
+        "Period": "1m", //统计时间段 1s，5m，1h，1d
+        "PeriodTimespan": 15, // 多少秒之后客户端可以重试
+        "Limit": 50 // 在统计时间段内允许的最大请求数量
+      }
+      //"AuthenticationOptions": { //api 在网关层就认证，需要该设置
+      //  "AuthenticationProviderKey": "SystemManageServiceKey",
+      //  "AllowedScopes": []
+      //}
+    },
+
     //articlemanage Swagger
     {
       "DownstreamPathTemplate": "/swagger/articlemanage/swagger.json",

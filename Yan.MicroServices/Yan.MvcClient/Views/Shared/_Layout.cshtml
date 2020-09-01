@@ -35,7 +35,7 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home"></span> 主页 </a></li>
                     <li><a asp-controller="Message" asp-action="Index"><span class="glyphicon glyphicon-envelope"></span> 留言</a></li>
-                    <li><a href="#live"><span class="glyphicon glyphicon-headphones"></span> 生活</a></li>
+                    <li><a asp-controller="Life" asp-action="Index"><span class="glyphicon glyphicon-headphones"></span> 生活</a></li>
                 </ul>
                 <partial name="_Login.cshtml" />
             </div>

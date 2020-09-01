@@ -95,5 +95,37 @@ namespace Yan.BillService.API.Controllers
         {
             return await _mediator.Send(new CostStatisticsQuery(), HttpContext.RequestAborted);
         }
+
+        /// <summary>
+        /// 年度饼图
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<List<EChartPieData>> GetYearPieData()
+        {
+            return await _mediator.Send(new YearPieDataQuery(), HttpContext.RequestAborted);
+        }
+
+        /// <summary>
+        /// 月度饼图
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<List<EChartPieData>> GetMonthPieData()
+        {
+            return await _mediator.Send(new MonthPieDataQuery(), HttpContext.RequestAborted);
+        }
+
+        /// <summary>
+        /// 获取最近花费记录
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<List<string>> GetRecentExpenditure()
+        {
+            return await _mediator.Send(new RecentExpenditureQuery(), HttpContext.RequestAborted);
+        }
+
+
     }
 }

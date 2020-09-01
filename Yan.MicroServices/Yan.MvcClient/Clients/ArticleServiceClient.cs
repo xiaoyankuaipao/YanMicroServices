@@ -20,10 +20,16 @@ namespace Yan.MvcClient.Clients
         /// </summary>
         private HttpClient _client;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="client"></param>
         public ArticleServiceClient(HttpClient client)
         {
             _client = client;
         }
+
+        #region Article
 
         /// <summary>
         /// 
@@ -129,5 +135,8 @@ namespace Yan.MvcClient.Clients
             }
         }
 
+        #endregion
+
     }
+
 }

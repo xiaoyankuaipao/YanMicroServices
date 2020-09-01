@@ -46,6 +46,7 @@ namespace Yan.BillService.Domain.Aggregate
         {
             this.Id = SnowflakeId.Default().NextId().ToString();
             this.Person = person;
+            this.TotalCost = 0;
             this.BillCreateTime = DateTime.Now;
             this.BillName = $"{this.BillCreateTime.ToString("yyyy-MM-dd")}-账单";
             this.BillItems = new List<BillItem>();

@@ -1,4 +1,4 @@
-﻿
+﻿@model Yan.MvcClient.Clients.CostStatisticsOutput
 @{
     Layout = null;
 }
@@ -8,14 +8,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>留言 - YY · 爱编程</title>
+    <title>生活 - YY · 爱编程</title>
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="~/lib/toastr.js/toastr.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:ghostwhite;border-bottom:0px;" role="navigation" >
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:ghostwhite;border-bottom:0px;" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -41,24 +41,19 @@
     </nav>
 
     <div class="container" id="top">
-        <div class="row"  style="margin-top:60px">
-            <div class="col-md-12">
-                <form asp-controller="Message" asp-action="AddMessage" data-ajax="true" data-ajax-success="addSuccess" data-ajax-confirm="确认要提交吗？" data-ajax-method="post">
-                    <div class="form-group">
-                        <label for="message">到此一游，留下你的足迹吧</label>
-                        <textarea class="form-control" id="Message" name="Message" style="width:100%;height:150px;"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">提交</button>
-                </form>
+        <div class="row" style="margin-top:60px">
+            <div class="col-md-6">
+                <div class="jumbotron" style="margin:10px;text-align:center;">
+                    本年花销：@Model.TheYearCost 元
+                </div>
+                
             </div>
-        </div>
+            <div class="col-md-6">
+                <div class="jumbotron" style="margin:10px;text-align:center;">
+                    本月花销：@Model.TheMonthCost 元
+                </div>
+            </div>
         <hr />
-        <div class="row" id="messageDiv">
-
-        </div>
-        <div class="row">
-            <button class="col-md-12 btn btn-primary " onclick="getMessagePage()">点我查看更多留言</button>
-        </div>
     </div>
 
     <footer style="bottom:0px;width:100%;height:100px">
@@ -98,7 +93,7 @@
                 showMethod: "fadeIn",                                   //   显示时的动画方式
                 hideMethod: "fadeOut"                                   //   消失时的动画方式
             };
-            getMessagePage();
+            //getMessagePage();
 
             $(window).scroll(function () {
                 if ($(window).scrollTop() > 1000)

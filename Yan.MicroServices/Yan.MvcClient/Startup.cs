@@ -33,10 +33,16 @@ namespace Yan.MvcClient
                 .AddRazorRuntimeCompilation(); //cshtml 代码更改之后 不用重启服务 即可生效
 
             services.AddHttpClient();
+
             services.AddHttpClient<ArticleServiceClient>(client =>
             {
-                //client.BaseAddress = new Uri("http://118.24.205.200:5000");
-                client.BaseAddress = new Uri("http://localhost:5000");
+                client.BaseAddress = new Uri("http://118.24.205.200:5000");
+                //client.BaseAddress = new Uri("http://localhost:5000");
+            });
+            services.AddHttpClient<BillClient>(client =>
+            {
+                client.BaseAddress = new Uri("http://118.24.205.200:5000");
+                //client.BaseAddress = new Uri("http://localhost:5000");
             });
 
 
