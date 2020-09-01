@@ -23,3 +23,34 @@
         background-position:-50px 0;
     }
 
+.create-bill-logo {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 3em;
+    top:5em;
+    background: url(../image/billlog.png) 0 0 no-repeat;
+    background-size: 100% 100%;
+}
+
+.create-bill-logo {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 5em;
+    top: 15em;
+    background: url(../image/billlog.png) 0 0 no-repeat;
+    background-size: 100% 100%;
+}
+
+@media screen and (max-width: 800px) {
+    .create-bill-logo {
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        right: 3em;
+        top: 10em;
+        background: url(../image/billlog.png) 0 0 no-repeat;
+        background-size: 100% 100%;
+    }
+}
