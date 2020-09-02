@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Yan.BillService.API.Application.Commands;
 using Yan.BillService.API.Application.Queries;
 using Yan.BillService.API.Models;
+using Yan.Core.Dtos;
 
 namespace Yan.BillService.API.Controllers
 {
@@ -126,6 +127,26 @@ namespace Yan.BillService.API.Controllers
             return await _mediator.Send(new RecentExpenditureQuery(), HttpContext.RequestAborted);
         }
 
+        /// <summary>
+        /// 账单分页查询
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        [HttpPost()]
+        public async Task<ResultPage<BillOutput>> GetBillPage([FromBody]BillPageQuery query)
+        {
+            return await _mediator.Send(query, HttpContext.RequestAborted);
+        }
 
+        /// <summary>
+        /// 根据账单Id查询账单项
+        /// </summary>
+        /// <param name="billId"></param>
+        /// <returns></returns>
+        [HttpGet("{billId}")]
+        public async Task<List<BillItemOutput>> GetBillItemsByBillItems(string billId)
+        {
+            return await _mediator.Send(new BillItemsQuery { BillId = billId }, HttpContext.RequestAborted);
+        }
     }
 }

@@ -58,7 +58,7 @@ namespace Yan.BillService.API.Application.Queries
             {
                 foreach (var r in sqlResult)
                 {
-                    result.Add($"{r.Person} 在 {r.Time.ToString("yyyyy-MM-dd HH:mm")} 记录：在 {((BillItemTypeEnum)r.Type).GetDescription()} 方面花费：{Math.Round(r.Cost, 2)} 元");
+                    result.Add($"{r.Person} 在 {r.Time.ToString("yyyy-MM-dd HH:mm")} 记录：在 {((BillItemTypeEnum)r.Type).GetDescription()} 方面花费：{Math.Round(r.Cost, 2)} 元");
                 }
             }
 

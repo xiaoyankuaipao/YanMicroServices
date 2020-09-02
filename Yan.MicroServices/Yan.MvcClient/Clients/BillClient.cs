@@ -39,6 +39,18 @@ namespace Yan.MvcClient.Clients
             return model;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<string>> GetRecentExpenditure()
+        {
+            var result = await _client.GetStringAsync("/api/billmanage/Bill/GetRecentExpenditure");
+
+            var model = JsonConvert.DeserializeObject<List<string>>(result);
+
+            return model;
+        }
 
         /// <summary>
         /// 年度饼图

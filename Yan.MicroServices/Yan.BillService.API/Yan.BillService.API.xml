@@ -214,6 +214,89 @@
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
+        <member name="T:Yan.BillService.API.Application.Queries.BillItemsQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Queries.BillItemsQuery.BillId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.BillItemsQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Application.Queries.BillItemsQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.BillItemsQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.BillItemsQueryHandler.Handle(Yan.BillService.API.Application.Queries.BillItemsQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.BillPageQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Queries.BillPageQuery.BeginTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Queries.BillPageQuery.EndTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Queries.BillPageQuery.Index">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Yan.BillService.API.Application.Queries.BillPageQuery.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.BillService.API.Application.Queries.BillPageQueryHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.BillService.API.Application.Queries.BillPageQueryHandler._dapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.BillPageQueryHandler.#ctor(Yan.Dapper.DapperHelper)">
+            <summary>
+            
+            </summary>
+            <param name="dapper"></param>
+        </member>
+        <member name="M:Yan.BillService.API.Application.Queries.BillPageQueryHandler.Handle(Yan.BillService.API.Application.Queries.BillPageQuery,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
         <member name="T:Yan.BillService.API.Application.Queries.CostStatisticsQuery">
             <summary>
             
@@ -416,6 +499,20 @@
             <summary>
             获取最近花费记录
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.GetBillPage(Yan.BillService.API.Application.Queries.BillPageQuery)">
+            <summary>
+            账单分页查询
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yan.BillService.API.Controllers.BillController.GetBillItemsByBillItems(System.String)">
+            <summary>
+            根据账单Id查询账单项
+            </summary>
+            <param name="billId"></param>
             <returns></returns>
         </member>
         <member name="T:Yan.BillService.API.Extensions.ServiceCollectionExtensions">

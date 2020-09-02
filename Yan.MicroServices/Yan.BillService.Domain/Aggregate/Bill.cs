@@ -38,6 +38,10 @@ namespace Yan.BillService.Domain.Aggregate
         /// </summary>
         public DateTime BillCreateTime { get; private set; }
 
+        public Bill()
+        { 
+        }
+
         /// <summary>
         /// 创建订单
         /// </summary>

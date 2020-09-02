@@ -1,94 +1,56 @@
-﻿@model Yan.MvcClient.Clients.CostStatisticsOutput
+﻿@model Yan.MvcClient.ViewModel.LifeIndexViewModel;
 @{
-    Layout = null;
+    //Layout = null;
+    Layout = "./_LifeLayout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>生活 - YY · 爱编程</title>
-    <link href="~/css/site.css" rel="stylesheet" />
-    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/lib/toastr.js/toastr.css" rel="stylesheet" />
-</head>
-<body>
-    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:ghostwhite;border-bottom:0px;" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">
-                    <img src="~/image/logo.png" style="margin-top:-5px;" />
-                </a>
-                <a class="navbar-brand" href="/" style="color:black">YY · 爱编程</a>
+
+<div class="container" id="top">
+    <div class="row" style="margin-top:60px">
+        <div class="col-md-6">
+            <div class="jumbotron" style="margin:10px;text-align:center;">
+                本年花销：@Model.StatisticsOutput.TheYearCost 元
             </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home"></span> 主页 </a></li>
-                    <li><a asp-controller="Message" asp-action="Index"><span class="glyphicon glyphicon-envelope"></span> 留言</a></li>
-                    <li><a asp-controller="Life" asp-action="Index"><span class="glyphicon glyphicon-headphones"></span> 生活</a></li>
-                </ul>
-                <partial name="../Shared/_Login.cshtml" />
+
+        </div>
+        <div class="col-md-6">
+            <div class="jumbotron" style="margin:10px;text-align:center;">
+                本月花销：@Model.StatisticsOutput.TheMonthCost 元
             </div>
         </div>
-    </nav>
-
-    <div class="container" id="top">
-        <div class="row" style="margin-top:60px">
-            <div class="col-md-6">
-                <div class="jumbotron" style="margin:10px;text-align:center;">
-                    本年花销：@Model.TheYearCost 元
-                </div>
-
-            </div>
-            <div class="col-md-6">
-                <div class="jumbotron" style="margin:10px;text-align:center;">
-                    本月花销：@Model.TheMonthCost 元
-                </div>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-6" id="yearPie" style="height:400px;">
-
-            </div>
-            <div class="col-md-6" id="monthPie" style="height:400px;">
-
-            </div>
-        </div>
-        <hr />
     </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6" id="yearPie" style="height:400px;">
 
-    <footer style="bottom:0px;width:100%;height:100px">
-        <hr />
-        <div class="container text-center">
-            <p> © Copyright YY · 爱编程</p>
-            <p style="color:#999999;">
-                ASP.NET Core（3.1） on Linux
-            </p>
         </div>
-    </footer>
+        <div class="col-md-6" id="monthPie" style="height:400px;">
 
-
-    <div class="go-to-top">
-        <a href="#top"></a>
+        </div>
     </div>
-
-    <div class="create-bill-logo">
-
+    <hr />
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">最近支出 <a class="pull-right" style="cursor:pointer" asp-controller="Life" asp-action="Bills">查看账单</a> </div>
+            <ul class="list-group">
+                @foreach (var lst in Model.NearCosts)
+                {
+                    <li class="list-group-item">@lst</li>
+                }
+            </ul>
+        </div>
     </div>
+</div>
 
 
-    <script src="~/lib/jquery/jquery.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.min.js" integrity="sha512-OvWfXEXFlgwaMYESoKZRrPGq9Ndjcf7pMgp+NjbUNeqEA1OOOUbLgquJGOzvh7H78qinNObGwRiFIj22es61Eg==" crossorigin="anonymous"></script>
-    <script>
+@section script{
+
+<script src="~/lib/jquery/jquery.js"></script>
+<script src="~/lib/bootstrap/js/bootstrap.js"></script>
+<script src="~/lib/echarts/echarts.js"></script>
+
+<script>
         $(function () {
             getYearPie();
             $(window).scroll(function () {
@@ -153,6 +115,5 @@
         }
 
 
-    </script>
-</body>
-</html>
+</script>
+}
