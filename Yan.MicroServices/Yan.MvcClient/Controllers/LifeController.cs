@@ -68,9 +68,18 @@ namespace Yan.MvcClient.Controllers
         /// 账单列表
         /// </summary>
         /// <returns></returns>
-        public async Task<IActionResult> Bills()
+        public async Task<IActionResult> Bills(int index=1,int size=10)
         {
+            var model = await _client.GetBillPage(new Models.BillPageInput
+            {
+                BeginTime = DateTime.Now.AddDays(-30),
+                EndTime = DateTime.Now,
+                Index = index,
+                Size = size
+            });
+
             return View();
         }
+
     }
 }

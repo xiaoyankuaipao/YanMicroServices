@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using Yan.MvcClient.Models;
 
 namespace Yan.MvcClient.Clients
 {
@@ -76,6 +78,28 @@ namespace Yan.MvcClient.Clients
             var model = JsonConvert.DeserializeObject<List<EChartPieData>>(result);
 
             return model;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ResultPage<BillOutput>> GetBillPage(BillPageInput input)
+        {
+            var response = new ResultPage<BillOutput>();
+
+            var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(input), Encoding.UTF8, "application/json");
+            var result = await _client.PostAsync("/api/billmanage/Bill/GetBillPage", content);
+
+            if (result.IsSuccessStatusCode)
+            {
+                var responseStr = await result.Content.ReadAsStringAsync();
+                response = JsonConvert.DeserializeObject<ResultPage<BillOutput>>(responseStr);
+            }
+
+            return response;
+            
         }
 
     }

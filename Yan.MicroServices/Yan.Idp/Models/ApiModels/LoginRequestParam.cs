@@ -25,4 +25,20 @@ namespace Yan.Idp.Models.ApiModels
         /// </summary>
         public string ClientId { get; set; }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class RefreshTokenRequestParam
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ClientId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string RefreshToken { get; set; }
+    }
 }

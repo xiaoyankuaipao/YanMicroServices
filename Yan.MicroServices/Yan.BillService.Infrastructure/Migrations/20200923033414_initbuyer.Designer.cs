@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yan.BillService.Infrastructure;
 
 namespace Yan.BillService.Infrastructure.Migrations
 {
     [DbContext(typeof(BillContext))]
-    partial class BillContextModelSnapshot : ModelSnapshot
+    [Migration("20200923033414_initbuyer")]
+    partial class initbuyer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,79 +128,6 @@ namespace Yan.BillService.Infrastructure.Migrations
                     b.ToTable("paymentmethods");
                 });
 
-            modelBuilder.Entity("Yan.BillService.Domain.Aggregate.Ordering.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int?>("_buyerId")
-                        .HasColumnName("BuyerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("_orderDate")
-                        .HasColumnName("OrderDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int?>("_paymentMethodId")
-                        .HasColumnName("PaymentMethodId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("_buyerId");
-
-                    b.HasIndex("_paymentMethodId");
-
-                    b.ToTable("orders");
-                });
-
-            modelBuilder.Entity("Yan.BillService.Domain.Aggregate.Ordering.OrderItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("_discount")
-                        .HasColumnName("Discount")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<string>("_pictureUrl")
-                        .HasColumnName("PictureUrl")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("_productName")
-                        .IsRequired()
-                        .HasColumnName("ProductName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<decimal>("_unitPrice")
-                        .HasColumnName("UnitPrice")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<int>("_units")
-                        .HasColumnName("Units")
-                        .HasColumnType("int");
-
-                    b.Property<string>("abc")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("orderitems");
-                });
-
             modelBuilder.Entity("Yan.BillService.Domain.Entities.BillItem", b =>
                 {
                     b.Property<string>("Id")
@@ -236,55 +165,6 @@ namespace Yan.BillService.Infrastructure.Migrations
                     b.HasOne("Yan.BillService.Domain.Aggregate.Buyering.CardType", "CardType")
                         .WithMany()
                         .HasForeignKey("_cardTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Yan.BillService.Domain.Aggregate.Ordering.Order", b =>
-                {
-                    b.HasOne("Yan.BillService.Domain.Aggregate.Buyering.Buyer", null)
-                        .WithMany()
-                        .HasForeignKey("_buyerId");
-
-                    b.HasOne("Yan.BillService.Domain.Aggregate.Buyering.PaymentMethod", null)
-                        .WithMany()
-                        .HasForeignKey("_paymentMethodId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.OwnsOne("Yan.BillService.Domain.Aggregate.Ordering.Address", "Address", b1 =>
-                        {
-                            b1.Property<int>("OrderId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("City")
-                                .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                            b1.Property<string>("Country")
-                                .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                            b1.Property<string>("State")
-                                .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                            b1.Property<string>("Street")
-                                .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                            b1.Property<string>("ZipCode")
-                                .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                            b1.HasKey("OrderId");
-
-                            b1.ToTable("orders");
-
-                            b1.WithOwner()
-                                .HasForeignKey("OrderId");
-                        });
-                });
-
-            modelBuilder.Entity("Yan.BillService.Domain.Aggregate.Ordering.OrderItem", b =>
-                {
-                    b.HasOne("Yan.BillService.Domain.Aggregate.Ordering.Order", null)
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yan.BillService.Infrastructure;
 
 namespace Yan.BillService.Infrastructure.Migrations
 {
     [DbContext(typeof(BillContext))]
-    partial class BillContextModelSnapshot : ModelSnapshot
+    [Migration("20200923063354_initorder1")]
+    partial class initorder1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,7 +164,7 @@ namespace Yan.BillService.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -188,9 +190,6 @@ namespace Yan.BillService.Infrastructure.Migrations
                     b.Property<int>("_units")
                         .HasColumnName("Units")
                         .HasColumnType("int");
-
-                    b.Property<string>("abc")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
@@ -284,9 +283,7 @@ namespace Yan.BillService.Infrastructure.Migrations
                 {
                     b.HasOne("Yan.BillService.Domain.Aggregate.Ordering.Order", null)
                         .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("Yan.BillService.Domain.Entities.BillItem", b =>

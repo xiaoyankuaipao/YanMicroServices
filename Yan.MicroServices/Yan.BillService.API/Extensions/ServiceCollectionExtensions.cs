@@ -60,6 +60,7 @@ namespace Yan.BillService.API.Extensions
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IBillRepository, BillRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             return services;
         }
         #endregion

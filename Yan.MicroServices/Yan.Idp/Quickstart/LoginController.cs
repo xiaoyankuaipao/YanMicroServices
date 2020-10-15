@@ -67,5 +67,40 @@ namespace Yan.Idp.Quickstart
                 return result;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost("[action]")]
+        public async Task<LoginResult> RefreshToken([FromBody] RefreshTokenRequestParam model)
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            dict["client_id"] = model.ClientId;
+            dict["client_secret"] = "spasecret";
+            dict["grant_type"] = "refresh_token";
+            dict["refresh_token"] = model.RefreshToken;
+
+            LoginResult result = new LoginResult();
+
+            var httpClient = HttpClientFactory.CreateClient();
+            using (var content = new FormUrlEncodedContent(dict))
+            {
+                var msg = await httpClient.PostAsync("http://localhost:5100/connect/token", content);
+                if (!msg.IsSuccessStatusCode)
+                {
+                    //return StatusCode(Convert.ToInt32(msg.StatusCode));
+                    return result;
+                }
+
+                string response = await msg.Content.ReadAsStringAsync();
+                result.State = 1;
+                result.Token = JsonConvert.DeserializeObject<Token>(response);
+
+                //return Content(result, "application/json");
+                return result;
+            }
+        }
     }
 }
