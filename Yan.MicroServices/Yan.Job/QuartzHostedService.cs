@@ -71,7 +71,7 @@ namespace Yan.Job
         /// </summary>
         /// <param name="jobSchedule"></param>
         /// <returns></returns>
-        private static IJobDetail CreateJob(JobSchedule jobSchedule)
+        private  IJobDetail CreateJob(JobSchedule jobSchedule)
         {
             var jobType = jobSchedule.JobType;
             return JobBuilder.Create(jobType)
@@ -85,7 +85,7 @@ namespace Yan.Job
         /// </summary>
         /// <param name="jobSchedule"></param>
         /// <returns></returns>
-        private static List<ITrigger> CreateTriggers(JobSchedule jobSchedule)
+        private List<ITrigger> CreateTriggers(JobSchedule jobSchedule)
         {
             List<ITrigger> triggers = new List<ITrigger>();
             for (var i = 0; i < jobSchedule.TriggerInfos.Count; i++)

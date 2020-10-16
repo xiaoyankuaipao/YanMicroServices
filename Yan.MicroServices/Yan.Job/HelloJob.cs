@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Yan.Job
 {
     [DisallowConcurrentExecution]//防止Quartz.Net同时运行同一个作业
-    public class HelloJob : IBaseJob
+    public class HelloJob : IJob
     {
         private readonly ILogger<HelloJob> _logger;
 
@@ -16,8 +16,6 @@ namespace Yan.Job
         {
             _logger = logger;
         }
-
-        public static string Cors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Task Execute(IJobExecutionContext context)
         {

@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Yan.Job\Yan.Job.csproj" />
     <ProjectReference Include="..\Yan.Utility\Yan.Utility.csproj" />
   </ItemGroup>
 

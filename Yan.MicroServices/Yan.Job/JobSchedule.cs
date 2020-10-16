@@ -57,7 +57,7 @@ namespace Yan.Job
         public string Identity { get; private set; }
 
         /// <summary>
-        /// 策略
+        /// Cron表达式
         /// </summary>
         public string CronExpression { get; private set; }
 

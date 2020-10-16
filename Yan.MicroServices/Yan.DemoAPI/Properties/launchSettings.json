@@ -4,7 +4,7 @@
     "Yan.DemoAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      //"launchUrl": "weatherforecast",
       "applicationUrl": "http://localhost:9010",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

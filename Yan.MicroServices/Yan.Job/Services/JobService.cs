@@ -10,7 +10,7 @@ namespace Yan.Job
     /// <summary>
     /// 
     /// </summary>
-    public class JobService
+    public class JobService : IJobService
     {
         /// <summary>
         /// 
@@ -31,14 +31,17 @@ namespace Yan.Job
         /// </summary>
         /// <param name="jobIdentity"></param>
         /// <returns></returns>
-        public async Task PauseJob(string jobIdentity, CancellationToken cancellationToken=default)
+        public async Task<bool> PauseJobAsync(string jobIdentity, CancellationToken cancellationToken = default)
         {
             var scheduler = await _schedulerFactory.GetScheduler(cancellationToken);
             var job = await scheduler.GetJobDetail(new JobKey(jobIdentity));
             if (job != null)
             {
                 await scheduler.PauseJob(new JobKey(jobIdentity));
+                return true;
             }
+
+            return false;
         }
 
         /// <summary>
@@ -47,14 +50,17 @@ namespace Yan.Job
         /// <param name="jobIdentity"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task ResumeJob(string jobIdentity, CancellationToken cancellationToken = default)
+        public async Task<bool> ResumeJobAsync(string jobIdentity, CancellationToken cancellationToken = default)
         {
             var scheduler = await _schedulerFactory.GetScheduler(cancellationToken);
             var job = await scheduler.GetJobDetail(new JobKey(jobIdentity));
             if (job != null)
             {
                 await scheduler.ResumeJob(new JobKey(jobIdentity));
+                return true;
             }
+
+            return false;
         }
 
         /// <summary>
@@ -63,11 +69,36 @@ namespace Yan.Job
         /// <param name="jobIdentity"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task GetTriggerState(string jobIdentity, CancellationToken cancellationToken = default)
+        public async Task<JobState> GetJobStateAsync(string jobIdentity, CancellationToken cancellationToken = default)
         {
+            JobState jobState = new JobState();
+
             var scheduler = await _schedulerFactory.GetScheduler(cancellationToken);
+            var job = await scheduler.GetJobDetail(new JobKey(jobIdentity));
+            if (job == null)
+            {
+                return jobState;
+            }
+            jobState.Identity = job.Key.Name;
+            jobState.Description = job.Description;
+            jobState.JobType = job.JobType;
+            jobState.TriggerStates = new List<TriggerState>();
 
+            var triggers = await scheduler.GetTriggersOfJob(new JobKey(jobIdentity), cancellationToken);
+            foreach (var trigger in triggers)
+            {
+                var triggerState = new TriggerState();
+                triggerState.Identity = trigger.Key.Name;
+                triggerState.Description = trigger.Description;
+                triggerState.NextFireTime = trigger.GetNextFireTimeUtc().Value;
+                jobState.TriggerStates.Add(triggerState);
+
+                var state = await scheduler.GetTriggerState(trigger.Key, cancellationToken);
+                triggerState.State = (int)state;
+            }
+
+            return jobState;
         }
-
+    
     }
 }

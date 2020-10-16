@@ -18,8 +18,6 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         /// <summary>
         /// 添加作业服务
-        /// Type：表示要执行的作业的类型
-        /// List<string>:表示作用的触发策略
         /// </summary>
         /// <param name="services"></param>
         /// <param name="jobSchedules"></param>
@@ -33,6 +31,9 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSomeJob(jobSchedules);
 
             services.AddHostedService<QuartzHostedService>();
+
+            services.AddScoped<IJobService, JobService>();
+
             return services;
         }
 
@@ -49,13 +50,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 services.AddScoped(job.JobType);
                 services.AddSingleton(job);
             }
-            
 
             return services;
         }
-
-
-       
 
     }
 }

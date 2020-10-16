@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Yan.Job;
 
 namespace Yan.DemoAPI
 {
@@ -28,28 +29,38 @@ namespace Yan.DemoAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    //IdentityServer地址
-                    options.Authority = "http://localhost:5100";
-                    //对应Idp中ApiResource的Name
-                    //options.Audience = "system";
-                    options.Audience = "article";
-                    //不使用https
-                    options.RequireHttpsMetadata = false;
-                });
-
-            //services.AddAuthorization(options =>
-            //{
-            //    //基于策略授权
-            //    options.AddPolicy("WeatherPolicy", builder =>
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(options =>
             //    {
-            //        //客户端Scope中包含api1.weather.scope才能访问
-            //        builder.RequireScope("system.scope");
-            //        //builder.RequireClaim("api1.weather.scope");//用这个方法不行
+            //        //IdentityServer地址
+            //        options.Authority = "http://localhost:5100";
+            //        //对应Idp中ApiResource的Name
+            //        //options.Audience = "system";
+            //        options.Audience = "article";
+            //        //不使用https
+            //        options.RequireHttpsMetadata = false;
             //    });
-            //});
+
+            ////services.AddAuthorization(options =>
+            ////{
+            ////    //基于策略授权
+            ////    options.AddPolicy("WeatherPolicy", builder =>
+            ////    {
+            ////        //客户端Scope中包含api1.weather.scope才能访问
+            ////        builder.RequireScope("system.scope");
+            ////        //builder.RequireClaim("api1.weather.scope");//用这个方法不行
+            ////    });
+            ////});
+            ///
+
+
+            List<JobSchedule> jobSchedules = new List<JobSchedule>();
+            TriggerInfo trigger = new TriggerInfo("trigger123", "0/5 * * * * ?", "测试trigger");
+
+            JobSchedule job = new JobSchedule("job123", typeof(Yan.DemoAPI.MyJob.HelloWorldJob), new List<TriggerInfo> { trigger }, "测试Job");
+            jobSchedules.Add(job);
+
+            services.AddJob(jobSchedules);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,15 +71,15 @@ namespace Yan.DemoAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
             //身份验证
-            app.UseAuthentication();
+            //app.UseAuthentication();
 
-            //授权
-            app.UseAuthorization();
+            ////授权
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
