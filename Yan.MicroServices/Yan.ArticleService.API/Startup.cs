@@ -23,6 +23,7 @@ using AutoMapper;
 using Yan.ArticleService.API.Application.Queries.Profiles;
 using Microsoft.Extensions.FileProviders;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Yan.ArticleService.API
 {
@@ -95,7 +96,16 @@ namespace Yan.ArticleService.API
                     options.Authority = "http://localhost:5100";
                     options.Audience = "article";
                     options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(1);
                 });
+
+
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("HasApiPath", policy => policy.Requirements.Add(new HasApiPathRequirement()));
+            //});
+            //services.AddHttpContextAccessor();
+            //services.AddScoped<IAuthorizationHandler, HasApiPathHandler>();
 
             services.AddSwaggerDoc();
         }
@@ -134,7 +144,7 @@ namespace Yan.ArticleService.API
                 endpoints.MapControllers();
             });
 
-            ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "articlemanage", "localhost", 6010).Wait();
+            //ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "articlemanage", "localhost", 6010).Wait();
         }
     }
 }

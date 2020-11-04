@@ -968,6 +968,41 @@
             <param name="services"></param>
             <returns></returns>
         </member>
+        <member name="T:Yan.ArticleService.API.HasApiPathRequirement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Yan.ArticleService.API.HasApiPathHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.HasApiPathHandler._articleContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Yan.ArticleService.API.HasApiPathHandler._httpContextAccessor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.HasApiPathHandler.#ctor(Yan.ArticleService.Infrastructure.ArticleContext,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            
+            </summary>
+            <param name="articleContext"></param>
+            <param name="httpContextAccessor"></param>
+        </member>
+        <member name="M:Yan.ArticleService.API.HasApiPathHandler.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext,Yan.ArticleService.API.HasApiPathRequirement)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="requirement"></param>
+            <returns></returns>
+        </member>
         <member name="T:Yan.ArticleService.API.Models.ArticleDto">
             <summary>
             
