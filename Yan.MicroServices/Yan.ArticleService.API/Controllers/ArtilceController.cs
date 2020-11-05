@@ -62,7 +62,7 @@ namespace Yan.ArticleService.API.Controllers
         /// like article
         /// </summary>
         [HttpDelete("{id}")]
-        //[Authorize]
+        [Authorize]
         public async Task<HandleResultDto> DeleteArticle(string id)
         {
             return await _mediator.Send(new DeleteArticleCommand { ArticleId = id }, HttpContext.RequestAborted); ;

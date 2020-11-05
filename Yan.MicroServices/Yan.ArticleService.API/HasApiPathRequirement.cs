@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -51,6 +52,11 @@ namespace Yan.ArticleService.API
         /// <returns></returns>
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, HasApiPathRequirement requirement)
         {
+            if(context.Resource is Endpoint endpoint)
+            {
+                var actionDescriptor = endpoint.Metadata.GetMetadata<ControllerActionDescriptor>();
+            }
+
             if (context.User.Identity.IsAuthenticated)
             {
                 string path = _httpContextAccessor.HttpContext.Request.Path;
@@ -65,6 +71,28 @@ namespace Yan.ArticleService.API
             return Task.CompletedTask;
         }
 
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class OrHasAPiPathHandler : AuthorizationHandler<HasApiPathRequirement>
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="requirement"></param>
+        /// <returns></returns>
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, HasApiPathRequirement requirement)
+        {
+            //当需要多个处理程序的时候，可以使用context.HasSucceeded 和context.HasFailed 判断之前的判断状态，
+            if (context.HasSucceeded)
+            {
+                context.Succeed(requirement);
+            }
+            return Task.CompletedTask;
+        }
     }
 
 

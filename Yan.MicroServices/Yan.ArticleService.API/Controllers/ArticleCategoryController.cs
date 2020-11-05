@@ -53,7 +53,8 @@ namespace Yan.ArticleService.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        [Authorize(Policy ="HasApiPath")]
+        [Authorize]
+        //[Authorize(Policy ="HasApiPath")]
         public async Task<HandleResultDto> Delete(string id)
         {
             return await _mediator.Send(new DeleteArticleCategoryCommand { CategoryId = id }, HttpContext.RequestAborted);
@@ -76,7 +77,8 @@ namespace Yan.ArticleService.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("[action]")]
-        [Authorize(Policy = "HasApiPath")]
+        [Authorize]
+        //[Authorize(Policy = "HasApiPath")]
         public async Task<PageResultDto<ArticleCategoryDto>> GetArticleCategoryList()
         {
             var response = await _mediator.Send(new ArticleCategoryListQuery(), HttpContext.RequestAborted);

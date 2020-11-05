@@ -100,12 +100,13 @@ namespace Yan.ArticleService.API
                 });
 
 
-            //services.AddAuthorization(options =>
-            //{
-            //    options.AddPolicy("HasApiPath", policy => policy.Requirements.Add(new HasApiPathRequirement()));
-            //});
-            //services.AddHttpContextAccessor();
-            //services.AddScoped<IAuthorizationHandler, HasApiPathHandler>();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("HasApiPath", policy => policy.Requirements.Add(new HasApiPathRequirement()));
+            });
+            services.AddHttpContextAccessor();
+            services.AddScoped<IAuthorizationHandler, HasApiPathHandler>();
+            services.AddScoped<IAuthorizationHandler, OrHasAPiPathHandler>();
 
             services.AddSwaggerDoc();
         }

@@ -1003,6 +1003,19 @@
             <param name="requirement"></param>
             <returns></returns>
         </member>
+        <member name="T:Yan.ArticleService.API.OrHasAPiPathHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Yan.ArticleService.API.OrHasAPiPathHandler.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext,Yan.ArticleService.API.HasApiPathRequirement)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="requirement"></param>
+            <returns></returns>
+        </member>
         <member name="T:Yan.ArticleService.API.Models.ArticleDto">
             <summary>
             
