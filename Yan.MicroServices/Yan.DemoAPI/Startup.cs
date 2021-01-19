@@ -28,7 +28,13 @@ namespace Yan.DemoAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //services.Configure<List<JobSchedule>>(Configuration.GetSection("Job"));
+
+
             services.AddControllers();
+
+            #region
             //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             //    .AddJwtBearer(options =>
             //    {
@@ -52,7 +58,7 @@ namespace Yan.DemoAPI
             ////    });
             ////});
             ///
-
+            #endregion
 
             List<JobSchedule> jobSchedules = new List<JobSchedule>();
             TriggerInfo trigger = new TriggerInfo("trigger123", "0/5 * * * * ?", "≤‚ ‘trigger");

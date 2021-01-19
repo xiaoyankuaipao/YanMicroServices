@@ -61,6 +61,11 @@ namespace Yan.ArticleService.Infrastructure
         /// 
         /// </summary>
         public DbSet<MessageAggregate> MessageAggregates { get; set; }
+
+        public override void Dispose()
+        {
+        }
+
     }
 
 

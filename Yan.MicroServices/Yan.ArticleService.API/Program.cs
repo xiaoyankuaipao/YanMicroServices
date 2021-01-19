@@ -34,6 +34,13 @@ namespace Yan.ArticleService.API
                 {
                     webBuilder.UseUrls("http://*:6010");
                     webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseKestrel(options =>
+                    //{
+                    //    options.ConfigureHttpsDefaults(i =>
+                    //    {
+                    //        i.ServerCertificate = new System.Security.Cryptography.X509Certificates.X509Certificate2("123.pfx", "123456");
+                    //    });
+                    //});
                 });
     }
 }

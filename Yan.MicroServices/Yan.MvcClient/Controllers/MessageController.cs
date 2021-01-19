@@ -72,14 +72,7 @@ namespace Yan.MvcClient.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var nameClaim = User.Claims.FirstOrDefault(c => c.Type == "name");
-                if (nameClaim == null)
-                {
-                    input.UserName = "佚名";
-                }
-                else
-                {
-                    input.UserName = nameClaim.Value;
-                }
+                input.UserName = nameClaim == null ? "佚名" : nameClaim.Value;
             }
             else
             {

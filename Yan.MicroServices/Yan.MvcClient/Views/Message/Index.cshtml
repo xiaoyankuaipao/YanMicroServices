@@ -15,7 +15,7 @@
     <link href="~/lib/toastr.js/toastr.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:ghostwhite;border-bottom:0px;" role="navigation" >
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:ghostwhite;border-bottom:0px;" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -41,7 +41,7 @@
     </nav>
 
     <div class="container" id="top">
-        <div class="row"  style="margin-top:60px">
+        <div class="row" style="margin-top:60px">
             <div class="col-md-12">
                 <form asp-controller="Message" asp-action="AddMessage" data-ajax="true" data-ajax-success="addSuccess" data-ajax-confirm="确认要提交吗？" data-ajax-method="post">
                     <div class="form-group">
@@ -81,6 +81,9 @@
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
     <script src="~/lib/toastr.js/toastr.min.js"></script>
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+
     <script>
         $(function () {
             toastr.options = {
@@ -116,7 +119,7 @@
                 url: '@Url.Action("GetMessageSkipPage", "Message")',
                 data: { "skip": skip, "size": size },
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
                     var item = "";
                     if (data.state == 1) {
                         var lst = data.result.data;
@@ -137,6 +140,8 @@
             skip++;
             $("#messageDiv").prepend("<div class='panel panel-default'><div class='panel-heading'>" + data.userName + "</div><div class='panel-body'>" + data.message + "</div></div>");
             toastr.success('感谢您的留言');
+
+            //connection.invoke("SendMessage", "123", "456")
         }
 
     </script>

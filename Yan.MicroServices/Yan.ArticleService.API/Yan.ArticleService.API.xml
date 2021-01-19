@@ -915,15 +915,7 @@
             
             </summary>
         </member>
-        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddDomainDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder})">
-            <summary>
-            
-            </summary>
-            <param name="services"></param>
-            <param name="options"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddMySqlContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+        <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddDomainDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
             <summary>
             
             </summary>
@@ -948,7 +940,7 @@
         </member>
         <member name="M:Yan.ArticleService.API.Extensions.ServiceCollectionExtensions.AddMediatRServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            add Mediat service
+            add MediatR service
             </summary>
             <param name="services"></param>
             <returns></returns>

@@ -40,7 +40,7 @@ namespace Yan.ArticleService.API.Controllers
         /// </summary>
         /// <param name="cmd"></param>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public async Task<HandleResultDto> Post([FromBody]CreateArticleCategoryCommand cmd)
         {

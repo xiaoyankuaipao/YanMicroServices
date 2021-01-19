@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Yan.Job;
 
 namespace Yan.DemoAPI.Controllers
@@ -15,7 +16,6 @@ namespace Yan.DemoAPI.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly IJobService _jobService;
 
         private static readonly string[] Summaries = new[]
         {
@@ -24,19 +24,15 @@ namespace Yan.DemoAPI.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger,IJobService jobService)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger/*,IOptions<List<JobSchedule>> info*/)
         {
             _logger = logger;
-            _jobService = jobService;
         }
 
         [HttpGet]
-        public async Task<JobState> Get()
+        public  Task Get()
         {
-
-            var state = await _jobService.GetJobStateAsync("job123");
-
-            return state;
+            return Task.CompletedTask;
         }
     }
 }

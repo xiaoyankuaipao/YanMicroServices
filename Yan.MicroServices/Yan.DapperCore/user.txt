@@ -1,0 +1,34 @@
+        public void ConfigureServices(IServiceCollection services)
+        {
+        	//Á¬½Ósqlserver
+            services.AddDapper("SqlDb", m =>
+            {
+                m.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+                m.DbType = DbStoreType.SqlServer;
+            });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+        }
+
+        [Route("api/[controller]")]
+    [ApiController]
+    public class UserController : ControllerBase
+    {
+        private readonly DapperClient _SqlDB;
+        private readonly DapperClient _OracleDB;
+        public UserController(IDapperFactory dapperFactory)
+        {
+            _OracleDB= dapperFactory.CreateClient("OracleConnection");
+            _SqlDB= dapperFactory.CreateClient("SqlDb");
+        }
+
+        [HttpGet]
+        public object Get()
+        {
+            var testQuery = _OracleDB.Query<dynamic>(@"SELECT * FROM BASE_DEPT where ROWNUM<=5");
+
+            var result = _SqlDB.Query<dynamic>(@"select * from [UserInfo](nolock)");
+            
+            return new Result<object>() { data = result };
+        }
+
+    }

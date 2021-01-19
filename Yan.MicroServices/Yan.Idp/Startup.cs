@@ -96,8 +96,9 @@ namespace Yan.Idp
             //    options.Password.RequiredLength = 1;
             //    options.Password.RequiredUniqueChars = 1;
             //});
-           
-            builder.AddDeveloperSigningCredential();
+
+            builder.AddDeveloperSigningCredential(true, "zhhtkey.jwk");
+            //builder.AddSigningCredential("zhhtkey.jwk");
 
             #region 腾讯云用
             //services.AddAuthentication()

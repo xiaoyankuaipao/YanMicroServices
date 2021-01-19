@@ -82,7 +82,7 @@ namespace Yan.ArticleService.API
 
             services.AddMediatRServices();
 
-            services.AddMySqlContext(Configuration["ConnectionStrings:MySqlConnection"]);
+            services.AddDomainDbContext(Configuration["ConnectionStrings:MySqlConnection"]);
             services.AddRepositories();
 
             services.AddDapper(Configuration["ConnectionStrings:MySqlConnection"]);
@@ -104,9 +104,10 @@ namespace Yan.ArticleService.API
             {
                 options.AddPolicy("HasApiPath", policy => policy.Requirements.Add(new HasApiPathRequirement()));
             });
-            services.AddHttpContextAccessor();
-            services.AddScoped<IAuthorizationHandler, HasApiPathHandler>();
-            services.AddScoped<IAuthorizationHandler, OrHasAPiPathHandler>();
+
+            //services.AddHttpContextAccessor();
+            //services.AddScoped<IAuthorizationHandler, HasApiPathHandler>();
+            //services.AddScoped<IAuthorizationHandler, OrHasAPiPathHandler>();
 
             services.AddSwaggerDoc();
         }

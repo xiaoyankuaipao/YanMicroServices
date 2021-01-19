@@ -119,6 +119,7 @@ namespace Yan.Infrastructure.Core
             }
         }
 
+        ///<summary>
         /// 回滚事物
         /// </summary>
         public void RollbackTransaction()

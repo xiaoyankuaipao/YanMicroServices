@@ -43,4 +43,13 @@
     <ProjectReference Include="..\Yan.Dapper\Yan.Dapper.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="tempkey.jwk">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="zhhtkey.jwk">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

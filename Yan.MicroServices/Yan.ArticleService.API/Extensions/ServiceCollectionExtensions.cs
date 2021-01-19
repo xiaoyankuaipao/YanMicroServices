@@ -29,25 +29,12 @@ namespace Yan.ArticleService.API.Extensions
         /// 
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddDomainDbContext(this IServiceCollection services, Action<DbContextOptionsBuilder> options)
-        {
-            return services.AddDbContext<ArticleContext>(options);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="services"></param>
         /// <param name="connectionString"></param>
         /// <returns></returns>
-        public static IServiceCollection AddMySqlContext(this IServiceCollection services, string connectionString)
+        public static IServiceCollection AddDomainDbContext(this IServiceCollection services, string connectionString)
         {
-            return services.AddDomainDbContext(builder =>
-            {
-                builder.UseMySql(connectionString);
-            });
+            services.AddDbContext<ArticleContext>(builder => { builder.UseMySql(connectionString); });
+            return services;
         }
 
         #endregion
@@ -86,13 +73,14 @@ namespace Yan.ArticleService.API.Extensions
         }
 
         /// <summary>
-        /// add Mediat service
+        /// add MediatR service
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
         public static IServiceCollection AddMediatRServices(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ArticleContextTransactionBehavior<,>));//管道处理，如果有多个环节，要注意添加顺序，执行顺序与添加顺序相同
+            services.AddTransient(typeof(IPipelineBehavior<,>),
+                typeof(ArticleContextTransactionBehavior<,>)); //管道处理，如果有多个环节，要注意添加顺序，执行顺序与添加顺序相同
             return services.AddMediatR(typeof(Article).Assembly, typeof(Program).Assembly);
         }
 
@@ -104,16 +92,19 @@ namespace Yan.ArticleService.API.Extensions
         /// <returns></returns>
         public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
         {
-            //添加继承事件订阅处理服务
+            //添加集成事件订阅处理服务
             services.AddTransient<ISubscriberService, SubscriberService>();
 
             services.AddCap(options =>
             {
-                options.UseEntityFramework<ArticleContext>();
-
-                options.UseRabbitMQ(options =>
+                options.UseMySql(builder =>
                 {
-                    configuration.GetSection("RabbitMQ").Bind(options);
+                    builder.ConnectionString = configuration["ConnectionStrings:MySqlConnection"];
+                });
+
+                options.UseRabbitMQ(option =>
+                {
+                    configuration.GetSection("RabbitMQ").Bind(option);
                 });
             });
             return services;

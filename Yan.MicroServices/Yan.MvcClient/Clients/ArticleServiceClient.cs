@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Yan.Core.Dtos;
+using Yan.MvcClient.Message;
 using Yan.MvcClient.ViewModel;
 
 namespace Yan.MvcClient.Clients
@@ -19,14 +22,26 @@ namespace Yan.MvcClient.Clients
         /// 
         /// </summary>
         private HttpClient _client;
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly IHubContext<MessageHub> _messageHub;
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="client"></param>
-        public ArticleServiceClient(HttpClient client)
+        /// <param name="hubContext"></param>
+        /// <param name="httpContextAccessor"></param>
+        public ArticleServiceClient(HttpClient client,IHubContext<MessageHub> hubContext, IHttpContextAccessor httpContextAccessor)
         {
             _client = client;
+            _messageHub = hubContext;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         #region Article
@@ -73,7 +88,7 @@ namespace Yan.MvcClient.Clients
 
         public async Task<HandleResultDto> LikeIt(string id)
         {
-            var result = await _client.GetStringAsync($"/api/articlemanage/Artilce/LikeThisArticle/{id}");
+            var result = await _client.GetStringAsync($"/api/articlemanage/Artilce/LikeThisArticle/{id}"); 
             var model = JsonConvert.DeserializeObject<HandleResultDto>(result);
             return model;
 
@@ -117,13 +132,31 @@ namespace Yan.MvcClient.Clients
         public async Task<HandleResultDto> AddMessage(MessageCreateDto input)
         {
             var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(input), Encoding.UTF8, "application/json");
-
             var result = await _client.PostAsync("/api/articlemanage/Message/AddMessage", content);
 
             if (result.IsSuccessStatusCode)
             {
                 var responseStr = await result.Content.ReadAsStringAsync();
                 var response = JsonConvert.DeserializeObject<HandleResultDto>(responseStr);
+
+                //signalr 通知
+                var httpContext = _httpContextAccessor.HttpContext;
+                var userName = "";
+                if (httpContext != null && httpContext.User!=null)
+                {
+                    userName = httpContext.User.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+                }
+                if (String.IsNullOrEmpty(userName))
+                {
+                    userName = "佚名";
+                }
+
+                //广播
+                //await _messageHub.Clients.All.SendAsync("AddNewMessage", userName, input.Message);
+
+                //向特定的组推送
+                await _messageHub.Clients.Group("严传鹏").SendAsync("AddNewMessage", userName, input.Message);
+
                 return response;
             }
             else
@@ -133,6 +166,8 @@ namespace Yan.MvcClient.Clients
                     State = 0,
                 };
             }
+
+
         }
 
         #endregion
