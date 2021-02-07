@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "layui@2.5.7",
+      "destination": "wwwroot/lib/layui/"
+    },
+    {
+      "library": "jquery.form@4.3.0",
+      "destination": "wwwroot/lib/jquery.form/"
+    }
+  ]
+}
