@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Autofac;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Yan.Admin.Clients.Account;
 using Yan.Admin.Modules;
 
 namespace Yan.Admin
@@ -35,10 +37,18 @@ namespace Yan.Admin
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+            services.AddHttpClient<AccountServiceClient>(client =>
+                {
+                    client.BaseAddress = new Uri(Configuration["GateWayAddress"]);
+                });
+
+            //注入IHttpContextAccessor,方便获取HttpContext
+            services.AddHttpContextAccessor();
 
             //制定控制器的实例有容器来创建，方便属性注入，Controller本身默认是由MVC模块管理的，
-           services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
+            services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
         }
 
         /// <summary>

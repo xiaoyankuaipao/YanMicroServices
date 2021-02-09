@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link href="~/lib/layui/css/layui.css" rel="stylesheet" />
-    <link href="~/css/admin.css" rel="stylesheet" />
+    @*<link href="~/css/admin.css" rel="stylesheet" />*@
     <link href="~/css/login.css" rel="stylesheet" />
     <style>
         .layadmin-user-login-main {
@@ -28,11 +28,11 @@
         <form method="post" action="/account/logon" class="layadmin-user-login-box layadmin-user-login-body layui-form">
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
-                <input type="text" name="username" id="LAY-user-login-username" lay-verify="required" placeholder="用户名" class="layui-input">
+                <input type="text" name="username" id="LAY-user-login-username" lay-verify="username" autocomplete="off"   placeholder="请输入用户名" class="layui-input">
             </div>
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
-                <input type="password" name="password" id="LAY-user-login-password" lay-verify="required" placeholder="密码" class="layui-input">
+                <input type="password" name="password" id="LAY-user-login-password" lay-verify="password" autocomplete="off" placeholder="请输入密码" class="layui-input">
             </div>
             <div class="layui-form-item">
                 <button id="btn-logon" class="layui-btn layui-btn-fluid" type="button" lay-submit="" onkeyup="" lay-filter="LAY-user-login-submit">登 入</button>
@@ -45,29 +45,43 @@
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script>
 
-    $(function () {
-        if (window != top) {
-            top.location.href = location.href;
-        }
+    //引入form layer 模块
+    layui.use(['form','layer'], function() {
         var form = layui.form;
-        form.render();
-
-        document.onkeyup = function (e) {
-            var code = e.charCode || e.keyCode;
-            if (code == 13) {
-                $("#btn-logon").click();
+        var layer = layui.layer;
+        //自定义验证规则
+        form.verify({
+            username: function(value) {
+                if (value.length === 0) {
+                    return '请输入用户名';
+                }
+                return '';
+            },
+            password: function(value) {
+                if (value.length === 0) {
+                    return '请输入密码';
+                }
+                return '';
             }
-        }
-
-        var logon = function () {
-            $(".layui-form").formPost(function () {
-                location.href = '/home/Index';
-            });
-        }
-        //提交
-        form.on('submit(LAY-user-login-submit)', function () {
-            logon();
         });
+
+        //监听提交
+        form.on('submit(LAY-user-login-submit)',
+            function (data) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Login","Account")',
+                    data: data.field,
+                    success: function(result) {
+                        if (result.resultCode === 1) {
+                            layer.alert('登录成功');
+                            location.href = '@Url.Action("Index","Home")';
+                        } else {
+                            layer.alert('登录失败');
+                        }
+                    }
+                });
+            });
     })
 </script>
 
