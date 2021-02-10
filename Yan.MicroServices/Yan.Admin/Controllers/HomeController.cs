@@ -20,6 +20,9 @@ namespace Yan.Admin.Controllers
 
         public IActionResult Index()
         {
+            var test = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "access_token");
+
+
             return View();
         }
 

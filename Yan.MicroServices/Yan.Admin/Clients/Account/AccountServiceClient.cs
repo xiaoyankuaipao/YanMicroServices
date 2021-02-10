@@ -40,7 +40,7 @@ namespace Yan.Admin.Clients.Account
         /// </summary>
         /// <param name="loginDto"></param>
         /// <returns></returns>
-        public async Task<ServiceResult> LoginInAsync(LoginDto loginDto)
+        public async Task<LoginResult> LoginInAsync(LoginDto loginDto)
         {
             var content = new StringContent(JsonConvert.SerializeObject(loginDto), Encoding.UTF8, "application/json");
             var result = await _client.PostAsync(Loginapi, content);
@@ -48,17 +48,10 @@ namespace Yan.Admin.Clients.Account
             {
                 var resultStr = await result.Content.ReadAsStringAsync();
                 var resultObj = JsonConvert.DeserializeObject<LoginResult>(resultStr);
-                if (resultObj.State == 0)
-                {
-                    return new ServiceResult(ServiceResultCode.Failed);
-                }
-
-                var serviceResult = new ServiceResult(ServiceResultCode.Succeed);
-                serviceResult.Data = resultObj.Token;
-                return serviceResult;
+                return resultObj;
             }
 
-            return new ServiceResult(ServiceResultCode.Error);
+            return null;
         }
 
     }

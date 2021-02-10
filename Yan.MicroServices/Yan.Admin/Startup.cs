@@ -1,13 +1,17 @@
 using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Autofac;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Yan.Admin.Clients.Account;
+using Yan.Admin.Clients.SystemManage;
 using Yan.Admin.Modules;
 
 namespace Yan.Admin
@@ -39,10 +43,29 @@ namespace Yan.Admin
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+
             services.AddHttpClient<AccountServiceClient>(client =>
                 {
                     client.BaseAddress = new Uri(Configuration["GateWayAddress"]);
                 });
+            services.AddHttpClient<SystemManageServiceClient>(client =>
+            {
+                client.BaseAddress = new Uri(Configuration["GateWayAddress"]);
+            });
+
+            //cookies身份认证
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.Cookie.Name = "yan.admin";
+                    options.Cookie.HttpOnly = true;
+                    options.ExpireTimeSpan = TimeSpan.FromDays(7);
+                    options.LoginPath = "/Account/Logon";
+                    options.LogoutPath = "/Account/Logout";
+                    options.SlidingExpiration = true;
+                    options.DataProtectionProvider = DataProtectionProvider.Create(new DirectoryInfo(Directory.GetCurrentDirectory()));
+                });
+
 
             //注入IHttpContextAccessor,方便获取HttpContext
             services.AddHttpContextAccessor();
@@ -80,6 +103,7 @@ namespace Yan.Admin
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             //app.UseEndpoints(endpoints =>

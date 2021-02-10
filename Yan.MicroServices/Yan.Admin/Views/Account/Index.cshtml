@@ -73,7 +73,7 @@
                     url: '@Url.Action("Login","Account")',
                     data: data.field,
                     success: function(result) {
-                        if (result.resultCode === 1) {
+                        if (result.state === 1) {
                             layer.alert('登录成功');
                             location.href = '@Url.Action("Index","Home")';
                         } else {
