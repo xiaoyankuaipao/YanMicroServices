@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Yan.Core.Filters;
 using Yan.Core.Extensions;
 using AutoMapper;
@@ -17,21 +12,36 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Yan.SystemService.API.Extensions;
 using Yan.Consul;
 using System.IdentityModel.Tokens.Jwt;
-using Yan.SystemService.Infrastructure;
-using Microsoft.EntityFrameworkCore;
+using Autofac;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Yan.SystemService.API.Modules;
 
 namespace Yan.SystemService.API
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers(options =>
@@ -40,6 +50,11 @@ namespace Yan.SystemService.API
                 //options.Filters.Add<ApiResultFilterAttribute>();
                 options.Filters.Add<CustomExceptionAttribute>();
             });
+
+            //注入IHttpContextAccessor,方便获取HttpContext
+            services.AddHttpContextAccessor();
+            //制定控制器实例有容器来创建，方便属性注入，Controller本身默认是有MVC模块管理的
+            services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -76,9 +91,22 @@ namespace Yan.SystemService.API
 
             services.AddSwaggerDoc();
         }
-        
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="builder"></param>
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            //通过模块注册方式 注入依赖项
+            builder.RegisterModule<WebModule>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

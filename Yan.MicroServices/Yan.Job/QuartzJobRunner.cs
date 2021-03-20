@@ -25,8 +25,10 @@ namespace Yan.Job
             using (var scope = _provider.CreateScope())
             {
                 var jobType = context.JobDetail.JobType;
-                var job = scope.ServiceProvider.GetRequiredService(jobType) as IJob;
-                await job.Execute(context);
+                if (scope.ServiceProvider.GetRequiredService(jobType) is IJob job)
+                {
+                    await job.Execute(context);
+                }
             }
         }
     }

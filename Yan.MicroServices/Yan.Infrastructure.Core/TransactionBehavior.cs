@@ -13,7 +13,7 @@ using Yan.Infrastructure.Core.Extensions;
 namespace Yan.Infrastructure.Core
 {
     /// <summary>
-    /// 事物管理：基于Meditor 的 管道来实现
+    /// 事物管理：基于 MediatR 的 管道来实现
     /// 用来注入事物的管理过程
     /// </summary>
     public class TransactionBehavior<TDbContext, TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
@@ -22,17 +22,17 @@ namespace Yan.Infrastructure.Core
         /// <summary>
         /// 
         /// </summary>
-        private ILogger _logger;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// 
         /// </summary>
-        private TDbContext _dbContext;
+        private readonly TDbContext _dbContext;
 
         /// <summary>
         /// 
         /// </summary>
-        private ICapPublisher _capBus;
+        private readonly ICapPublisher _capBus;
 
         /// <summary>
         /// 

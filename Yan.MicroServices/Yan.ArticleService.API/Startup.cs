@@ -1,29 +1,23 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
 using Yan.ArticleService.API.Extensions;
 using Yan.Core.Filters;
 using Yan.Core.Extensions;
-using Yan.Consul;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Swashbuckle.AspNetCore.Filters;
 using AutoMapper;
 using Yan.ArticleService.API.Application.Queries.Profiles;
 using Microsoft.Extensions.FileProviders;
 using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Authorization;
+using Autofac;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Yan.ArticleService.API.Modules;
 
 namespace Yan.ArticleService.API
 {
@@ -105,11 +99,22 @@ namespace Yan.ArticleService.API
                 options.AddPolicy("HasApiPath", policy => policy.Requirements.Add(new HasApiPathRequirement()));
             });
 
-            //services.AddHttpContextAccessor();
+            services.AddHttpContextAccessor();
             //services.AddScoped<IAuthorizationHandler, HasApiPathHandler>();
             //services.AddScoped<IAuthorizationHandler, OrHasAPiPathHandler>();
 
+            services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
+
             services.AddSwaggerDoc();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="builder"></param>
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule<WebModule>();
         }
 
         /// <summary>
