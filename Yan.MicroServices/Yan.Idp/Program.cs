@@ -10,7 +10,9 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
+using Yan.Consul;
 using Yan.Idp.Data;
+using Yan.Utility;
 
 namespace Yan.Idp
 {
@@ -25,19 +27,32 @@ namespace Yan.Idp
                 .MinimumLevel.Override("System", LogEventLevel.Warning)
                 .MinimumLevel.Override("Microsoft.AspNetCore.Authentication", LogEventLevel.Information)
                 .Enrich.FromLogContext()
-                .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Code)
+                .WriteTo.Console(
+                    outputTemplate:
+                    "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}",
+                    theme: AnsiConsoleTheme.Code)
                 .CreateLogger();
 
             try
             {
+                LocalInfo.ServerIp = Environment.GetEnvironmentVariable("HOST_IP");
+                LocalInfo.SlbIp = Environment.GetEnvironmentVariable("SLB_IP");
+
+                if (string.IsNullOrWhiteSpace(LocalInfo.ServerIp))
+                {
+                    LocalInfo.ServerIp = IPAddressHelper.GetLocalIP();
+                }
+
                 var host = CreateHostBuilder(args).Build();
 
                 #region 初始化数据
+
                 //Log.Information("Seeding database...");
                 //var config = host.Services.GetRequiredService<IConfiguration>();
                 //var connectionString = config.GetConnectionString("DefaultConnection");
                 //SeedData.EnsureSeedData(connectionString);
                 //Log.Information("Done seeding database.");
+
                 #endregion
 
                 Log.Information("Starting host...");

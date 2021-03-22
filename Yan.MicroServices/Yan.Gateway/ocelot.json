@@ -3,7 +3,7 @@
     "BaseUrl": "https://localhost:5000",
     "ServiceDiscoveryProvider": {
       "Type": "Consul", //使用Consul来实现服务发现
-      "Host": "127.0.0.1", //Consul IP
+      "Host": "10.0.8.5", //Consul IP
       "Port": 8500 //Consul Port
     }
   },
@@ -151,7 +151,15 @@
       "LoadBalancer": "RoundRobin",
       "UseServiceDiscovery": true,
       "UpstreamPathTemplate": "/doc/identityservice/swagger.json",
-      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+      "DownstreamHostAndPorts": [
+        {
+          //"Host": "127.0.0.1",
+          //"Port": "5100"
+          "Host": "10.0.8.5",
+          "Port": 5100
+        }
+      ]
     },
 
     //IdentityServer4
@@ -165,7 +173,7 @@
           //"Host": "127.0.0.1",
           //"Port": "5100"
           "Host": "10.100.45.33",
-          "Port": "5100"
+          "Port": 5100
         }
       ],
       "ServiceName": "identityservice",
