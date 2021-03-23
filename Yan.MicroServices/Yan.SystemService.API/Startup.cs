@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Autofac;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.IdentityModel.Logging;
 using Yan.SystemService.API.Modules;
 
 namespace Yan.SystemService.API
@@ -74,9 +76,13 @@ namespace Yan.SystemService.API
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    options.Authority = "http://localhost:5100";
+                    options.Authority = "http://10.0.8.5:5100";
+                    //options.Authority = "http://82.156.187.171:5100";
                     options.Audience = "system";
                     options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters.ValidateIssuer = false;
+                    options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(1);
+                    IdentityModelEventSource.ShowPII = true;
                 });
 
 
@@ -130,7 +136,8 @@ namespace Yan.SystemService.API
                 endpoints.MapControllers();
             });
 
-            ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "systemmanage", "localhost", 6020).Wait();
+            ConsulHelper.RegisterService($"http://{LocalInfo.SlbIp}:8500", "dc1", "systemmanage", LocalInfo.ServerIp,
+                6020).Wait();
         }
     }
 }

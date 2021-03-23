@@ -69,7 +69,7 @@ namespace Yan.Idp.Data
                             new Claim(JwtClaimTypes.Name, "测试人员"),
                             new Claim(JwtClaimTypes.GivenName, "Test"),
                             new Claim(JwtClaimTypes.FamilyName, "test"),
-                            new Claim(JwtClaimTypes.WebSite, "http://118.24.205.200:9090"),
+                            new Claim(JwtClaimTypes.WebSite, "http://82.156.187.171:9090"),
                         }).Result;
                         if (!result.Succeeded)
                         {

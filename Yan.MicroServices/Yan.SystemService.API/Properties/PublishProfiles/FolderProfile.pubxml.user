@@ -6,6 +6,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>E:\LocalGithub\MicroServices\YanMicroServices\Yan.MicroServices\Yan.SystemService.API\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\github\YanMicroServices\Yan.MicroServices\Yan.SystemService.API\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
+    <History>True|2021-03-23T09:19:48.8048215Z;True|2021-03-23T14:39:35.7137609+08:00;True|2021-03-23T14:32:24.7879666+08:00;True|2021-03-23T14:22:34.0441417+08:00;True|2021-03-23T14:16:06.3339439+08:00;True|2021-03-23T11:06:41.3614632+08:00;True|2021-03-23T09:50:26.2604855+08:00;True|2021-03-23T09:49:42.0511669+08:00;</History>
   </PropertyGroup>
 </Project>

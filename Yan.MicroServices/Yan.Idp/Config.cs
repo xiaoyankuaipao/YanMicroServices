@@ -105,7 +105,7 @@ namespace Yan.Idp
                     ClientId="vue-blog",
                     ClientName="Spa Client",
                     //ClientUri="http://localhost:8080",
-                    ClientUri="http://118.24.205.200",
+                    ClientUri="http://82.156.187.171",
                     AllowedGrantTypes=GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser=true,
                     RequireConsent=false,
@@ -121,16 +121,16 @@ namespace Yan.Idp
                     //},
 
                     RedirectUris={
-                        "http://118.24.205.200/signin-oidc",//登录成功之后，跳转回来的uri
-                        "http://118.24.205.200/redirect-silentrenew"//用于刷新token的uri
+                        "http://82.156.187.171/signin-oidc",//登录成功之后，跳转回来的uri
+                        "http://82.156.187.171/redirect-silentrenew"//用于刷新token的uri
                     },
 
                     PostLogoutRedirectUris={
-                        "http://118.24.205.200"//登出之后，跳转的uri
+                        "http://82.156.187.171"//登出之后，跳转的uri
                     },
 
                     AllowedCorsOrigins={
-                        "http://118.24.205.200",
+                        "http://82.156.187.171",
                         "http://localhost:8080"
                     },
 
@@ -154,13 +154,13 @@ namespace Yan.Idp
                     //RequireConsent=false,
                     AlwaysIncludeUserClaimsInIdToken=true,
 
-                    //RedirectUris={ "http://118.24.205.200:9898/signin-oidc" },
-                    //FrontChannelLogoutUri="http://118.24.205.200:9898/signout-oidc",
-                    //PostLogoutRedirectUris={ "http://118.24.205.200:9898/signout-callback-oidc" },
+                    RedirectUris={ "http://82.156.187.171:9898/signin-oidc" },
+                    FrontChannelLogoutUri="http://82.156.187.171:9898/signout-oidc",
+                    PostLogoutRedirectUris={ "http://82.156.187.171:9898/signout-callback-oidc" },
 
-                    RedirectUris={ "http://localhost:9898/signin-oidc" },
-                    FrontChannelLogoutUri="http://localhost:9898/signout-oidc",
-                    PostLogoutRedirectUris={ "http://localhost:9898/signout-callback-oidc" },
+                    //RedirectUris={ "http://localhost:9898/signin-oidc" },
+                    //FrontChannelLogoutUri="http://localhost:9898/signout-oidc",
+                    //PostLogoutRedirectUris={ "http://localhost:9898/signout-callback-oidc" },
 
                     AllowOfflineAccess=true,
 

@@ -17,7 +17,9 @@ using System.IdentityModel.Tokens.Jwt;
 using Autofac;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.IdentityModel.Logging;
 using Yan.ArticleService.API.Modules;
+using Yan.Consul;
 
 namespace Yan.ArticleService.API
 {
@@ -87,10 +89,13 @@ namespace Yan.ArticleService.API
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    options.Authority = "http://localhost:5100";
+                    options.Authority = "http://10.0.8.5:5100";
+                    //options.Authority = "http://82.156.187.171:5100";
                     options.Audience = "article";
                     options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters.ValidateIssuer = false;
                     options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(1);
+                    IdentityModelEventSource.ShowPII = true;
                 });
 
 
@@ -151,7 +156,8 @@ namespace Yan.ArticleService.API
                 endpoints.MapControllers();
             });
 
-            //ConsulHelper.RegisterService("http://127.0.0.1:8500", "dc1", "articlemanage", "localhost", 6010).Wait();
+            ConsulHelper.RegisterService($"http://{LocalInfo.SlbIp}:8500", "dc1", "articlemanage", LocalInfo.ServerIp,
+                6010).Wait();
         }
     }
 }

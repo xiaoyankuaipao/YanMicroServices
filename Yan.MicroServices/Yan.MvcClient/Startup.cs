@@ -76,13 +76,15 @@ namespace Yan.MvcClient
             services.AddHttpClient();
             services.AddHttpClient<ArticleServiceClient>(client =>
             {
-                //client.BaseAddress = new Uri("http://118.24.205.200:5000");
-                client.BaseAddress = new Uri("http://localhost:5000");
+                //client.BaseAddress = new Uri("http://82.156.187.171:5000");
+                //client.BaseAddress = new Uri("http://localhost:5000");
+                client.BaseAddress = new Uri("http://10.0.8.5:5000");
             });
             services.AddHttpClient<BillClient>(client =>
             {
-                //client.BaseAddress = new Uri("http://118.24.205.200:5000");
-                client.BaseAddress = new Uri("http://localhost:5000");
+                //client.BaseAddress = new Uri("http://82.156.187.171:5000");
+                //client.BaseAddress = new Uri("http://localhost:5000");
+                client.BaseAddress = new Uri("http://10.0.8.5:5000");
             });
 
             #endregion
@@ -98,8 +100,8 @@ namespace Yan.MvcClient
                 .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
                 {
                     options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    //options.Authority = "http://118.24.205.200:5100";
-                    options.Authority = "http://localhost:5100";
+                    options.Authority = "http://82.156.187.171:5100";
+                    //options.Authority = "http://localhost:5100";
                     options.RequireHttpsMetadata = false;
                     options.ClientId = "Yan.MvcClient";
                     options.ClientSecret = "Yan.MvcClient";
@@ -119,9 +121,11 @@ namespace Yan.MvcClient
                 })
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
-                    options.Authority = "http://localhost:5100";
+                    //options.Authority = "http://localhost:5100";
+                    options.Authority = "http://10.0.8.5:5100";
                     options.Audience = "article";
                     options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters.ValidateIssuer = false;
                     options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(1);
 
                     options.Events = new JwtBearerEvents()
@@ -177,7 +181,7 @@ namespace Yan.MvcClient
             {
                 builder.Run( async context =>
                 {
-                    context.Response.Redirect("http://118.24.205.200:5000" + context.Request.Path);
+                    context.Response.Redirect("http://82.156.187.171:5000" + context.Request.Path);
                 });
             });
 

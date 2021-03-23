@@ -15,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Linq;
+using Microsoft.IdentityModel.Logging;
 using Yan.Consul;
 using Yan.Idp.Data;
 using Yan.Idp.Models;
@@ -84,6 +85,7 @@ namespace Yan.Idp
             builder.AddInMemoryClients(Config.Clients);
             builder.AddResourceOwnerValidator<ResourceOwnerPasswordValidator>();
             builder.AddProfileService<ProfileService>();
+            //builder.AddDeveloperSigningCredential();
             //builder.AddAspNetIdentity<ApplicationUser>();
 
 
@@ -100,26 +102,28 @@ namespace Yan.Idp
             builder.AddDeveloperSigningCredential(true, "zhhtkey.jwk");
             //builder.AddSigningCredential("zhhtkey.jwk");
 
+            IdentityModelEventSource.ShowPII = true;
+
             #region 腾讯云用
-            //services.AddAuthentication()
-            //       .AddGitHub(option =>
-            //       {
-            //           option.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-            //           option.ClientId = "f117b3563aad82f1ab2e";
-            //           option.ClientSecret = "761f7a94755e5b15479a67c97609a56e18205103";
-            //           option.Scope.Add("user:email");
-            //       });
+            services.AddAuthentication()
+                   .AddGitHub(option =>
+                   {
+                       option.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                       option.ClientId = "f117b3563aad82f1ab2e";
+                       option.ClientSecret = "761f7a94755e5b15479a67c97609a56e18205103";
+                       option.Scope.Add("user:email");
+                   });
             #endregion
 
             //本次测试用
-            services.AddAuthentication()
-               .AddGitHub(option =>
-               {
-                   option.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                   option.ClientId = "5ecea3f522395ffe982d";
-                   option.ClientSecret = "331b43cc58fa2b6e8765842f3aadaaab43e5b264";
-                   option.Scope.Add("user:email");
-               });
+            //services.AddAuthentication()
+            //   .AddGitHub(option =>
+            //   {
+            //       option.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+            //       option.ClientId = "5ecea3f522395ffe982d";
+            //       option.ClientSecret = "331b43cc58fa2b6e8765842f3aadaaab43e5b264";
+            //       option.Scope.Add("user:email");
+            //   });
 
             #region Swagger
             services.AddSwaggerGen(options =>

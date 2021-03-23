@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Yan.Consul;
 
 namespace Yan.ArticleService.API
 {
@@ -21,6 +22,9 @@ namespace Yan.ArticleService.API
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
+            LocalInfo.ServerIp = Environment.GetEnvironmentVariable("HOST_IP");
+            LocalInfo.SlbIp = Environment.GetEnvironmentVariable("SLB_IP");
+
             CreateHostBuilder(args).Build().Run();
         }
 

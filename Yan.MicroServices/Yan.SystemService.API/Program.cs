@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Yan.Consul;
+using Yan.Utility;
 
 namespace Yan.SystemService.API
 {
@@ -21,6 +18,15 @@ namespace Yan.SystemService.API
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
+            LocalInfo.ServerIp = Environment.GetEnvironmentVariable("HOST_IP");
+            LocalInfo.SlbIp = Environment.GetEnvironmentVariable("SLB_IP");
+
+
+            if (string.IsNullOrWhiteSpace(LocalInfo.ServerIp))
+            {
+                LocalInfo.ServerIp = IPAddressHelper.GetLocalIP();
+            }
+
             CreateHostBuilder(args).Build().Run();
         }
 

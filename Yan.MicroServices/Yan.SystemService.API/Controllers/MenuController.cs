@@ -14,7 +14,7 @@ using Yan.SystemService.API.Models;
 namespace Yan.SystemService.API.Controllers
 {
     /// <summary>
-    /// s
+    /// 
     /// </summary>
     [Route("api/systemmanageservice/[controller]")]
     [ApiController]
