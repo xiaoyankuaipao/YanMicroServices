@@ -66,6 +66,39 @@ namespace Yan.SystemService.API.Controllers
         }
 
         /// <summary>
+        /// 获取用户信息和菜单
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("[action]")]
+        public async Task<ResultDto<UserInfoAndMenuDto>> GetUserInfoAndMenu()
+        {
+            UserInfo info = new UserInfo()
+            {
+                Id = User.FindFirst("id").Value,
+                UserName = User.FindFirst("name").Value,
+                RealName = User.FindFirst("realname").Value,
+                Email = User.FindFirst("email").Value
+            };
+
+            var userId = this.User.FindFirst("id").Value;
+            var menus = await _mediator.Send(new UserPermissionMenuTreeQuery { UserId = userId });
+
+            ResultDto<UserInfoAndMenuDto> response = new ResultDto<UserInfoAndMenuDto>
+            {
+                State = menus.State,
+                Message = menus.Message,
+                Data = new UserInfoAndMenuDto()
+                {
+                    UserInfo = info,
+                    MenuTreeDtos = menus.Data
+                }
+            };
+
+            return response;
+        }
+
+
+        /// <summary>
         /// 获取用户列表
         /// </summary>
         /// <param name="page"></param>
