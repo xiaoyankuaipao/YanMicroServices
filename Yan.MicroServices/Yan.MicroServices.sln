@@ -77,9 +77,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yan.EF", "Yan.EF\Yan.EF.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yan.Autofac", "Yan.Autofac\Yan.Autofac.csproj", "{53C09B90-7C09-4363-A3C9-30A044D69776}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yan.DelayQueue", "Yan.DelayQueue\Yan.DelayQueue.csproj", "{BCA2711A-B42C-4CEE-8BE9-234B84741637}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yan.DelayQueue", "Yan.DelayQueue\Yan.DelayQueue.csproj", "{BCA2711A-B42C-4CEE-8BE9-234B84741637}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yan.Test", "Yan.Test\Yan.Test.csproj", "{88F1854D-CA42-43A5-9696-1BAA68F93C88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yan.Test", "Yan.Test\Yan.Test.csproj", "{88F1854D-CA42-43A5-9696-1BAA68F93C88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yan.Configuration", "Yan.Configuration\Yan.Configuration.csproj", "{98B1829E-8C1D-4C6E-96A4-A4B43E7A94FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -203,6 +205,10 @@ Global
 		{88F1854D-CA42-43A5-9696-1BAA68F93C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F1854D-CA42-43A5-9696-1BAA68F93C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F1854D-CA42-43A5-9696-1BAA68F93C88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98B1829E-8C1D-4C6E-96A4-A4B43E7A94FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98B1829E-8C1D-4C6E-96A4-A4B43E7A94FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98B1829E-8C1D-4C6E-96A4-A4B43E7A94FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98B1829E-8C1D-4C6E-96A4-A4B43E7A94FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -241,6 +247,7 @@ Global
 		{53C09B90-7C09-4363-A3C9-30A044D69776} = {765107D4-33A7-4D17-9A6D-32CC82A74535}
 		{BCA2711A-B42C-4CEE-8BE9-234B84741637} = {765107D4-33A7-4D17-9A6D-32CC82A74535}
 		{88F1854D-CA42-43A5-9696-1BAA68F93C88} = {CC5A024C-2FE6-4049-A4D9-3C5DAC21AF6F}
+		{98B1829E-8C1D-4C6E-96A4-A4B43E7A94FD} = {765107D4-33A7-4D17-9A6D-32CC82A74535}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B8BB4AF-2990-4BA1-8C0E-64C70A1AC864}

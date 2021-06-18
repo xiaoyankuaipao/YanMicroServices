@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.16" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yan.Consul\Yan.Consul.csproj" />
+  </ItemGroup>
+
+</Project>
