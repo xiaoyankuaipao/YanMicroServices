@@ -1,0 +1,104 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.login-container {
+    height: 100%;
+    width: 100%;
+    background: url(../image/loginBj.jpg);
+    background-attachment: fixed;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.login-form {
+    position: relative;
+    width: 500px;
+    max-width: 100%;
+    top: 150px;
+    padding: 20px 35px 0;
+    margin: 0 auto;
+    overflow: hidden;
+    opacity: 0.8;
+    background-color: #324056;
+    border-radius: 10px;
+}
+
+.title-container {
+    position: relative;
+}
+
+    .title-container .title {
+        font-size: 26px;
+        color: #eee;
+        margin: 0px auto 40px auto;
+        text-align: center;
+        font-weight: bold;
+    }
+
+.login-form .submit_btn {
+    width: 100%;
+    font-size: 16px;
+    background-color: #1aa2ff;
+    border: 1px solid #1aa2ff;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.login-form li {
+    list-style: none;
+    font-weight: bold;
+}
+
+/* 修改element 样式 */
+.login-container input {
+    background: #2d3a4b;
+    border-color: #2d3a4b;
+    color: #c3c3c3;
+    height: 45px;
+}
+
+.el-form-item {
+    margin-top: 30px;
+}
+
+.el-input__icon {
+    left: 0;
+}
+
+.el-form-item__error {
+    color: #e04f78;
+    padding-top: 8px;
+}
+
+.el-input__icon + .el-input__inner {
+    padding-left: 40px;
+}
+
+.el-form-item.is-error .el-input__inner {
+    border-color: #e04f78;
+}
+
+.focus {
+    color: #1aa2ff;
+}
+
+/*动画效果*/
+.form-fade-enter-active, .form-fade-leave-active {
+    transition: all 0.8s;
+}
+
+.form-fade-enter, .form-fade-leave-active {
+    transform: translate3d(0, -50px, 0);
+    opacity: 0;
+}

@@ -1,0 +1,115 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#app {
+    height: 100%;
+}
+
+.home-container {
+    height: 100%;
+    overflow: hidden;
+}
+
+.el-header {
+    text-align: center;
+    width: 100%;
+    height: 60px;
+    background-color: #192027;
+}
+
+.home-logo, .home-toggle {
+    float: left;
+    font-size: 22px;
+    padding-left: 20px;
+    height: 60px;
+    line-height: 60px;
+    width: auto;
+    color: #fff;
+}
+
+.home-toggle i:hover {
+    cursor: pointer;
+}
+
+.home-logo img {
+    width: 35px;
+    height: 35px;
+    vertical-align: middle;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+
+a span {
+    color: dimgrey;
+}
+
+a span:hover {
+    color: cornflowerblue
+}
+
+.el-aside {
+    text-align: left;
+    height: 100%;
+    background-color: #304156;
+    transition: width 0.28s;
+    overflow-x: hidden;
+}
+
+    .el-aside .el-menu { border-right: solid 0; }
+
+.el-container {
+    height: 100%;
+}
+
+
+.el-tabs--card {
+    height: calc(100vh - 110px);
+}
+.el-tab-pane {
+    height: calc(100vh - 110px);
+    overflow-y: auto;
+}
+
+.home-right {
+    float: right;
+    padding-right: 10px;
+}
+
+.user-container {
+    line-height: 60px;
+    height: 100%;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+    .user-container img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+
+    .user-container span {
+        line-height: 60px;
+        color: red;
+    }
+
+/*动画效果*/
+.form-fade-enter-active, .form-fade-leave-active {
+    transition: all 0.8s;
+}
+
+.form-fade-enter, .form-fade-leave-active {
+    transform: translate3d(0, -50px, 0);
+    opacity: 0;
+}

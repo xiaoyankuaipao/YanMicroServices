@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "vue@2.6.9",
+      "destination": "wwwroot/lib/vue/"
+    },
+    {
+      "library": "element-ui@2.15.6",
+      "destination": "wwwroot/lib/element-ui/"
+    },
+    {
+      "library": "screenfull.js@5.1.0",
+      "destination": "wwwroot/lib/screenfull.js/"
+    },
+    {
+      "library": "axios@0.21.4",
+      "destination": "wwwroot/lib/axios/"
+    }
+  ]
+}

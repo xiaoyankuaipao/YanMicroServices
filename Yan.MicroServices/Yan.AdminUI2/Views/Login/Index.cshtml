@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "YY.Admin";
+    Layout = null;
+}
+@model LoginViewModel
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/login.css" />
+    <link rel="stylesheet" href="~/lib/element-ui/theme-chalk/index.css" />
+    <link rel="stylesheet" href="~/font/iconfont.css" />
+    <script type="text/javascript" src="~/lib/vue/vue.js"></script>
+    <script type="text/javascript" src="~/lib/element-ui/index.js"></script>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+    <div id="app" class="login-container">
+        <transition name="form-fade" mode="in-out">
+            <el-form ref="loginForm" class="login-form" :model="loginForm" :rules="loginRules" auto-complete="on" label-position="left" v-show="showLoginForm"
+                     asp-action="Index" asp-controller="Login" method="post">
+                @Html.AntiForgeryToken()
+                <div class="title-container">
+                    <h3 class="title">Login Form</h3>
+                </div>
+                <span style="color: firebrick; word-break: break-all;">@Html.ValidationSummary()</span>
+                <el-form-item prop="userName">
+                    <input type="hidden" asp-for="ReturnUrl" />
+                    <el-input ref="userName" v-model="loginForm.userName"
+                              placeholder="| 请输入用户名"
+                              :prefix-icon="userNameIcon"
+                              name="userName"
+                              @@focus="userFocusHandle(true)"
+                              @@blur="userFocusHandle(false)"
+                              type="text"
+                              tabindex="1"
+                              auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item prop="password">
+                    <el-input ref="password"
+                              v-model="loginForm.password"
+                              type="password"
+                              :prefix-icon="passwordIcon"
+                              @@focus="passwordFocusHandle(true)"
+                              @@blur="passwordFocusHandle(false)"
+                              name="password"
+                              placeholder="| 请输入密码"
+                              tabindex="2"
+                              auto-complete="on"></el-input>
+                </el-form-item>
+                <el-button :loading="loading" type="primary" class="submit_btn" native-type="submit" :disabled="loginBtnDisabled">登录</el-button>
+            </el-form>
+        </transition>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                showLoginForm: false,
+                userNameFocus: false,
+                passwordFocus: false,
+                loginForm: {
+                    userName: '',
+                    password: ''
+                },
+                loginRules: {
+                    userName: [{ required: true, triggr: 'blur', message: '请输入用户名' }],
+                    password: [{ required: true, triggr: 'blur', message: '请输入密码' }]
+                },
+                loading: false,
+                redirect: undefined,
+                loginBtnDisabled:true
+            },
+            mounted() {
+                this.showLoginForm = true;
+            },
+            computed: {
+                userNameIcon() {
+                    return this.userNameFocus ? 'blank iconfont icon-account focus' : 'blank iconfont icon-account';
+                },
+                passwordIcon() {
+                    return this.passwordFocus ? 'blank iconfont icon-lock focus' : 'blank iconfont icon-lock';
+                }
+            },
+            watch: {
+                loginForm: {
+                    deep: true,
+                    handler: function (newV, oldV) {
+                        console.log('changed');
+                        if (newV.userName !== '' && newV.password !== '') {
+                            this.loginBtnDisabled = false;
+                        }
+                    }
+                }
+            },
+            methods: {
+                userFocusHandle(isFocus) {
+                    this.userNameFocus = isFocus;
+                },
+                passwordFocusHandle(idFocus) {
+                    this.passwordFocus = idFocus;
+                }
+            }
+        })
+    </script>
+</body>
+

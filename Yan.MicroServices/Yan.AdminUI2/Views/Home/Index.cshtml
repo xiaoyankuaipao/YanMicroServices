@@ -1,0 +1,237 @@
+﻿@using System.Linq
+@using Microsoft.CodeAnalysis
+@model List<ElMenu>
+@{
+    ViewData["Title"] = "YY后台管理系统";
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/home.css" />
+    <link rel="stylesheet" href="~/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/lib/element-ui/theme-chalk/index.css" />
+    <link rel="stylesheet" href="~/font/iconfont.css" />
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="~/lib/axios/axios.js"></script>
+    <script type="text/javascript" src="~/lib/vue/vue.js"></script>
+    <script type="text/javascript" src="~/lib/element-ui/index.js"></script>
+    <script type="text/javascript" src="~/lib/screenfull/screenfull.js"></script>
+    <script type="text/javascript" src="~/js/admin.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <el-container>
+
+            <el-header>
+                <div class="home-logo">
+                    <img src="~/image/logo1.png">
+                    <span>@ViewData["Title"]</span>
+                </div>
+
+                <div class="home-toggle">
+                    <span @@click="menuToggle">
+                        <i class="el-icon-menu"></i>
+                    </span>
+                </div>
+
+                <div class="home-right">
+                    <a href="javascript:;" title="全屏" style="padding-right: 10px;" @@click="fullScreen">
+                        <i class="fa fa-arrows-alt fa-lg" ref="fullScreenIcon" style="color: white"></i>
+                    </a>
+                    <el-dropdown menu-align="start">
+                        <div class="user-container">
+                            <img src="~/image/user.jpg">
+                            <span>
+                                &nbsp;
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    @User.Identity.Name
+                                }
+                            </span>
+                        </div>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item divided>
+                                <a style="text-decoration: none" asp-action="LogOut" asp-controller="Login"><span>登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出</span></a>
+                            </el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </div>
+            </el-header>
+
+            <el-container>
+                <el-aside :width="isCollapse? '50px':'250px'">
+                    <el-menu :default-active="defaultActive"
+                             background-color="#304156"
+                             text-color="#fff"
+                             active-text-color="#ffd04b"
+                             style="height: 100%;"
+                             :collapse="isCollapse"
+                             :unique-opened="true"
+                             ref="menu">
+                        @foreach (var item in Model)
+                        {
+                            @if (item.path.Contains("/") && item.parentId == "0")
+                             {
+                                 <el-menu-item index="@item.name" @@click="addTab('@item.title','@item.path','@item.name')">
+                                     <i class="@item.icon"></i>
+                                     <span slot="title">@item.title</span>
+                                 </el-menu-item>
+                             }
+                             else if (item.parentId == "0")
+                             {
+                                 <el-submenu index="@item.name">
+                                     <template slot="title">
+                                         <i class="@item.icon"></i>
+                                         <span slot="title">@item.title</span>
+                                     </template>
+                                     @{ var childMenu = Model.Where<ElMenu>(m => m.parentId == item.id); }
+                                     @foreach (var item2 in childMenu)
+                                     {
+                                         if (item2.path.Contains("/"))
+                                         {
+                                             <el-menu-item index="@item2.name" @@click="addTab('@item2.title','@item2.path','@item2.name')">
+                                                 <i class="@item2.icon"></i>
+                                                 <span slot="title">@item2.title</span>
+                                             </el-menu-item>
+                                         }
+                                         else
+                                         {
+                                             <el-submenu index="@item2.name">
+                                                 <template slot="title">
+                                                     <i class="@item2.icon"></i>
+                                                     <span slot="title">@item2.title</span>
+                                                 </template>
+                                                 @{ var childMenu2 = Model.Where<ElMenu>(m => m.parentId == item2.id); }
+                                                 @foreach (var item3 in childMenu2)
+                                                 {
+                                                     <el-menu-item index="@item3.name" @@click="addTab('@item3.title','@item3.path','@item3.name')">
+                                                         <i class="@item3.icon"></i>
+                                                         <span slot="title">@item3.title</span>
+                                                     </el-menu-item>
+                                                 }
+                                             </el-submenu>
+                                         }
+                                     }
+                                 </el-submenu>
+                             }
+                        }
+                    </el-menu>
+                </el-aside>
+                <el-main style="padding: 0">
+                    <el-tabs v-model="tabsIndex" type="border-card" @@tab-remove="removeTab" @@tab-click="clickTab">
+                        <el-tab-pane v-for="(item,index) in tabsData" :key="item.name" :label="item.title" :name="item.name" :closable="item.closeable">
+                            <transition-group name="form-fade" mode="in-out">
+                                <div :id="'tab_'+item.name" v-bind:key="'tab_'+item.name"></div>
+                                <component :is="item.content" :ref="item.name" :tabIndex="item.name" v-bind:key="item.name"/>
+                            </transition-group>
+                        </el-tab-pane>
+                    </el-tabs>
+                </el-main>
+            </el-container>
+
+        </el-container>
+    </div>
+
+</body>
+</html>
+
+<partial name="DashBoard"/>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isCollapse: false,
+            isFullscreen: false,
+            tabsData: [
+                {
+                    title: 'DashBoard',
+                    name: 'DashBoard',
+                    content: dashboard,
+                    closeable: false
+                }
+            ],
+            tabsIndex: 'DashBoard',
+            defaultActive: 'DashBoard'
+        },
+        methods: {
+            menuToggle() {
+                this.isCollapse =!this.isCollapse;
+            },
+            fullScreen() {
+                window.screenfull.toggle();
+                this.isFullscreen = !this.isFullscreen;
+                var c = 'fa-compress';
+                var f = 'fa-arrows-alt';
+                var i = this.$refs.fullScreenIcon;
+                if (this.isFullscreen) {
+                    if (i.classList.contains(f)) {
+                        i.classList.add(c);
+                        i.classList.remove(f);
+                    }
+                } else {
+                    i.classList.add(f);
+                    i.classList.remove(c);
+                }
+            },
+            addTab(title, path, name) {
+                let tabs = this.tabsData;
+                let self = this;
+                for (let tab of tabs) {
+                    if (tab.name === name) {
+                        this.tabsIndex = name;
+                        return false;
+                    }
+                }
+                this.tabsData.push({
+                    title: title,
+                    name: name,
+                    content: null,
+                    closeable: true
+                });
+                this.tabsIndex = name;
+                $.ajax({
+                    url: path,
+                    success: function(result) {
+                        $("#tab_" + name).html(result);
+                        self.tabsData[self.tabsData.length - 1].content = eval(name);
+                    },
+                    error: function (error) {
+                        window.location.href = "/Login";
+                    }
+                });
+
+                return true;
+            },
+            removeTab(targetName) {
+                let tabs = this.tabsData;
+                let activeName = this.tabsIndex;
+                if (activeName === targetName) {
+                    tabs.forEach((tab, index) => {
+                        if (tab.name === targetName) {
+                            var nextTab = tabs[index + 1] || tabs[index - 1];
+                            if (nextTab) {
+                                activeName = nextTab.name;
+                            }
+                        }
+                    });
+                }
+
+                this.tabsIndex = activeName;
+                this.tabsData = tabs.filter(tab => tab.name !== targetName);
+                this.defaultActive = activeName;
+            },
+            clickTab(tab) {
+                var name = tab.name;
+                this.defaultActive = name;
+            }
+        }
+    });
+</script>

@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+
+
+<template id="index3">
+    <div>
+        <el-table :data="article" style="width: 100%">
+            <el-table-column prop="id"
+                             label="id"
+                             width="180">
+            </el-table-column>
+            <el-table-column prop="title"
+                             label="名称"
+                             width="180">
+            </el-table-column>
+            <el-table-column prop="remark"
+                             label="简介">
+            </el-table-column>
+        </el-table>
+        <el-pagination @@size-change="handleSizeChanged" @@current-change="handleCurrentPageChanged" :current-page="currentPage"
+                       :page-sizes="pageSize" :page-size="limit" layout="total, -> ,sizes, -> , prev, pager, next" :total="count">
+        </el-pagination>
+    </div>
+</template>
+
+<script type="text/javascript">
+    var index3 = {
+        template: "#index3",
+        data: function(){
+            return {
+                article: [],
+                pageSize: [5, 10, 20, 50, 100],
+                limit: 20,
+                currentPage: 1,
+                count:0
+            }
+        },
+        mounted: function () {
+            this.getData();
+        },
+        methods: {
+            async getData() {
+                let here = this;
+                var data = await httpRequestService.GET('/Home/GetArticleLst?page=' +
+                    this.currentPage +
+                    '&limit=' +
+                    this.limit);
+
+                here.count = data.totalCount;
+                here.article = data.datas;
+            },
+            handleSizeChanged (val) {
+                this.limit = val;
+                this.currentPage = 1;
+                this.getData();
+            },
+            handleCurrentPageChanged (val) {
+                this.currentPage = val;
+                this.getData();
+            }
+        }
+
+    }
+</script>
