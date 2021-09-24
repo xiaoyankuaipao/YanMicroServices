@@ -40,7 +40,7 @@ namespace Yan.AdminUI2
 
                     options.Events.OnRedirectToLogin = context =>
                     {
-                        if(context.Request.Headers.ContainsKey("axios") && context.Request.Headers["axios"]=="true")
+                        if (context.Request.Headers.ContainsKey("axios") && context.Request.Headers["axios"] == "true")
                         {
                             context.Response.StatusCode = 401;
                         }
@@ -53,7 +53,7 @@ namespace Yan.AdminUI2
 
                     options.Cookie.Name = "_YY.AdminUI";
                     options.Cookie.HttpOnly = true;
-                    options.ExpireTimeSpan = TimeSpan.FromSeconds(20);
+                    options.ExpireTimeSpan = TimeSpan.FromDays(6);
                     options.SlidingExpiration = false;
                 });
 

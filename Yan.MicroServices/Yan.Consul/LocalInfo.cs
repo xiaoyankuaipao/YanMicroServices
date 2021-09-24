@@ -18,5 +18,10 @@ namespace Yan.Consul
         /// 
         /// </summary>
         public static string SlbIp { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ConsulKV ConsulKv { get; set; }
     }
 }

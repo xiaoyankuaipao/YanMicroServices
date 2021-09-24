@@ -37,14 +37,10 @@ namespace Yan.Dapper
         /// <returns></returns>
         public async Task<int> ExecuteAsync(string path)
         {
-            using (IDbConnection connection = new MySqlConnection(_connectionString))
-            {
-                using (StreamReader streamReader = new StreamReader(path, System.Text.Encoding.UTF8))
-                {
-                    var script = await streamReader.ReadToEndAsync();
-                    return await connection.ExecuteAsync(script);
-                }
-            }
+            using IDbConnection connection = new MySqlConnection(_connectionString);
+            using StreamReader streamReader = new StreamReader(path, System.Text.Encoding.UTF8);
+            var script = await streamReader.ReadToEndAsync();
+            return await connection.ExecuteAsync(script);
         }
 
         /// <summary>
@@ -53,12 +49,10 @@ namespace Yan.Dapper
         /// <param name="sql"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        public async Task<int> ExecuteAsync(string sql, object param = null)
+        public async Task<int> ExecuteAsync(string sql, object param)
         {
-            using (IDbConnection connection = new MySqlConnection(_connectionString))
-            {
-                return await connection.ExecuteAsync(sql, param);
-            }
+            using IDbConnection connection = new MySqlConnection(_connectionString);
+            return await connection.ExecuteAsync(sql, param);
         }
 
         /// <summary>
@@ -68,29 +62,27 @@ namespace Yan.Dapper
         /// <returns></returns>
         public async Task<bool> ExecuteAsyncTransaction(List<string> list)
         {
-            using (IDbConnection connection = new MySqlConnection(_connectionString))
+            using IDbConnection connection = new MySqlConnection(_connectionString);
+            connection.Open();
+
+            IDbTransaction transaction = connection.BeginTransaction();
+
+            try
             {
-                connection.Open();
-
-                IDbTransaction transaction = connection.BeginTransaction();
-
-                try
+                foreach (var sql in list)
                 {
-                    foreach (var sql in list)
-                    {
-                        await connection.ExecuteAsync(sql, null, transaction);
-                    }
-
-                    transaction.Commit();
-
-                    return true;
+                    await connection.ExecuteAsync(sql, null, transaction);
                 }
-                catch (Exception e)
-                {
-                    transaction.Rollback();
 
-                    return false;
-                }
+                transaction.Commit();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+
+                return false;
             }
         }
 
@@ -101,29 +93,27 @@ namespace Yan.Dapper
         /// <returns></returns>
         public async Task<bool> ExecuteAsyncTransaction(List<KeyValuePair<string, object>> list)
         {
-            using (IDbConnection connection = new MySqlConnection(_connectionString))
+            using IDbConnection connection = new MySqlConnection(_connectionString);
+            connection.Open();
+
+            IDbTransaction transaction = connection.BeginTransaction();
+
+            try
             {
-                connection.Open();
-
-                IDbTransaction transaction = connection.BeginTransaction();
-
-                try
+                foreach (var item in list)
                 {
-                    foreach (var item in list)
-                    {
-                        await connection.ExecuteAsync(item.Key, item.Value, transaction);
-                    }
-
-                    transaction.Commit();
-
-                    return true;
+                    await connection.ExecuteAsync(item.Key, item.Value, transaction);
                 }
-                catch (Exception e)
-                {
-                    transaction.Rollback();
 
-                    return false;
-                }
+                transaction.Commit();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+
+                return false;
             }
         }
 
@@ -136,10 +126,8 @@ namespace Yan.Dapper
         /// <returns></returns>
         public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object param = null) where T : class
         {
-            using (IDbConnection connection = new MySqlConnection(_connectionString))
-            {
-                return await connection.QueryAsync<T>(sql, param);
-            }
+            using IDbConnection connection = new MySqlConnection(_connectionString);
+            return await connection.QueryAsync<T>(sql, param);
         }
 
         /// <summary>
@@ -151,10 +139,8 @@ namespace Yan.Dapper
         /// <returns></returns>
         public async Task<T> QueryFirstOrDefaultAsync<T>(string sql, object param = null) where T : class
         {
-            using (IDbConnection connection = new MySqlConnection(_connectionString))
-            {
-                return await connection.QueryFirstOrDefaultAsync<T>(sql, param);
-            }
+            using IDbConnection connection = new MySqlConnection(_connectionString);
+            return await connection.QueryFirstOrDefaultAsync<T>(sql, param);
         }
 
         /// <summary>
@@ -162,18 +148,16 @@ namespace Yan.Dapper
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sql"></param>
-        /// <param name="parm"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
-        public async Task<DapperPageResult<T>> QueryPage<T>(string sql, object parm = null) where T : class
+        public async Task<DapperPageResult<T>> QueryPage<T>(string sql, object param = null) where T : class
         {
             DapperPageResult<T> result = new DapperPageResult<T>();
             using (IDbConnection connection = new MySqlConnection(_connectionString))
             {
-                using (var reader = await connection.QueryMultipleAsync(sql, parm))
-                {
-                    result.Data = (await reader.ReadAsync<T>())?.ToList();
-                    result.TotalCount = await reader.ReadFirstAsync<long>();
-                }
+                using var reader = await connection.QueryMultipleAsync(sql, param);
+                result.Data = (await reader.ReadAsync<T>())?.ToList();
+                result.TotalCount = await reader.ReadFirstAsync<long>();
             }
 
             return result;
@@ -184,14 +168,12 @@ namespace Yan.Dapper
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sql"></param>
-        /// <param name="parm"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
-        public async Task<T> GetResult<T>(string sql, object parm = null)
+        public async Task<T> GetResult<T>(string sql, object param = null)
         {
-            using (IDbConnection connection = new MySqlConnection(_connectionString))
-            {
-                return await connection.QueryFirstOrDefaultAsync<T>(sql, parm);
-            }
+            using IDbConnection connection = new MySqlConnection(_connectionString);
+            return await connection.QueryFirstOrDefaultAsync<T>(sql, param);
         }
 
     }

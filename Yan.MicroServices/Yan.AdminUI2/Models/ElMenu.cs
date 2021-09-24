@@ -24,4 +24,20 @@ namespace Yan.AdminUI2.Models
         public string icon { set; get; }
         public string path { get; set; }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ElSubMenu
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public ElMenu SubMenu { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<ElMenu> Menus { get; set; }
+    }
 }

@@ -16,14 +16,38 @@
     <link rel="stylesheet" href="~/css/font-awesome.css" />
     <link rel="stylesheet" href="~/lib/element-ui/theme-chalk/index.css" />
     <link rel="stylesheet" href="~/font/iconfont.css" />
+    
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="~/lib/axios/axios.js"></script>
     <script type="text/javascript" src="~/lib/vue/vue.js"></script>
     <script type="text/javascript" src="~/lib/element-ui/index.js"></script>
     <script type="text/javascript" src="~/lib/screenfull/screenfull.js"></script>
     <script type="text/javascript" src="~/js/admin.js"></script>
+    
     <style>
+        .el-tabs--border-card > .el-tabs__content {
+            margin: 0;
+            padding: 0;
+        }
 
+        .el-tabs--border-card > .el-tabs__header {
+            background-color: #1B2945;
+            border: none;
+            /*border-top: 1px solid #1B2945;*/
+            margin-top: -1px;
+            margin-bottom: 1px;
+        }
+
+            .el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
+                color: #bfcbd9;
+                background-color: #304156;
+                border: none;
+                box-shadow: none;
+            }
+
+        .el-tabs--border-card>.el-tabs__header .el-tabs__item:not(.is-disabled):hover {
+            color: #409EFF;
+        }
     </style>
 </head>
 <body>
@@ -50,7 +74,6 @@
                         <div class="user-container">
                             <img src="~/image/user.jpg">
                             <span>
-                                &nbsp;
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     @User.Identity.Name
@@ -68,65 +91,10 @@
 
             <el-container>
                 <el-aside :width="isCollapse? '50px':'250px'">
-                    <el-menu :default-active="defaultActive"
-                             background-color="#304156"
-                             text-color="#fff"
-                             active-text-color="#ffd04b"
-                             style="height: 100%;"
-                             :collapse="isCollapse"
-                             :unique-opened="true"
-                             ref="menu">
-                        @foreach (var item in Model)
-                        {
-                            @if (item.path.Contains("/") && item.parentId == "0")
-                             {
-                                 <el-menu-item index="@item.name" @@click="addTab('@item.title','@item.path','@item.name')">
-                                     <i class="@item.icon"></i>
-                                     <span slot="title">@item.title</span>
-                                 </el-menu-item>
-                             }
-                             else if (item.parentId == "0")
-                             {
-                                 <el-submenu index="@item.name">
-                                     <template slot="title">
-                                         <i class="@item.icon"></i>
-                                         <span slot="title">@item.title</span>
-                                     </template>
-                                     @{ var childMenu = Model.Where<ElMenu>(m => m.parentId == item.id); }
-                                     @foreach (var item2 in childMenu)
-                                     {
-                                         if (item2.path.Contains("/"))
-                                         {
-                                             <el-menu-item index="@item2.name" @@click="addTab('@item2.title','@item2.path','@item2.name')">
-                                                 <i class="@item2.icon"></i>
-                                                 <span slot="title">@item2.title</span>
-                                             </el-menu-item>
-                                         }
-                                         else
-                                         {
-                                             <el-submenu index="@item2.name">
-                                                 <template slot="title">
-                                                     <i class="@item2.icon"></i>
-                                                     <span slot="title">@item2.title</span>
-                                                 </template>
-                                                 @{ var childMenu2 = Model.Where<ElMenu>(m => m.parentId == item2.id); }
-                                                 @foreach (var item3 in childMenu2)
-                                                 {
-                                                     <el-menu-item index="@item3.name" @@click="addTab('@item3.title','@item3.path','@item3.name')">
-                                                         <i class="@item3.icon"></i>
-                                                         <span slot="title">@item3.title</span>
-                                                     </el-menu-item>
-                                                 }
-                                             </el-submenu>
-                                         }
-                                     }
-                                 </el-submenu>
-                             }
-                        }
-                    </el-menu>
+                    @await Component.InvokeAsync("MenuList", new { menus = Model })
                 </el-aside>
                 <el-main style="padding: 0">
-                    <el-tabs v-model="tabsIndex" type="border-card" @@tab-remove="removeTab" @@tab-click="clickTab">
+                    <el-tabs v-model="tabsIndex" type="border-card" @@tab-remove="removeTab" @@tab-click="clickTab" style="border: 1px solid #304156;">
                         <el-tab-pane v-for="(item,index) in tabsData" :key="item.name" :label="item.title" :name="item.name" :closable="item.closeable">
                             <transition-group name="form-fade" mode="in-out">
                                 <div :id="'tab_'+item.name" v-bind:key="'tab_'+item.name"></div>
@@ -199,12 +167,30 @@
                 this.tabsIndex = name;
                 $.ajax({
                     url: path,
-                    success: function(result) {
+                    headers: {
+                        axios: "true"
+                    },
+                    success: function (result) {
                         $("#tab_" + name).html(result);
                         self.tabsData[self.tabsData.length - 1].content = eval(name);
                     },
                     error: function (error) {
-                        window.location.href = "/Login";
+                        console.log(error);
+                        switch (error.status) {
+                            case 401:
+                                self.$confirm('登录已超时，请重新登录','提示',
+                                    {
+                                        confirmButtonText: '重新登录',
+                                        cancelButtonText: '取消',
+                                        type: 'warning'
+                                    }).then(() => {
+                                    window.location.href = "/Login";
+                                });
+                            case 404:
+                            case 500:
+                                $("#tab_" + name).html('<h1>未找到页面</h1>');
+                                self.tabsData[self.tabsData.length - 1].content = eval(name);
+                        }
                     }
                 });
 

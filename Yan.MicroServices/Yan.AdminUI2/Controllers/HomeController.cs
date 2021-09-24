@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using Yan.AdminUI2.Models;
 
 namespace Yan.AdminUI2.Controllers
@@ -59,7 +60,77 @@ namespace Yan.AdminUI2.Controllers
         [Authorize]
         public IActionResult Index2()
         {
-            Console.WriteLine(HttpContext.Session.GetString("token"));
+            var videos = new List<VideoViewModel>()
+            {
+                new VideoViewModel()
+                {
+                    Id = "10.100.32.131", Label = "10.100.32.131",
+                    MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
+                    SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_1",
+                    Children = new List<VideoViewModel>()
+                },
+                new VideoViewModel()
+                {
+                    Id = "10.100.32.132", Label = "10.100.32.132",
+                    MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch5_0",
+                    SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch5_1",
+                    Children = new List<VideoViewModel>()
+                },
+                new VideoViewModel()
+                {
+                    Id = "10.100.32.133", Label = "10.100.32.133",
+                    MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch6_0",
+                    SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch6_1",
+                    Children = new List<VideoViewModel>()
+                },
+                new VideoViewModel()
+                {
+                    Id = "10.100.32.134", Label = "10.100.32.134",
+                    MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch7_0",
+                    SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch7_1",
+                    Children = new List<VideoViewModel>()
+                },
+                new VideoViewModel()
+                {
+                    Id = "10.100.32.135", Label = "10.100.32.135",
+                    MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch14_0",
+                    SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch14_1",
+                    Children = new List<VideoViewModel>()
+                },
+                new VideoViewModel()
+                {
+                    Id = "10.100.32.136", Label = "10.100.32.136",
+                    MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
+                    SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
+                    Children = new List<VideoViewModel>()
+                },
+                new VideoViewModel()
+                {
+                    Id = "10.100.32.137", Label = "10.100.32.137",
+                    MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
+                    SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
+                    Children = new List<VideoViewModel>()
+                },
+                new VideoViewModel()
+                {
+                    Id = "10.100.32.138", Label = "10.100.32.138",
+                    MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
+                    SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
+                    Children = new List<VideoViewModel>()
+                },
+                new VideoViewModel()
+                {
+                    Id = "10.100.32.139", Label = "10.100.32.139",
+                    MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
+                    SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
+                    Children = new List<VideoViewModel>()
+                }
+
+            };
+
+            var js = JsonConvert.SerializeObject(videos);
+
+            ViewBag.Data = videos;
             return View();
         }
 

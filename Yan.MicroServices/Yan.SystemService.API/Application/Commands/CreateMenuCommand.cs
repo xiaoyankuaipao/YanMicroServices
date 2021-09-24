@@ -78,7 +78,7 @@ namespace Yan.SystemService.API.Application.Commands
         /// <returns></returns>
         public async Task<HandleResultDto> Handle(CreateMenuCommand request, CancellationToken cancellationToken)
         {
-            if (String.IsNullOrEmpty(request.Id))
+            if (string.IsNullOrEmpty(request.Id))
             {
                 var menu = new SystemMenu(request.Name, request.Code, request.Address, request.Icon, request.MenuType, request.ParentId);
                 await _systemMenuRepository.AddAsync(menu, cancellationToken);
@@ -93,7 +93,7 @@ namespace Yan.SystemService.API.Application.Commands
                 }
             }
 
-            await _systemMenuRepository.UnitOfWork.SaveEntitiesAsync();
+            await _systemMenuRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
 
             return new HandleResultDto
             {

@@ -20,4 +20,5 @@ namespace Yan.Core.Dtos
         /// </summary>
         public ResultPage<T> Result { get; set; }
     }
+
 }

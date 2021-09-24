@@ -17,6 +17,10 @@
     {
       "library": "axios@0.21.4",
       "destination": "wwwroot/lib/axios/"
+    },
+    {
+      "library": "flv.js@1.6.2",
+      "destination": "wwwroot/lib/flv/"
     }
   ]
 }

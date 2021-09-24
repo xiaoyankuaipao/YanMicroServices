@@ -13,7 +13,6 @@ httpRequestService.interceptors.request.use(
     });
 httpRequestService.interceptors.response.use(
     response => {
-        console.log(response);
         return response.data;
     },
     error => {
@@ -21,8 +20,16 @@ httpRequestService.interceptors.response.use(
             switch (error.response.status) {
                 case 401:
                 {
-                    console.log('401-401-401');
-                    window.location.href = "/Login";
+                    var tt = new Vue();
+                    tt.$confirm('登录已超时，请重新登录',
+                        '提示',
+                        {
+                            confirmButtonText: '重新登录',
+                            cancelButtonText: '取消',
+                            type: 'warning'
+                        }).then(() => {
+                        window.location.href = "/Login";
+                    });
                 }
             }
         }

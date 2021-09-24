@@ -59,7 +59,7 @@ a span:hover {
 
 .el-aside {
     text-align: left;
-    height: 100%;
+    height: calc(100vh - 60px);
     background-color: #304156;
     transition: width 0.28s;
     overflow-x: hidden;
@@ -73,12 +73,14 @@ a span:hover {
 
 
 .el-tabs--card {
-    height: calc(100vh - 110px);
+    height: calc(100vh - 100px);
 }
 .el-tab-pane {
-    height: calc(100vh - 110px);
+    height: calc(100vh - 100px);
     overflow-y: auto;
 }
+
+
 
 .home-right {
     float: right;
@@ -108,7 +110,6 @@ a span:hover {
 .form-fade-enter-active, .form-fade-leave-active {
     transition: all 0.8s;
 }
-
 .form-fade-enter, .form-fade-leave-active {
     transform: translate3d(0, -50px, 0);
     opacity: 0;

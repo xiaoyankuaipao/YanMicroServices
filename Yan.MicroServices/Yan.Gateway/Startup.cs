@@ -47,10 +47,22 @@ namespace Yan.Gateway
             {
                 options.SwaggerDoc("Yan.Gateway", new OpenApiInfo
                 {
-                    Title="Yan.Gatway",
+                    Title="Yan.Gateway",
                     Version="V1.0"
                 });
             });
+
+            #region ¿çÓò
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AnyCors",
+                    policy =>
+                    {
+                        policy.SetIsOriginAllowed(_ => true).AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                    });
+            });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +86,8 @@ namespace Yan.Gateway
             #endregion
 
             app.UseRouting();
+
+            app.UseCors("AnyCors");
 
             app.UseAuthorization();
 

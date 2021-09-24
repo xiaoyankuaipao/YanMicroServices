@@ -1,30 +1,505 @@
 ﻿@{
     Layout = null;
 }
+<style>
+    .layout1 {
+        position: relative;
+        float: left;
+        height: 100%;
+        width: 100%;
+        background: #888;
+        padding: 2px;
+        border: 2px yellow dashed;
+    }
+
+    .layout4 {
+        position: relative;
+        float: left;
+        height: 50%;
+        width: 50%;
+        background: #888;
+        padding: 2px;
+        border: 2px yellow dashed;
+    }
+
+    .layout9 {
+        position: relative;
+        float: left;
+        height: 33.33333%;
+        width: 33.33333%;
+        background: #888;
+        padding: 2px;
+        border: 2px yellow dashed;
+    }
+
+    .layout16 {
+        position: relative;
+        float: left;
+        height: 25%;
+        width: 25%;
+        background: #888;
+        padding: 2px;
+        border: 2px yellow dashed;
+    }
+
+        .layout1:hover, .layout4:hover, .layout9:hover, .layout16:hover, .divSelected {
+            border: 2px red solid;
+            cursor: pointer;
+        }
+
+    .layoutFull {
+        position: absolute;
+        float: left;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: #888;
+        padding: 2px;
+        border: 2px yellow dashed;
+        z-index: 9;
+    }
+
+    .videoController {
+        width: 100%;
+        height: 30px;
+        background: #304156;
+        opacity: 0.8;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        display: flex;
+        justify-content: space-between
+    }
+
+    .videoController-left {
+ /*       float: left;*/
+        height: 100%;
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .videoController-center {
+/*        float: left;*/
+        height: 100%;
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .videoController-right {
+/*        float: right;*/
+        height: 100%;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    /*
+
+    */
+
+    /* 设置树形最外层的背景颜色和字体颜色 */
+    .el-tree {
+      /*  color: #bfcbd9;*/
+        color: #fff;
+        background: transparent;
+    }
+
+    /* 设置节点鼠标悬浮三角图标鼠标悬浮的颜色 */
+    .el-tree-node__content:hover .el-tree-node__expand-icon {
+        color: #000;
+    }
+
+    /* 树节点鼠标悬浮式改变背景色，字体颜色 */
+    .el-tree-node__content:hover {
+        background-color: #304156;
+        color: #fff;
+    }
+
+    /* 改变节点高度 */
+    .el-tree-node__content {
+        height: 36px;
+    }
+
+    /* 改变被点击节点背景颜色，字体颜色 */
+    .el-tree-node:focus > .el-tree-node__content {
+        background-color: #304156;
+        color: #fff;
+    }
+
+    /*
+
+    */
+
+    /* 修改el-input的样式 */
+    .el-select, .el-input {
+        background: #888;
+       /* color: #bfcbd9;*/
+        color: #fff;
+        border: 1px solid #304156;
+        border-left: none;
+        /*border-radius: 3px;*/
+        text-align: left;
+    }
+
+    .el-input__inner {
+        background: #888;
+        /*color: #bfcbd9;*/
+        color: #fff;
+        border: 0px;
+    }
+
+    /* el-input 聚焦的时候 外层的border会有一个样式 */
+    .el-select .el-input.is-focus .el-input__inner {
+        /*border: 1px solid #304156;*/
+        border: 0px;
+    }
+
+    /* 修改总体选项的样式 最外层*/
+    .el-select-dropdown {
+        background: #304156;
+        margin: -1px;
+        border: 0px;
+        border-radius: 0px;
+    }
+
+    /* 修改单个选项的样式*/
+    .el-select-dropdown__item {
+        background-color: transparent;
+        color: #fff;
+    }
+        
+        /* item 选项的hover样式 */
+        .el-select-dropdown__item.hover,
+        .el-select-dropdown__item:hover {
+            background-color: #192027;
+            color: #409eff;
+        }
+
+    /* 修改的是下拉框选项内容上方的尖角*/
+    .el-popper .popper__arrow, .el-popper .popper__arrow::after {
+    }
+    .el-popper[x-placement^=bottom] .popper__arrow::after {
+        border-bottom-color: #304156;
+    }
+
+</style>
 
 <template id="index2">
-    <div>
-        <el-row>
-            <el-button>默认按钮</el-button>
-            <el-button type="primary">主要按钮</el-button>
-            <el-button type="success">成功按钮</el-button>
-            <el-button type="info">信息按钮</el-button>
-            <el-button type="warning">警告按钮</el-button>
-            <el-button type="danger">危险按钮</el-button>
-        </el-row>
-        <el-row>
-            <el-button plain>朴素按钮</el-button>
-            <el-button type="primary" plain>主要按钮</el-button>
-            <el-button type="success" plain>成功按钮</el-button>
-            <el-button type="info" plain>信息按钮</el-button>
-            <el-button type="warning" plain>警告按钮</el-button>
-            <el-button type="danger" plain>危险按钮</el-button>
-        </el-row>
+    <div style="height: 100%; width: 100%;background: #888">
+        <div style="float: left; height: 100%; width: 200px;">
+            <el-select v-model="divCount" placeholder="请选择" >
+                <el-option
+                    v-for="item in divCountOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                </el-option>
+            </el-select>
+            <el-tree :data="videoTree" ref="videoTree" @@node-click="clickVideoTreeNode"></el-tree>
+        </div>
+        <div style="display: inline-block; height: 100%; width: calc(100% - 200px);">
+            <template v-for="(item,index) in 16">
+                 <div  :class="{layout1:divCount==1,layout4:divCount==4,layout9:divCount==9,layout16:divCount==16,divSelected:selectedDiv==item,layoutFull:fullDiv==item}"
+                       v-show="item <= divCount"
+                       @@click="selectDiv(item)"
+                       @@dblclick="dbClickDiv(item)">
+                     <video :id="item" style="width: 100%; height: 100%;" @*controls autoplay muted*@></video>
+                     <div class="videoController">
+                         <div class="videoController-left">
+                             <el-button type="primary" icon="el-icon-circle-close"  size="mini" style="font-size: 15px;" :disabled="!players[item-1].isPlay" @@click="stopPlay(item)"></el-button>
+                         </div>
+                         <div class="videoController-center">
+                             <h4 :id="'text_'+item"></h4>
+                         </div>
+                         <div class="videoController-right">
+                             <el-tooltip :content="players[item-1].codeStreamType" placement="top">
+                                 <el-switch v-model="players[item-1].codeStreamType" :disabled="!players[item-1].isPlay"
+                                            active-color="#13ce66"
+                                            inactive-color="#ff4949"
+                                            active-value="主码流"
+                                            inactive-value="子码流"
+                                            @@change="changeCodeStreamType($event,item)">
+                                 </el-switch>
+                             </el-tooltip>
+                         </div>
+                     </div>
+                 </div>
+            </template>
+        </div>
     </div>
-</template> 
+</template>
 
+<script type="text/javascript" src="~/lib/flv/flv.js"></script>
 <script type="text/javascript">
+
     var index2 = {
-        template: "#index2"
+        template: "#index2",
+        data: function () {
+            return {
+                videoTree: @Html.Raw(Json.Serialize(ViewBag.Data)),
+                divCount: 4,
+                divCountOptions: [
+                    {
+                        value: 1,
+                        label: '单画面'
+                    }, {
+                        value: 4,
+                        label: '4画面'
+                    }, {
+                        value: 9,
+                        label: '9画面'
+                    }, {
+                        value: 16,
+                        label: '16画面'
+                    }],
+                selectedDiv: 1,
+                fullDiv: 0,
+                value: '主码流',
+                players: []
+            };
+        },
+        created: function () {
+            for (var i = 1; i <= 16; i++) {
+                this.players.push({
+                    isPlay: false,
+                    devId: i,
+                    flvPlayer: null,
+                    name: '',
+                    mainCodeStreamUrl: '',
+                    subCodeStreamUrl: '',
+                    codeStreamType:'主码流'
+                });
+            }
+        },
+        beforeDestroy: function() {
+            for (var i = 0; i < this.players.length; i++) {
+                var player = this.players[i];
+                if (player.isPlay && player.flvPlayer!=null) {
+                    player.flvPlayer.pause();
+                    player.flvPlayer.unload();
+                    player.flvPlayer.detachMediaElement();
+                    player.flvPlayer.destroy();
+                    player.flvPlayer = null;
+
+                    console.log(player.devId + '被释放');
+                }
+            }
+        },
+        methods: {
+            /*选择播放框*/
+            selectDiv(item) {
+                this.selectedDiv = item;
+            },
+            /*双击播放框*/
+            dbClickDiv(item) {
+                if (this.fullDiv === 0) {
+                    this.fullDiv = item;
+                } else {
+                    this.fullDiv = 0;
+                }
+            },
+            /* 点击树节点，播放视频 */
+            clickVideoTreeNode(a, b, c) {
+                if (flvjs.isSupported()) {
+                    var url = a.mainCodeStreamUrl;
+                    var subUrl = a.subCodeStreamUrl;
+                    var textInfo = a.label;
+
+                    var player = this.players.find(a => { return a.devId === this.selectedDiv });
+                    var videoElement;
+                    var textId;
+                    var h;
+                    var flvPlayer;
+                    if (player === undefined || player === null) {
+                        //没有找到播放位置
+                        console.log('1=未找到要播放的地方，程序出错啦！！！');
+                    } else {
+                        if (!player.isPlay){
+                            // 找到播放位置，且当前没有播放
+                            console.log('找到了播放位置');
+                            videoElement = document.getElementById(player.devId);
+                            textId = "text_" + this.selectedDiv;
+                            h = document.getElementById(textId);
+                            h.innerText = textInfo;
+
+                            flvPlayer = flvjs.createPlayer({
+                                type: "flv",
+                                isLive: true,
+                                hasAudio: false,
+                                url: url
+                            });
+
+                            flvPlayer.on('error', err => {
+                                var msg = player.name + ':播放出错';
+                                this.$message({
+                                    type: 'error',
+                                    title: '提示',
+                                    message: msg
+                                });
+
+                                player.flvPlayer.pause();
+                                player.flvPlayer.unload();
+                                player.flvPlayer.detachMediaElement();
+                                player.flvPlayer.destroy();
+
+                                var h = document.getElementById("text_" + player.devId);
+                                h.innerText = '';
+
+                                player.isPlay = false;
+                                player.flvPlayer = null;
+                                player.name = '';
+                                player.mainCodeStreamUrl = '';
+                                player.subCodeStreamUrl = '';
+                            });
+
+                            flvPlayer.attachMediaElement(videoElement);
+                            flvPlayer.load();
+                            flvPlayer.play();
+
+                            player.isPlay = true;
+                            player.flvPlayer = flvPlayer;
+                            player.name = textInfo;
+                            player.mainCodeStreamUrl = url;
+                            player.subCodeStreamUrl = subUrl;
+                        }
+                        else {
+                            var isFind = false;
+                            // 找到播放位置，且当前正在播放，从1开始寻找没有播放的位置，进行播放。找到未播放的位置则进行播放，找不到，提示所有位置都在播放，请先关闭某个位置再播放。
+                            for (var i = 1; i <= this.divCount; i++)
+                            {
+                                player = this.players.find(a => { return a.devId === i });
+                                if (player == undefined || player === null || player.isPlay) {
+                                    //没有找到播放位置
+                                    console.log('当前位置' + i + '正在播放，试试下一个！！！');
+                                    continue;
+                                }
+                                else
+                                {
+                                    videoElement = document.getElementById(player.devId);
+                                    flvPlayer = flvjs.createPlayer({
+                                        type: "flv",
+                                        isLive: true,
+                                        hasAudio: false,
+                                        url: url
+                                    });
+
+                                    flvPlayer.on('error', err => {
+                                        var msg = player.name + ':播放出错';
+                                        this.$message({
+                                            type: 'error',
+                                            title: '提示',
+                                            message: msg
+                                        });
+
+                                        player.flvPlayer.pause();
+                                        player.flvPlayer.unload();
+                                        player.flvPlayer.detachMediaElement();
+                                        player.flvPlayer.destroy();
+
+                                        var h = document.getElementById("text_" + player.devId);
+                                        h.innerText = '';
+
+                                        player.isPlay = false;
+                                        player.flvPlayer = null;
+                                        player.name = '';
+                                        player.mainCodeStreamUrl = '';
+                                        player.subCodeStreamUrl = '';
+                                    });
+
+                                    flvPlayer.attachMediaElement(videoElement);
+                                    flvPlayer.load();
+                                    flvPlayer.play();
+
+                                    textId = "text_" + player.devId;
+                                    h = document.getElementById(textId);
+                                    h.innerText = textInfo;
+
+                                    player.isPlay = true;
+                                    player.flvPlayer = flvPlayer;
+                                    player.name = textInfo;
+                                    player.mainCodeStreamUrl = url;
+                                    player.subCodeStreamUrl = subUrl;
+
+                                    isFind = true;
+
+                                    break;
+                                } 
+                            }
+
+                            if (!isFind) {
+                                this.$message({
+                                    type: 'warning',
+                                    title: '提示',
+                                    message: '全部视窗都在播放，请先关闭正在播放的视窗。或者重新选择视窗数'
+                                });
+                            }
+                        }
+                    }
+                } else {
+                    alert('你的浏览器不支持');
+                }
+
+            },
+            /* 停止播放按钮*/
+            stopPlay(item) {
+                var player = this.players.find(c => { return c.devId === item });
+                if (player !== undefined && player !== null && player.isPlay && player.flvPlayer) {
+                    //停止播放操作
+                    player.flvPlayer.pause();
+                    player.flvPlayer.unload();
+                    player.flvPlayer.detachMediaElement();
+                    player.flvPlayer.destroy();
+
+                    //播放器 置为 未播放
+                    player.flvPlayer = null;
+                    player.isPlay = false;
+                    player.name = '';
+                    player.mainCodeStreamUrl = '';
+                    player.subCodeStreamUrl = '';
+
+                    var h = document.getElementById("text_" + player.devId);
+                    h.innerText = '';
+                }
+            },
+            /* 主码流与子码流 切换*/
+            changeCodeStreamType($event, item) {
+                var player = this.players.find(a => { return a.devId === item });
+                if (player === undefined || player === null ||  !player.isPlay || player.flvPlayer === null) {
+                    console.log('当前视窗没有播放视频，切换没有作用');
+                    return;
+                }
+
+                console.log('码流类型切换');
+
+                //停止播放操作
+                player.flvPlayer.pause();
+                player.flvPlayer.unload();
+                player.flvPlayer.detachMediaElement();
+                player.flvPlayer.destroy();
+                player.flvPlayer = null;
+
+                //重新播放
+                var videoElement = document.getElementById(item);
+                var url;
+                if ($event === '主码流') {
+                    url = player.mainCodeStreamUrl;
+                } else {
+                    url = player.subCodeStreamUrl;
+                }
+                player.flvPlayer = flvjs.createPlayer({
+                    type: "flv",
+                    isLive: true,
+                    hasAudio: false,
+                    url: url
+                });
+
+                player.flvPlayer.attachMediaElement(videoElement);
+                player.flvPlayer.load();
+                player.flvPlayer.play();
+            }
+        }
     }
 </script>
