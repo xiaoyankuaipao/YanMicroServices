@@ -35,11 +35,10 @@ namespace Yan.AdminUI2.Controllers
                 new ElMenu("选项一","/home/index2","name7","el-icon-location","7","6"),
                 new ElMenu("选项二","/home/index2","name8","el-icon-location","8","6"),
 
-                new ElMenu("导航二","path","name9", "el-icon-menu","9","0"),
-                new ElMenu("分组一","path","name10","el-icon-location","10","9"),
-                new ElMenu("选项一","/home/index2","name11","el-icon-location","11","10"),
-                new ElMenu("选项二","/home/index2","name12","el-icon-location","12","10"),
-                new ElMenu("分组二","/path","name13","el-icon-location","13","9"),
+                new ElMenu("系统管理","path","system", "el-icon-menu","9","0"),
+                new ElMenu("角色管理","/Role/Index","role","el-icon-location","11","9"),
+                new ElMenu("菜单管理","/System/Menu","menu","el-icon-location","12","9"),
+                new ElMenu("用户管理","/System/User","user","el-icon-location","13","9"),
 
                 new ElMenu("导航三","/path","name", "el-icon-menu","14","0")
             };
@@ -67,63 +66,63 @@ namespace Yan.AdminUI2.Controllers
                     Id = "10.100.32.131", Label = "10.100.32.131",
                     MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
                     SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_1",
-                    Children = new List<VideoViewModel>()
+                    Children = new List<VideoViewModel>(),PlayState="123"
                 },
                 new VideoViewModel()
                 {
                     Id = "10.100.32.132", Label = "10.100.32.132",
                     MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch5_0",
                     SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch5_1",
-                    Children = new List<VideoViewModel>()
+                    Children = new List<VideoViewModel>(),PlayState=""
                 },
                 new VideoViewModel()
                 {
                     Id = "10.100.32.133", Label = "10.100.32.133",
                     MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch6_0",
                     SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch6_1",
-                    Children = new List<VideoViewModel>()
+                    Children = new List<VideoViewModel>(),PlayState=""
                 },
                 new VideoViewModel()
                 {
                     Id = "10.100.32.134", Label = "10.100.32.134",
                     MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch7_0",
                     SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch7_1",
-                    Children = new List<VideoViewModel>()
+                    Children = new List<VideoViewModel>(),PlayState=""
                 },
                 new VideoViewModel()
                 {
                     Id = "10.100.32.135", Label = "10.100.32.135",
                     MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch14_0",
                     SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch14_1",
-                    Children = new List<VideoViewModel>()
+                    Children = new List<VideoViewModel>(),PlayState=""
                 },
                 new VideoViewModel()
                 {
                     Id = "10.100.32.136", Label = "10.100.32.136",
                     MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
                     SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
-                    Children = new List<VideoViewModel>()
+                    Children = new List<VideoViewModel>(),PlayState=""
                 },
                 new VideoViewModel()
                 {
                     Id = "10.100.32.137", Label = "10.100.32.137",
                     MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
                     SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
-                    Children = new List<VideoViewModel>()
+                    Children = new List<VideoViewModel>(),PlayState=""
                 },
                 new VideoViewModel()
                 {
                     Id = "10.100.32.138", Label = "10.100.32.138",
                     MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
                     SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
-                    Children = new List<VideoViewModel>()
+                    Children = new List<VideoViewModel>(),PlayState=""
                 },
                 new VideoViewModel()
                 {
                     Id = "10.100.32.139", Label = "10.100.32.139",
                     MainCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
                     SubCodeStreamUrl = "http://10.100.32.140:8002/live?port=1935&app=videoapp&stream=streamch3_0",
-                    Children = new List<VideoViewModel>()
+                    Children = new List<VideoViewModel>(),PlayState=""
                 }
 
             };

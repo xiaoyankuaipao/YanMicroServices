@@ -72,13 +72,7 @@ a span:hover {
 }
 
 
-.el-tabs--card {
-    height: calc(100vh - 100px);
-}
-.el-tab-pane {
-    height: calc(100vh - 100px);
-    overflow-y: auto;
-}
+
 
 
 

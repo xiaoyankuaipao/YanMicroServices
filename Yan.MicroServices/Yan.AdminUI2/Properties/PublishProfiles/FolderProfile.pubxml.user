@@ -5,6 +5,6 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>D:\github\YanMicroServices\Yan.MicroServices\Yan.AdminUI2\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
-    <History>True|2021-09-24T10:33:13.2781977Z;True|2021-09-16T18:39:54.3616932+08:00;</History>
+    <History>True|2021-09-26T10:19:04.8325675Z;True|2021-09-24T18:33:13.2781977+08:00;True|2021-09-16T18:39:54.3616932+08:00;</History>
   </PropertyGroup>
 </Project>

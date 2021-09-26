@@ -34,5 +34,10 @@ namespace Yan.AdminUI2.Models
         /// 
         /// </summary>
         public List<VideoViewModel> Children { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string PlayState { get; set; }
     }
 }

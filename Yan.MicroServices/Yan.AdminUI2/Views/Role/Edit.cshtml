@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<template id="editRole">
+    <div>
+        <h1>{{formData1}}</h1>
+    </div>
+</template>
+<script type="text/javascript">
+    Vue.component("edit-role",
+        {
+            template: "#editRole",
+            created() {
+                console.log('editRole created');
+            },
+            props: {
+                formData1: {
+                    type: String,
+                    default() {
+                        return '';
+                    }
+                }
+            }
+        });
+</script>

@@ -1,0 +1,145 @@
+﻿@{
+    Layout = null;
+}
+
+<template id="role">
+    <div>
+        <el-card style="margin: 10px">
+            <div slot="header" class="clearfix" v-text="title">
+            </div>
+            <el-row>
+                <el-button-group style="margin-bottom: 10px;">
+                    <el-button type="primary" icon="el-icon-plus" @@click="addRole">创建</el-button>
+                    <el-button type="primary" icon="el-icon-edit" @@click="editRole">修改</el-button>
+                    <el-button type="danger" icon="el-icon-delete">删除</el-button>
+                    <el-button type="default" icon="el-icon-edit-outline" @@click="dialogVisible=true;">角色权限管理</el-button>
+                </el-button-group>
+            </el-row>
+            <el-row>
+                <el-table :data="article" style="width: 100%" ref="tableRole" @@current-change="onCurrentRowChange">
+                    <el-table-column prop="id"
+                                     label="id"
+                                     width="180">
+                    </el-table-column>
+                    <el-table-column prop="title"
+                                     label="名称"
+                                     width="180">
+                    </el-table-column>
+                    <el-table-column prop="remark"
+                                     label="简介">
+                    </el-table-column>
+                </el-table>
+                <el-pagination @@size-change="handleSizeChanged" @@current-change="handleCurrentPageChanged" :current-page="currentPage"
+                               :page-sizes="pageSize" :page-size="limit" layout="total, -> ,sizes, -> , prev, pager, next" :total="count">
+                </el-pagination>
+            </el-row>
+        </el-card>
+
+        <el-dialog :title="dialogTitle" :visible.sync="dialogVisible">
+            <el-form :model="formData" ref="form" label-width="120px" method="post" asp-action="Create" asp-controller="Role">
+                <el-form-item label="角色名称" prop="name">
+                    <el-input v-model="formData.name" name="name"></el-input>
+                </el-form-item>
+
+                <el-form-item label="角色显示名称" prop="displayName">
+                    <el-input v-model="formData.displayName" name="displayName"></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button style="float:right"  type="primary" native-type="submit">提交</el-button>
+                    <el-button style="float:right;margin-right:20px;" @@click="dialogVisible=false">返回</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
+    </div>
+</template>
+
+<script type="text/javascript">
+    var role = {
+        template: "#role",
+        data: function() {
+            return {
+                title: '角色管理',
+                article: [],
+                pageSize: [5, 10, 20, 50, 100],
+                limit: 20,
+                currentPage: 1,
+                count: 0,
+                dialogVisible: false,
+                dialogTitle: '',
+                formData: {
+                    name: '',
+                    displayName: '',
+                    id: ''
+                },
+                dialogType: 'addOrUpdate',
+                dialogSize: 'small',
+                selectRow: null
+            }
+        },
+        mounted: function() {
+            this.getData();
+        },
+        methods: {
+            async getData() {
+                let here = this;
+                var data = await httpRequestService.GET('/Home/GetArticleLst?page=' +
+                    this.currentPage +
+                    '&limit=' +
+                    this.limit);
+
+                here.count = data.totalCount;
+                here.article = data.datas;
+            },
+            handleSizeChanged(val) {
+                this.limit = val;
+                this.currentPage = 1;
+                this.getData();
+            },
+            handleCurrentPageChanged(val) {
+                this.currentPage = val;
+                this.getData();
+            },
+            onCloseDialog(success) {
+                this.loading = false;
+                this.dialogVisible = false;
+                if (success) {
+                }
+            },
+
+
+            onCurrentRowChange(selection) {
+                this.selectRow = selection;
+            },
+
+            addRole() {
+                this.dialogTitle = '新增角色';
+                this.dialogSize = 'small';
+                this.formData = {
+                    name: '',
+                    displayName: '',
+                    id: ''
+                };
+               
+                this.dialogVisible = true;
+            },
+
+            editRole() {
+                var row = this.selectRow;
+                if (row) {
+                    this.dialogTitle = '修改角色';
+                    this.dialogSize = 'small';
+                    this.formData = {
+                        name: row.title,
+                        displayName: row.remark,
+                        id: row.id
+                    };
+                    this.dialogVisible = true;
+                } else {
+                    this.$message({message: '请选择要修改的数据', type: 'warning'})
+                }
+            }
+        }
+
+    }
+</script>

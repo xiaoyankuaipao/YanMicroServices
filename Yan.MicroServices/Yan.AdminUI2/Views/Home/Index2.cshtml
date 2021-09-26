@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
 }
+
 <style>
     .layout1 {
         position: relative;
@@ -9,7 +10,7 @@
         width: 100%;
         background: #888;
         padding: 2px;
-        border: 2px yellow dashed;
+        border: 2px yellow solid;
     }
 
     .layout4 {
@@ -19,7 +20,7 @@
         width: 50%;
         background: #888;
         padding: 2px;
-        border: 2px yellow dashed;
+        border: 2px yellow solid;
     }
 
     .layout9 {
@@ -29,7 +30,7 @@
         width: 33.33333%;
         background: #888;
         padding: 2px;
-        border: 2px yellow dashed;
+        border: 2px yellow solid;
     }
 
     .layout16 {
@@ -39,13 +40,13 @@
         width: 25%;
         background: #888;
         padding: 2px;
-        border: 2px yellow dashed;
+        border: 2px yellow solid;
     }
 
-        .layout1:hover, .layout4:hover, .layout9:hover, .layout16:hover, .divSelected {
-            border: 2px red solid;
-            cursor: pointer;
-        }
+    .layout1:hover, .layout4:hover, .layout9:hover, .layout16:hover, .divSelected {
+        border: 2px red solid;
+        cursor: pointer;
+    }
 
     .layoutFull {
         position: absolute;
@@ -73,7 +74,6 @@
     }
 
     .videoController-left {
- /*       float: left;*/
         height: 100%;
         margin-left: 10px;
         display: flex;
@@ -81,7 +81,6 @@
     }
 
     .videoController-center {
-/*        float: left;*/
         height: 100%;
         margin-left: 10px;
         display: flex;
@@ -89,7 +88,6 @@
     }
 
     .videoController-right {
-/*        float: right;*/
         height: 100%;
         margin-right: 10px;
         display: flex;
@@ -98,11 +96,11 @@
 
     /*
 
-    */
+        */
 
     /* 设置树形最外层的背景颜色和字体颜色 */
     .el-tree {
-      /*  color: #bfcbd9;*/
+        /*  color: #bfcbd9;*/
         color: #fff;
         background: transparent;
     }
@@ -129,14 +127,23 @@
         color: #fff;
     }
 
+    .custom-tree-node {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        padding: 8px;
+    }
+
     /*
 
-    */
+        */
 
     /* 修改el-input的样式 */
-    .el-select, .el-input {
+    .el-select, divCountSelect .el-input {
         background: #888;
-       /* color: #bfcbd9;*/
+        /* color: #bfcbd9;*/
         color: #fff;
         border: 1px solid #304156;
         border-left: none;
@@ -170,27 +177,27 @@
         background-color: transparent;
         color: #fff;
     }
-        
-        /* item 选项的hover样式 */
-        .el-select-dropdown__item.hover,
-        .el-select-dropdown__item:hover {
-            background-color: #192027;
-            color: #409eff;
-        }
+
+    /* item 选项的hover样式 */
+    .el-select-dropdown__item.hover,
+    .el-select-dropdown__item:hover {
+        background-color: #192027;
+        color: #409eff;
+    }
 
     /* 修改的是下拉框选项内容上方的尖角*/
     .el-popper .popper__arrow, .el-popper .popper__arrow::after {
     }
+
     .el-popper[x-placement^=bottom] .popper__arrow::after {
         border-bottom-color: #304156;
     }
-
 </style>
 
 <template id="index2">
-    <div style="height: 100%; width: 100%;background: #888">
+    <div style="height: 100%; width: 100%; background: #616669">
         <div style="float: left; height: 100%; width: 200px;">
-            <el-select v-model="divCount" placeholder="请选择" >
+            <el-select v-model="divCount" placeholder="请选择">
                 <el-option
                     v-for="item in divCountOptions"
                     :key="item.value"
@@ -198,35 +205,42 @@
                     :value="item.value">
                 </el-option>
             </el-select>
-            <el-tree :data="videoTree" ref="videoTree" @@node-click="clickVideoTreeNode"></el-tree>
+            <el-tree :data="videoTree" ref="videoTree" @@node-click="clickVideoTreeNode">
+                <span class="custom-tree-node" slot-scope="{node,data}">
+                    <span>{{node.label}}</span>
+                    <span style="color: red">
+                        {{data.playState}}
+                    </span>
+                </span>
+            </el-tree>
         </div>
         <div style="display: inline-block; height: 100%; width: calc(100% - 200px);">
             <template v-for="(item,index) in 16">
-                 <div  :class="{layout1:divCount==1,layout4:divCount==4,layout9:divCount==9,layout16:divCount==16,divSelected:selectedDiv==item,layoutFull:fullDiv==item}"
-                       v-show="item <= divCount"
-                       @@click="selectDiv(item)"
-                       @@dblclick="dbClickDiv(item)">
-                     <video :id="item" style="width: 100%; height: 100%;" @*controls autoplay muted*@></video>
-                     <div class="videoController">
-                         <div class="videoController-left">
-                             <el-button type="primary" icon="el-icon-circle-close"  size="mini" style="font-size: 15px;" :disabled="!players[item-1].isPlay" @@click="stopPlay(item)"></el-button>
-                         </div>
-                         <div class="videoController-center">
-                             <h4 :id="'text_'+item"></h4>
-                         </div>
-                         <div class="videoController-right">
-                             <el-tooltip :content="players[item-1].codeStreamType" placement="top">
-                                 <el-switch v-model="players[item-1].codeStreamType" :disabled="!players[item-1].isPlay"
-                                            active-color="#13ce66"
-                                            inactive-color="#ff4949"
-                                            active-value="主码流"
-                                            inactive-value="子码流"
-                                            @@change="changeCodeStreamType($event,item)">
-                                 </el-switch>
-                             </el-tooltip>
-                         </div>
-                     </div>
-                 </div>
+                <div :class="{layout1:divCount==1,layout4:divCount==4,layout9:divCount==9,layout16:divCount==16,divSelected:selectedDiv==item,layoutFull:fullDiv==item}"
+                     v-show="item <= divCount"
+                     @@click="selectDiv(item)"
+                     @@dblclick="dbClickDiv(item)">
+                    <video :id="item" style="width: 100%; height: 100%;" @*controls autoplay muted*@></video>
+                    <div class="videoController">
+                        <div class="videoController-left">
+                            <el-button type="primary" icon="el-icon-circle-close" size="mini" style="font-size: 15px;" :disabled="!players[item-1].isPlay" @@click="stopPlay(item)"></el-button>
+                        </div>
+                        <div class="videoController-center">
+                            <h4>{{players[item-1].name}}</h4>
+                        </div>
+                        <div class="videoController-right">
+                            <el-tooltip :content="players[item-1].codeStreamType" placement="top">
+                                <el-switch v-model="players[item-1].codeStreamType" :disabled="!players[item-1].isPlay"
+                                           active-color="#13ce66"
+                                           inactive-color="#ff4949"
+                                           active-value="主码流"
+                                           inactive-value="子码流"
+                                           @@change="changeCodeStreamType($event,item)">
+                                </el-switch>
+                            </el-tooltip>
+                        </div>
+                    </div>
+                </div>
             </template>
         </div>
     </div>
@@ -283,8 +297,6 @@
                     player.flvPlayer.detachMediaElement();
                     player.flvPlayer.destroy();
                     player.flvPlayer = null;
-
-                    console.log(player.devId + '被释放');
                 }
             }
         },
@@ -306,7 +318,7 @@
                 if (flvjs.isSupported()) {
                     var url = a.mainCodeStreamUrl;
                     var subUrl = a.subCodeStreamUrl;
-                    var textInfo = a.label;
+                    var label = a.label;
 
                     var player = this.players.find(a => { return a.devId === this.selectedDiv });
                     var videoElement;
@@ -321,10 +333,6 @@
                             // 找到播放位置，且当前没有播放
                             console.log('找到了播放位置');
                             videoElement = document.getElementById(player.devId);
-                            textId = "text_" + this.selectedDiv;
-                            h = document.getElementById(textId);
-                            h.innerText = textInfo;
-
                             flvPlayer = flvjs.createPlayer({
                                 type: "flv",
                                 isLive: true,
@@ -345,8 +353,7 @@
                                 player.flvPlayer.detachMediaElement();
                                 player.flvPlayer.destroy();
 
-                                var h = document.getElementById("text_" + player.devId);
-                                h.innerText = '';
+                                a.playState = '';
 
                                 player.isPlay = false;
                                 player.flvPlayer = null;
@@ -358,10 +365,11 @@
                             flvPlayer.attachMediaElement(videoElement);
                             flvPlayer.load();
                             flvPlayer.play();
+                            a.playState = '正在播放';
 
                             player.isPlay = true;
                             player.flvPlayer = flvPlayer;
-                            player.name = textInfo;
+                            player.name = label;
                             player.mainCodeStreamUrl = url;
                             player.subCodeStreamUrl = subUrl;
                         }
@@ -399,8 +407,7 @@
                                         player.flvPlayer.detachMediaElement();
                                         player.flvPlayer.destroy();
 
-                                        var h = document.getElementById("text_" + player.devId);
-                                        h.innerText = '';
+                                        a.playState = '';
 
                                         player.isPlay = false;
                                         player.flvPlayer = null;
@@ -412,14 +419,12 @@
                                     flvPlayer.attachMediaElement(videoElement);
                                     flvPlayer.load();
                                     flvPlayer.play();
+                                    a.playState = '正在播放';
 
-                                    textId = "text_" + player.devId;
-                                    h = document.getElementById(textId);
-                                    h.innerText = textInfo;
 
                                     player.isPlay = true;
                                     player.flvPlayer = flvPlayer;
-                                    player.name = textInfo;
+                                    player.name = label;
                                     player.mainCodeStreamUrl = url;
                                     player.subCodeStreamUrl = subUrl;
 
@@ -453,16 +458,22 @@
                     player.flvPlayer.detachMediaElement();
                     player.flvPlayer.destroy();
 
+                    //树节点展示处理
+                    for (var i = 0; i < this.videoTree.length; i++) {
+                        if (this.videoTree[i].label === player.name) {
+                            this.videoTree[i].playState = '';
+                            break;
+                        }
+                    }
+
                     //播放器 置为 未播放
                     player.flvPlayer = null;
                     player.isPlay = false;
                     player.name = '';
                     player.mainCodeStreamUrl = '';
                     player.subCodeStreamUrl = '';
-
-                    var h = document.getElementById("text_" + player.devId);
-                    h.innerText = '';
                 }
+
             },
             /* 主码流与子码流 切换*/
             changeCodeStreamType($event, item) {
