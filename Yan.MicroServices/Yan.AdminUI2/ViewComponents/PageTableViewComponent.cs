@@ -7,21 +7,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace Yan.AdminUI2.ViewComponents
 {
     /// <summary>
-    /// 
+    /// page table view component
     /// </summary>
-    public class CreateRoleViewComponent: ViewComponent
+    [ViewComponent(Name = "PageTable")]
+    public class PageTableViewComponent:ViewComponent
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View("CreateRole");
+            //return View("Default");
+            return View();
         }
     }
 
-    public class EditRoleViewComponent : ViewComponent
-    {
-        public async Task<IViewComponentResult> InvokeAsync()
-        {
-            return View("EditRole");
-        }
-    }
+
+
 }

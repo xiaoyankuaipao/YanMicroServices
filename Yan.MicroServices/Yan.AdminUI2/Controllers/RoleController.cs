@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Yan.AdminUI2.Controllers
 {
@@ -18,10 +19,15 @@ namespace Yan.AdminUI2.Controllers
             return View();
         }
 
+        [Authorize]
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        public IActionResult Create(Test t)
+        public EditResult Create(Test t)
         {
-            return View();
+            return new EditResult()
+            {
+                IsSuccess = true
+            };
         }
     }
 
@@ -31,5 +37,12 @@ namespace Yan.AdminUI2.Controllers
         public string Name { get; set; }
 
         public string DisplayName { get; set; }
+    }
+
+    public class EditResult
+    {
+        public bool IsSuccess { get; set; }
+
+        public string Message { get; set; }
     }
 }

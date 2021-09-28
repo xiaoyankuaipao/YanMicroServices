@@ -30,6 +30,7 @@ namespace Yan.AdminUI2.Controllers
                 new ElMenu("分组一","path","name2","el-icon-location","2","1"),
                 new ElMenu("选项一","/home/index2","index2","el-icon-location","3","2"),
                 new ElMenu("选项二","/home/index3","index3","el-icon-location","4","2"),
+                new ElMenu("选项三","/home/index4","index4","el-icon-location","15","2"),
                 new ElMenu("分组二","/path","name5","el-icon-location","5","1"),
                 new ElMenu("分组三","path","name6","el-icon-location","6","1"),
                 new ElMenu("选项一","/home/index2","name7","el-icon-location","7","6"),
@@ -137,6 +138,13 @@ namespace Yan.AdminUI2.Controllers
         public IActionResult Index3()
         {
             return View();
+        }
+
+
+        [Authorize]
+        public IActionResult Index4()
+        {
+            return ViewComponent("PageTable");
         }
 
         [Authorize]
