@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Yan.AdminUI2.Models;
 
 namespace Yan.AdminUI2.ViewComponents
 {
@@ -18,8 +19,12 @@ namespace Yan.AdminUI2.ViewComponents
         /// <returns></returns>
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            //return View("Default");
-            return View();
+            var model = new ArticleViewModel
+            {
+                Id = "1", Title = "2", Remark = "3"
+            };
+
+            return View(model);
         }
     }
 

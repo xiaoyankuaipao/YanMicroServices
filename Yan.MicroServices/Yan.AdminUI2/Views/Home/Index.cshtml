@@ -56,6 +56,7 @@
         .el-tabs--border-card>.el-tabs__header .el-tabs__item:not(.is-disabled):hover {
             color: #409EFF;
         }
+
     </style>
 </head>
 <body>
@@ -97,7 +98,7 @@
             </el-header>
 
             <el-container>
-                <el-aside :width="isCollapse? '50px':'250px'">
+                <el-aside :width="isCollapse? '70px':'250px'">
                     @await Component.InvokeAsync("MenuList", new { menus = Model })
                 </el-aside>
                 <el-main style="padding: 0">
@@ -118,7 +119,7 @@
 </body>
 </html>
 
-<partial name="DashBoard"/>
+@*<partial name="DashBoard"/>*@
 <script>
     var app = new Vue({
         el: '#app',
@@ -126,15 +127,18 @@
             isCollapse: false,
             isFullscreen: false,
             tabsData: [
-                {
-                    title: 'DashBoard',
-                    name: 'DashBoard',
-                    content: dashboard,
-                    closeable: false
-                }
+                //{
+                //    title: 'DashBoard',
+                //    name: 'DashBoard',
+                //    content: dashboard,
+                //    closeable: false
+                //}
             ],
-            tabsIndex: 'DashBoard',
-            defaultActive: 'DashBoard'
+            tabsIndex: 'dashboard',
+            defaultActive: 'dashboard'
+        },
+        created(){
+            this.addTab("看板", "/Home/DashBoard", "dashboard", false);
         },
         methods: {
             menuToggle() {
@@ -156,7 +160,7 @@
                     i.classList.remove(c);
                 }
             },
-            addTab(title, path, name) {
+            addTab(title, path, name, closeable = true) {
                 let tabs = this.tabsData;
                 let self = this;
                 for (let tab of tabs) {
@@ -169,7 +173,7 @@
                     title: title,
                     name: name,
                     content: null,
-                    closeable: true
+                    closeable: closeable
                 });
                 this.tabsIndex = name;
                 $.ajax({

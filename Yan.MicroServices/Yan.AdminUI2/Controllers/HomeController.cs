@@ -26,6 +26,7 @@ namespace Yan.AdminUI2.Controllers
         {
             List<ElMenu> menus = new List<ElMenu>()
             {
+                new ElMenu("看板","/home/dashboard","dashboard", "el-icon-menu","66","0" ),
                 new ElMenu("导航一","path","name1", "el-icon-menu","1","0" ),
                 new ElMenu("分组一","path","name2","el-icon-location","2","1"),
                 new ElMenu("选项一","/home/index2","index2","el-icon-location","3","2"),
@@ -144,7 +145,7 @@ namespace Yan.AdminUI2.Controllers
         [Authorize]
         public IActionResult Index4()
         {
-            return ViewComponent("PageTable");
+            return View();
         }
 
         [Authorize]

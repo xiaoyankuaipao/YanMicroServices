@@ -10,6 +10,11 @@ html, body {
     overflow: hidden;
 }
 
+/*el-dialog 显示的时候，会添加一个 padding-right:19px*/
+body {
+    padding-right: 0 !important;
+}
+
 #app {
     height: 100%;
 }
