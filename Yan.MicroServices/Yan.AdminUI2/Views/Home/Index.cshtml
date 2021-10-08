@@ -17,15 +17,7 @@
     <link rel="stylesheet" href="~/lib/element-ui/theme-chalk/index.css" />
     <link rel="stylesheet" href="~/font/iconfont.css" />
     
-    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="~/lib/axios/axios.js"></script>
-    <script type="text/javascript" src="~/lib/vue/vue.js"></script>
-    <script type="text/javascript" src="~/lib/element-ui/index.js"></script>
-    <script type="text/javascript" src="~/lib/screenfull/screenfull.js"></script>
-    <script type="text/javascript" src="~/js/admin.js"></script>
-    
     <style>
-
         .el-tabs--card {
             height: calc(100vh - 100px);
         }
@@ -33,30 +25,25 @@
             height: calc(100vh - 100px);
             overflow-y: auto;
         }
-
         .el-tabs--border-card > .el-tabs__content {
             margin: 0;
             padding: 0;
         }
-
         .el-tabs--border-card > .el-tabs__header {
             background-color: #1B2945;
             border: none;
             margin-top: -1px;
             margin-bottom: 1px;
         }
-
         .el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
             color: #fff;
             background-color: #304156;
             border: none;
             box-shadow: none;
         }
-
-        .el-tabs--border-card>.el-tabs__header .el-tabs__item:not(.is-disabled):hover {
+        .el-tabs--border-card > .el-tabs__header .el-tabs__item:not(.is-disabled):hover {
             color: #409EFF;
         }
-
     </style>
 </head>
 <body>
@@ -69,7 +56,7 @@
                 </div>
 
                 <div class="home-toggle">
-                    <span @@click="menuToggle">
+                    <span @@click="isCollapse=!isCollapse">
                         <i class="el-icon-menu"></i>
                     </span>
                 </div>
@@ -120,6 +107,13 @@
 </html>
 
 @*<partial name="DashBoard"/>*@
+
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="~/lib/axios/axios.js"></script>
+<script type="text/javascript" src="~/lib/vue/vue.js"></script>
+<script type="text/javascript" src="~/lib/element-ui/index.js"></script>
+<script type="text/javascript" src="~/lib/screenfull/screenfull.js"></script>
+<script type="text/javascript" src="~/js/admin.js"></script>
 <script>
     var app = new Vue({
         el: '#app',
@@ -141,9 +135,6 @@
             this.addTab("看板", "/Home/DashBoard", "dashboard", false);
         },
         methods: {
-            menuToggle() {
-                this.isCollapse =!this.isCollapse;
-            },
             fullScreen() {
                 window.screenfull.toggle();
                 this.isFullscreen = !this.isFullscreen;
@@ -199,7 +190,7 @@
                                 });
                             case 404:
                             case 500:
-                                $("#tab_" + name).html('<h1>未找到页面</h1>');
+                                $("#tab_" + name).html('<h1>未找到页面,请联系管理员</h1>');
                                 self.tabsData[self.tabsData.length - 1].content = eval(name);
                         }
                     }

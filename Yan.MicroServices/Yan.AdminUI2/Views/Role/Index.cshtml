@@ -152,7 +152,7 @@
                     data: { __RequestVerificationToken: token,t:this.formData },
                     success: function(result) {
                         if (result.isSuccess) {
-                            that.$message({ message: '保存数据成功', type: 'warning' });
+                            that.$message({ message: '保存数据成功', type: 'success' });
                             that.formData = {};
                             that.dialogVisible = false;
                         }

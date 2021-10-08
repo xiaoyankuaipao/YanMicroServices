@@ -301,11 +301,11 @@
             }
         },
         methods: {
-            /*选择播放框*/
+            /* 选择播放框 */
             selectDiv(item) {
                 this.selectedDiv = item;
             },
-            /*双击播放框*/
+            /* 双击播放框 */
             dbClickDiv(item) {
                 if (this.fullDiv === 0) {
                     this.fullDiv = item;
@@ -448,7 +448,7 @@
                 }
 
             },
-            /* 停止播放按钮*/
+            /* 停止播放按钮 */
             stopPlay(item) {
                 var player = this.players.find(c => { return c.devId === item });
                 if (player !== undefined && player !== null && player.isPlay && player.flvPlayer) {
@@ -505,6 +505,35 @@
                     isLive: true,
                     hasAudio: false,
                     url: url
+                });
+
+                player.flvPlayer.on('error', err => {
+                    var msg = player.name + ':播放出错';
+                    this.$message({
+                        type: 'error',
+                        title: '提示',
+                        message: msg
+                    });
+
+                    //树节点展示处理
+                    for (var i = 0; i < this.videoTree.length; i++) {
+                        if (this.videoTree[i].label === player.name) {
+                            this.videoTree[i].playState = '';
+                            break;
+                        }
+                    }
+
+                    player.flvPlayer.pause();
+                    player.flvPlayer.unload();
+                    player.flvPlayer.detachMediaElement();
+                    player.flvPlayer.destroy();
+
+                    player.isPlay = false;
+                    player.flvPlayer = null;
+                    player.name = '';
+                    player.mainCodeStreamUrl = '';
+                    player.subCodeStreamUrl = '';
+                    player.codeStreamType = '主码流';
                 });
 
                 player.flvPlayer.attachMediaElement(videoElement);

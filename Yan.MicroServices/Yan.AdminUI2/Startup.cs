@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Yan.AdminUI2.Extensions;
 
 namespace Yan.AdminUI2
 {
@@ -40,7 +41,7 @@ namespace Yan.AdminUI2
 
                     options.Events.OnRedirectToLogin = context =>
                     {
-                        if (context.Request.Headers.ContainsKey("axios") && context.Request.Headers["axios"] == "true")
+                        if (context.Request.IsAjax())
                         {
                             context.Response.StatusCode = 401;
                         }
@@ -56,7 +57,6 @@ namespace Yan.AdminUI2
                     options.ExpireTimeSpan = TimeSpan.FromDays(6);
                     options.SlidingExpiration = false;
                 });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
