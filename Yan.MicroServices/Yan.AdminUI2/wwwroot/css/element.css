@@ -19,6 +19,10 @@
     margin-bottom: 1px;
 }
 
+.el-tabs--border-card > .el-tabs__header .el-tabs__item {
+    border: 1px solid #1B2945 !important;
+}
+
 .el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
     color: #fff;
     background-color: #304156;
@@ -67,10 +71,6 @@
     font-size: 14px;
     padding: 8px;
 }
-
-/*
-
-        */
 
 /* 修改el-input的样式 */
 .el-select, divCountSelect .el-input {
