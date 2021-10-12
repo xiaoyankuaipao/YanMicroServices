@@ -1,0 +1,126 @@
+﻿.el-tabs--card {
+    height: calc(100vh - 100px);
+}
+
+.el-tab-pane {
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.el-tabs--border-card > .el-tabs__content {
+    margin: 0;
+    padding: 0;
+}
+
+.el-tabs--border-card > .el-tabs__header {
+    background-color: #1B2945;
+    border: none;
+    margin-top: -1px;
+    margin-bottom: 1px;
+}
+
+.el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
+    color: #fff;
+    background-color: #304156;
+    border: none;
+    box-shadow: none;
+}
+
+.el-tabs--border-card > .el-tabs__header .el-tabs__item:not(.is-disabled):hover {
+    color: #409EFF;
+}
+
+/* 设置树形最外层的背景颜色和字体颜色 */
+.el-tree {
+    /*  color: #bfcbd9;*/
+    color: #fff;
+    background: transparent;
+}
+
+/* 设置节点鼠标悬浮三角图标鼠标悬浮的颜色 */
+.el-tree-node__content:hover .el-tree-node__expand-icon {
+    color: #000;
+}
+
+/* 树节点鼠标悬浮式改变背景色，字体颜色 */
+.el-tree-node__content:hover {
+    background-color: #304156;
+    color: #fff;
+}
+
+/* 改变节点高度 */
+.el-tree-node__content {
+    height: 36px;
+}
+
+/* 改变被点击节点背景颜色，字体颜色 */
+.el-tree-node:focus > .el-tree-node__content {
+    background-color: #304156;
+    color: #fff;
+}
+
+.custom-tree-node {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 8px;
+}
+
+/*
+
+        */
+
+/* 修改el-input的样式 */
+.el-select, divCountSelect .el-input {
+    background: #888;
+    /* color: #bfcbd9;*/
+    color: #fff;
+    border: 1px solid #304156;
+    border-left: none;
+    /*border-radius: 3px;*/
+    text-align: left;
+}
+
+.el-input__inner {
+    background: #888;
+    /*color: #bfcbd9;*/
+    color: #fff;
+    border: 0px;
+}
+
+/* el-input 聚焦的时候 外层的border会有一个样式 */
+.el-select .el-input.is-focus .el-input__inner {
+    /*border: 1px solid #304156;*/
+    border: 0px;
+}
+
+/* 修改总体选项的样式 最外层*/
+.el-select-dropdown {
+    background: #304156;
+    margin: -1px;
+    border: 0px;
+    border-radius: 0px;
+}
+
+/* 修改单个选项的样式*/
+.el-select-dropdown__item {
+    background-color: transparent;
+    color: #fff;
+}
+
+    /* item 选项的hover样式 */
+    .el-select-dropdown__item.hover,
+    .el-select-dropdown__item:hover {
+        background-color: #192027;
+        color: #409eff;
+    }
+
+/* 修改的是下拉框选项内容上方的尖角*/
+.el-popper .popper__arrow, .el-popper .popper__arrow::after {
+}
+
+.el-popper[x-placement^=bottom] .popper__arrow::after {
+    border-bottom-color: #304156;
+}

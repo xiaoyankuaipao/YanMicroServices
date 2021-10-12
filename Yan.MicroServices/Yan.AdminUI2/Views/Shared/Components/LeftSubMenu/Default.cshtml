@@ -1,0 +1,23 @@
+﻿@model Yan.AdminUI2.Models.ElSubMenu
+
+<template slot="title">
+    <i class="@Model.SubMenu.icon"></i>
+    <span slot="title">@Model.SubMenu.title</span>
+</template>
+@{ var childMenu = Model.Menus.Where<ElMenu>(m => m.parentId == Model.SubMenu.id); }
+@foreach (var item in childMenu)
+{
+    if (item.path.Contains("/"))
+    {
+        <el-menu-item index="@item.name" @@click="addTab('@item.title','@item.path','@item.name')">
+            <i class="@item.icon"></i>
+            <span slot="title">@item.title</span>
+        </el-menu-item>
+    }
+    else
+    {
+        <el-submenu index="@item.name">
+            @await Component.InvokeAsync("LeftSubMenu", new {subMenu = item, menus = Model.Menus})
+        </el-submenu>
+    }
+}
